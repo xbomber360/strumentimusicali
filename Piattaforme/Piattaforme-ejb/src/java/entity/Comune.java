@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -19,6 +21,15 @@ import javax.persistence.OneToMany;
  * @author Lorenzo
  */
 @Entity
+
+@NamedQueries({
+@NamedQuery(name="trovaComuniConProvincia", query="SELECT c FROM Comune c WHERE c.provincia=?1"),
+@NamedQuery(name="trovaComunePerNome", query="SELECT c FROM Comune c WHERE c.nome=?1"),
+@NamedQuery(name="trovaComunePerCap", query="SELECT c FROM Comune c WHERE c.cap=?1"),
+
+})
+
+
 public class Comune implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -28,7 +39,6 @@ public class Comune implements Serializable {
         private String nome;        
             @Column(nullable = false, unique = true)
             private Integer cap;
-                @OneToMany(mappedBy = "comune")        
                     @ManyToOne
                     private Provincia provincia;      
                         @OneToMany(mappedBy = "comune")

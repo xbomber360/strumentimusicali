@@ -6,18 +6,30 @@ package entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+
+
 
 /**
  *
  * @author Lorenzo
  */
 @Entity
+@NamedQueries({
+@NamedQuery(name = "cercaUtentePerEmail" , query= "SELECT u FROM Utente u WHERE u.email=?1"  ),
+@NamedQuery(name = "cercaUtentePerUsername" , query= "SELECT u FROM Utente u WHERE u.username=?1"  ),
+@NamedQuery(name = "cercaUtentePerNomeCognome" , query= "SELECT u FROM Utente u WHERE u.nome=?1 AND u.cognome=?2 "),
+
+})
 public class Utente implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -38,6 +50,27 @@ public class Utente implements Serializable {
                                     private String email;
                                         @ManyToOne
                                         private Comune comune;
+                                            @OneToMany(mappedBy = "utente")
+                                            private List<Ordine> listaOrdini;
+
+    /**
+     * Get the value of listaOrdini
+     *
+     * @return the value of listaOrdini
+     */
+    public List<Ordine> getListaOrdini() {
+        return listaOrdini;
+    }
+
+    /**
+     * Set the value of listaOrdini
+     *
+     * @param listaOrdini new value of listaOrdini
+     */
+    public void setListaOrdini(List<Ordine> listaOrdini) {
+        this.listaOrdini = listaOrdini;
+    }
+
 
     /**
      * Get the value of nascita
