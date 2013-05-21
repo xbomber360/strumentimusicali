@@ -5,85 +5,89 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Lorenzo
  */
 @Entity
-public class Prodotto implements Serializable {
+public class Comune implements Serializable {
     private static final long serialVersionUID = 1L;
-    
-    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String nome;
-    private int prezzo;
-    private String descrizione;
-    private int quantita;
-    
-    
+        @Column(nullable = false , unique = true)
+        private String nome;        
+            @Column(nullable = false, unique = true)
+            private Integer cap;
+                @OneToMany(mappedBy = "comune")        
+                    @ManyToOne
+                    private Provincia provincia;      
+                        @OneToMany(mappedBy = "comune")
+                        private List<Utente> listaUtenti;
 
     /**
-     * Get the value of quantita
+     * Get the value of listaUtenti
      *
-     * @return the value of quantita
+     * @return the value of listaUtenti
      */
-    public int getQuantita() {
-        return quantita;
+    public List<Utente> getListaUtenti() {
+        return listaUtenti;
     }
 
     /**
-     * Set the value of quantita
+     * Set the value of listaUtenti
      *
-     * @param quantita new value of quantita
+     * @param listaUtenti new value of listaUtenti
      */
-    public void setQuantita(int quantita) {
-        this.quantita = quantita;
+    public void setListaUtenti(List<Utente> listaUtenti) {
+        this.listaUtenti = listaUtenti;
     }
 
 
     /**
-     * Get the value of descrizione
+     * Get the value of provincia
      *
-     * @return the value of descrizione
+     * @return the value of provincia
      */
-    public String getDescrizione() {
-        return descrizione;
+    public Provincia getProvincia() {
+        return provincia;
     }
 
     /**
-     * Set the value of descrizione
+     * Set the value of provincia
      *
-     * @param descrizione new value of descrizione
+     * @param provincia new value of provincia
      */
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
+    public void setProvincia(Provincia provincia) {
+        this.provincia = provincia;
     }
 
-    
 
     /**
-     * Get the value of prezzo
+     * Get the value of cap
      *
-     * @return the value of prezzo
+     * @return the value of cap
      */
-    public int getPrezzo() {
-        return prezzo;
+    public Integer getCap() {
+        return cap;
     }
 
     /**
-     * Set the value of prezzo
+     * Set the value of cap
      *
-     * @param prezzo new value of prezzo
+     * @param cap new value of cap
      */
-    public void setPrezzo(int prezzo) {
-        this.prezzo = prezzo;
+    public void setCap(Integer cap) {
+        this.cap = cap;
     }
 
 
@@ -124,10 +128,10 @@ public class Prodotto implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Prodotto)) {
+        if (!(object instanceof Comune)) {
             return false;
         }
-        Prodotto other = (Prodotto) object;
+        Comune other = (Comune) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -136,7 +140,7 @@ public class Prodotto implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Prodotto[ id=" + id + " ]";
+        return "entity.Comune[ id=" + id + " ]";
     }
     
 }

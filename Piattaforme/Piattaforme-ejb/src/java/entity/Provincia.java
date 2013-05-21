@@ -5,85 +5,45 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Lorenzo
  */
 @Entity
-public class Prodotto implements Serializable {
+public class Provincia implements Serializable {
     private static final long serialVersionUID = 1L;
-    
-    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String nome;
-    private int prezzo;
-    private String descrizione;
-    private int quantita;
-    
-    
+        @Column(nullable = false , unique = true)
+        private String nome;
+                @OneToMany(mappedBy = "provincia")
+                private List<Comune> listaComuni;
 
     /**
-     * Get the value of quantita
+     * Get the value of listaComuni
      *
-     * @return the value of quantita
+     * @return the value of listaComuni
      */
-    public int getQuantita() {
-        return quantita;
+    public List<Comune> getListaComuni() {
+        return listaComuni;
     }
 
     /**
-     * Set the value of quantita
+     * Set the value of listaComuni
      *
-     * @param quantita new value of quantita
+     * @param listaComuni new value of listaComuni
      */
-    public void setQuantita(int quantita) {
-        this.quantita = quantita;
-    }
-
-
-    /**
-     * Get the value of descrizione
-     *
-     * @return the value of descrizione
-     */
-    public String getDescrizione() {
-        return descrizione;
-    }
-
-    /**
-     * Set the value of descrizione
-     *
-     * @param descrizione new value of descrizione
-     */
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
-    }
-
-    
-
-    /**
-     * Get the value of prezzo
-     *
-     * @return the value of prezzo
-     */
-    public int getPrezzo() {
-        return prezzo;
-    }
-
-    /**
-     * Set the value of prezzo
-     *
-     * @param prezzo new value of prezzo
-     */
-    public void setPrezzo(int prezzo) {
-        this.prezzo = prezzo;
+    public void setListaComuni(List<Comune> listaComuni) {
+        this.listaComuni = listaComuni;
     }
 
 
@@ -124,10 +84,10 @@ public class Prodotto implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Prodotto)) {
+        if (!(object instanceof Provincia)) {
             return false;
         }
-        Prodotto other = (Prodotto) object;
+        Provincia other = (Provincia) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -136,7 +96,7 @@ public class Prodotto implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Prodotto[ id=" + id + " ]";
+        return "entity.Provincia[ id=" + id + " ]";
     }
     
 }
