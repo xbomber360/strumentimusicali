@@ -5,14 +5,15 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -20,12 +21,15 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name="cercaPerId",query="SELECT p FROM Prodotto p WHERE p.id=?1"),
-    @NamedQuery(name="cercaPerNome",query="SELECT p FROM Prodotto p WHERE p.nome=?1"),
-    @NamedQuery(name="cercaTutteLeMarche",query="SELECT p FROM Prodotto p")
+    @NamedQuery(name="cercaPerId",query="SELECT m FROM Marca m WHERE m.id=?1"),
+    @NamedQuery(name="cercaPerNome",query="SELECT m FROM Marca m WHERE m.nome=?1"),
+    @NamedQuery(name="cercaTutteLeMarche",query="SELECT m FROM Marca m")
 })
-public class Prodotto implements Serializable {
-    
+
+
+
+
+public class Marca implements Serializable {
     private static final long serialVersionUID = 1L;
     
     
@@ -34,70 +38,25 @@ public class Prodotto implements Serializable {
     private Long id;
         @Column(nullable = false , unique = true)
         private String nome;
-            private int prezzo;
-                private String descrizione;
-                    private int quantita;
-    
-    @ManyToOne
-    private Marca marca;
-    @ManyToOne
-    private Categoria categoria;
+            @OneToMany(mappedBy = "marca")
+            private List<Prodotto> listaProdotti;
 
     /**
-     * Get the value of quantita
+     * Get the value of listaProdotti
      *
-     * @return the value of quantita
+     * @return the value of listaProdotti
      */
-    public int getQuantita() {
-        return quantita;
+    public List<Prodotto> getListaProdotti() {
+        return listaProdotti;
     }
 
     /**
-     * Set the value of quantita
+     * Set the value of listaProdotti
      *
-     * @param quantita new value of quantita
+     * @param listaProdotti new value of listaProdotti
      */
-    public void setQuantita(int quantita) {
-        this.quantita = quantita;
-    }
-
-
-    /**
-     * Get the value of descrizione
-     *
-     * @return the value of descrizione
-     */
-    public String getDescrizione() {
-        return descrizione;
-    }
-
-    /**
-     * Set the value of descrizione
-     *
-     * @param descrizione new value of descrizione
-     */
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
-    }
-
-    
-
-    /**
-     * Get the value of prezzo
-     *
-     * @return the value of prezzo
-     */
-    public int getPrezzo() {
-        return prezzo;
-    }
-
-    /**
-     * Set the value of prezzo
-     *
-     * @param prezzo new value of prezzo
-     */
-    public void setPrezzo(int prezzo) {
-        this.prezzo = prezzo;
+    public void setListaProdotti(List<Prodotto> listaProdotti) {
+        this.listaProdotti = listaProdotti;
     }
 
 
@@ -138,10 +97,10 @@ public class Prodotto implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Prodotto)) {
+        if (!(object instanceof Marca)) {
             return false;
         }
-        Prodotto other = (Prodotto) object;
+        Marca other = (Marca) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -150,7 +109,7 @@ public class Prodotto implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Prodotto[ id=" + id + " ]";
+        return "entity.Marca[ id=" + id + " ]";
     }
     
 }
