@@ -1,0 +1,30 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package facade;
+
+import entity.OggettoOrdinato;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+/**
+ *
+ * @author Lorenzo
+ */
+@Stateless
+public class OggettoOrdinatoFacade extends AbstractFacade<OggettoOrdinato> {
+    @PersistenceContext(unitName = "Piattaforme-ejbPU")
+    private EntityManager em;
+
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
+    }
+
+    public OggettoOrdinatoFacade() {
+        super(OggettoOrdinato.class);
+    }
+    
+}
