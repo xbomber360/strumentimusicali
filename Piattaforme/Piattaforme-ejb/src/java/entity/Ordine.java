@@ -23,7 +23,7 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name="cercaPerId",query="SELECT o FROM Ordine o WHERE o.id=?1"),
+    @NamedQuery(name="cercaOrdinePerId",query="SELECT o FROM Ordine o WHERE o.id=?1"),
     
 })
 public class Ordine implements Serializable {

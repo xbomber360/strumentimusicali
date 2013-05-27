@@ -20,7 +20,7 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name="cercaPerId",query="SELECT s FROM Spedizione s WHERE s.id=?1"),
+    @NamedQuery(name="cercaSpedizionePerId",query="SELECT s FROM Spedizione s WHERE s.id=?1"),
     
 })
 public class Spedizione implements Serializable {

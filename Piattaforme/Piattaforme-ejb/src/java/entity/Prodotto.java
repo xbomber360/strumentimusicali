@@ -20,9 +20,9 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name="cercaPerId",query="SELECT p FROM Prodotto p WHERE p.id=?1"),
-    @NamedQuery(name="cercaPerNome",query="SELECT p FROM Prodotto p WHERE p.nome=?1"),
-    @NamedQuery(name="cercaTutteLeMarche",query="SELECT p FROM Prodotto p")
+    @NamedQuery(name="cercaProdottoPerId",query="SELECT p FROM Prodotto p WHERE p.id=?1"),
+    @NamedQuery(name="cercaProdottoPerNome",query="SELECT p FROM Prodotto p WHERE p.nome=?1"),
+    @NamedQuery(name="cercaTuttiProdotti",query="SELECT p FROM Prodotto p")
 })
 public class Prodotto implements Serializable {
     
