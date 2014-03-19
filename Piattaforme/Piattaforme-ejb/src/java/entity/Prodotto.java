@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -38,9 +40,9 @@ public class Prodotto implements Serializable {
                 private String descrizione;
                     private int quantita;
     
-    @ManyToOne
+    @OneToOne
     private Marca marca;
-    @ManyToOne
+    @OneToOne
     private Categoria categoria;
 
     /**

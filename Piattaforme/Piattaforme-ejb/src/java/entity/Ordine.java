@@ -7,6 +7,7 @@ package entity;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,8 +31,6 @@ public class Ordine implements Serializable {
     @ManyToOne
     private Utente utente;
     private static final long serialVersionUID = 1L;
-    
-    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -39,8 +38,12 @@ public class Ordine implements Serializable {
         private List<OggettoOrdinato> listaOggettiOrdinati;
             @OneToOne
             private Spedizione spedizione;
-                private Date dataOrdine;
-
+            @Column (nullable = false)          
+            private Date dataOrdine;
+            @OneToOne
+            private Fattura fattura;
+            @OneToOne
+            private StatoOrdine stato;
     /**
      * Get the value of dataOrdine
      *
@@ -85,6 +88,32 @@ public class Ordine implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Spedizione getSpedizione() {
+        return spedizione;
+    }
+
+    public void setSpedizione(Spedizione spedizione) {
+        this.spedizione = spedizione;
+    }
+
+    public Fattura getFattura() {
+        return fattura;
+    }
+
+    public void setFattura(Fattura fattura) {
+        this.fattura = fattura;
+    }
+
+    public StatoOrdine getStato() {
+        return stato;
+    }
+
+    public void setStato(StatoOrdine stato) {
+        this.stato = stato;
+    }
+    
+    
 
     @Override
     public int hashCode() {

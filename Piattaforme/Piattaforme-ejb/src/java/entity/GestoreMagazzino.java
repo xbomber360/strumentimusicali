@@ -14,4 +14,7 @@ import javax.persistence.Entity;
 @Entity
 public class GestoreMagazzino extends Utente {
     
+    public GestoreMagazzino() {
+        
+    }
 }

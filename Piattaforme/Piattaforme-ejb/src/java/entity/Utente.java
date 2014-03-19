@@ -12,16 +12,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 
 
 /**
  *
- * @author Lorenzo
+ * @author maidenfp
  */
 @Entity
 @NamedQueries({
@@ -33,25 +33,24 @@ import javax.persistence.OneToMany;
 public class Utente implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-        @Column(nullable = false)
-        private String nome;
-            @Column(nullable = false)
-                private String cognome;
-                    private Date nascita;
-                        @Column(unique = true , nullable = false)
-                        private String username;
-                            @Column(nullable = false)
-                            private String password;
-                                    @Column(nullable = false)
-                                    private String email;
-                                        @ManyToOne
-                                        private Comune comune;
-                                            @OneToMany(mappedBy = "utente")
-                                            private List<Ordine> listaOrdini;
+    @Column(nullable = false)
+    private String nome;
+    @Column(nullable = false)
+    private String cognome;
+    private Date nascita;
+    @Column(unique = true , nullable = false)
+    private String username;
+    @Column(nullable = false)
+    private String password;
+    @Column(nullable = false)
+    private String email;
+    @OneToOne
+    private Comune comune;
+    @OneToMany(mappedBy = "utente")
+    private List<Ordine> listaOrdini;
 
     /**
      * Get the value of listaOrdini
@@ -96,7 +95,8 @@ public class Utente implements Serializable {
     public void setComune(Comune comune) {
         this.comune = comune;
     }
-public Date getNascita() {
+    
+    public Date getNascita() {
         return nascita;
     }
 
@@ -109,14 +109,12 @@ public Date getNascita() {
         this.nascita = nascita;
     }
 
-        
-                
-
     /**
      * Get the value of email
      *
      * @return the value of email
      */
+    
     public String getEmail() {
         return email;
     }
@@ -148,8 +146,6 @@ public Date getNascita() {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
     /**
      * Get the value of username
      *
@@ -213,7 +209,7 @@ public Date getNascita() {
 
     public void setId(Long id) {
         this.id = id;
-    }
+    }        
 
     @Override
     public int hashCode() {

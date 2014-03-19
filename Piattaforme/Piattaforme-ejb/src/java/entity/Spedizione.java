@@ -29,8 +29,10 @@ public class Spedizione implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-        private Date dataSpedizione;
-            private Long tracking;
+    private Date dataSpedizione;
+    private Long tracking;
+    @OneToOne
+    private Ordine ordine;
 
     /**
      * Get the value of tracking
@@ -50,7 +52,16 @@ public class Spedizione implements Serializable {
         this.tracking = tracking;
     }
 
+    public Ordine getOrdine() {
+        return ordine;
+    }
 
+    public void setOrdine(Ordine ordine) {
+        this.ordine = ordine;
+    }
+
+    
+    
     /**
      * Get the value of dataSpedizione
      *
@@ -70,11 +81,6 @@ public class Spedizione implements Serializable {
     }
 
     
-    
-    
-     @OneToOne(mappedBy = "spedizione")
-    private Ordine ordine;
-     
     public Long getId() {
         return id;
     }
