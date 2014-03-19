@@ -4,7 +4,7 @@
  */
 package facade;
 
-import entity.Ordine;
+import entity.Fattura;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author maidenfp
  */
 @Stateless
-public class OrdineFacade extends AbstractFacade<Ordine> {
+public class FatturaFacade extends AbstractFacade<Fattura> {
     @PersistenceContext(unitName = "Piattaforme-ejbPU")
     private EntityManager em;
 
@@ -23,8 +23,8 @@ public class OrdineFacade extends AbstractFacade<Ordine> {
         return em;
     }
 
-    public OrdineFacade() {
-        super(Ordine.class);
+    public FatturaFacade() {
+        super(Fattura.class);
     }
     
 }

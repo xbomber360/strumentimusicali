@@ -11,10 +11,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -39,7 +39,7 @@ public class Comune implements Serializable {
         private String nome;        
             @Column(nullable = false, unique = true)
             private Integer cap;
-                    @ManyToOne
+                    @OneToOne
                     private Provincia provincia;      
                         @OneToMany(mappedBy = "comune")
                         private List<Utente> listaUtenti;

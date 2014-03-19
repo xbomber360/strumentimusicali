@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Lorenzo
+ * @author maidenfp
  */
 @Stateless
 public class OggettoOrdinatoFacade extends AbstractFacade<OggettoOrdinato> {

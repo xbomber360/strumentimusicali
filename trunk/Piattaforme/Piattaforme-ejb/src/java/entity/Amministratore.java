@@ -14,5 +14,8 @@ import javax.persistence.Entity;
 @Entity
 public class Amministratore extends Utente {
    
-    
+    public Amministratore() {
+        
+    }
+            
 }

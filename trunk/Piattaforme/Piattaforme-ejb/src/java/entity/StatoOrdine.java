@@ -10,44 +10,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 /**
  *
- * @author Lorenzo
+ * @author maidenfp
  */
 @Entity
-public class OggettoOrdinato implements Serializable {
-    @OneToOne
-    private Ordine ordine;
+public class StatoOrdine implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column (nullable = false)
-    private int quantita;
-    @Column (nullable = false)
-    private Prodotto prodotto_ordinato;
-    
-    /**
-     * Get the value of quantita
-     *
-     * @return the value of quantita
-     */
-    public int getQuantita() {
-        return quantita;
-    }
-
-    /**
-     * Set the value of quantita
-     *
-     * @param quantita new value of quantita
-     */
-    public void setQuantita(int quantita) {
-        this.quantita = quantita;
-    }
-
+    private String tipo_stato;
 
     public Long getId() {
         return id;
@@ -57,20 +32,12 @@ public class OggettoOrdinato implements Serializable {
         this.id = id;
     }
 
-    public Prodotto getProdotto_ordinato() {
-        return prodotto_ordinato;
+    public String getTipo_stato() {
+        return tipo_stato;
     }
 
-    public void setProdotto_ordinato(Prodotto prodotto_ordinato) {
-        this.prodotto_ordinato = prodotto_ordinato;
-    }
-
-    public Ordine getOrdine() {
-        return ordine;
-    }
-
-    public void setOrdine(Ordine ordine) {
-        this.ordine = ordine;
+    public void setTipo_stato(String tipo_stato) {
+        this.tipo_stato = tipo_stato;
     }
     
     
@@ -85,10 +52,10 @@ public class OggettoOrdinato implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof OggettoOrdinato)) {
+        if (!(object instanceof StatoOrdine)) {
             return false;
         }
-        OggettoOrdinato other = (OggettoOrdinato) object;
+        StatoOrdine other = (StatoOrdine) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -97,7 +64,7 @@ public class OggettoOrdinato implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.OggettoOrdinato[ id=" + id + " ]";
+        return "entity.StatoOrdine[ id=" + id + " ]";
     }
     
 }
