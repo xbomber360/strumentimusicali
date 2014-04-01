@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -27,7 +26,7 @@ public class OggettoOrdinato implements Serializable {
     private Long id;
     @Column (nullable = false)
     private int quantita;
-    @Column (nullable = false)
+    @OneToOne
     private Prodotto prodotto_ordinato;
     
     /**
