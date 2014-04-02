@@ -6,7 +6,7 @@
         <property name="portNumber" value="3306"/>
         <property name="databaseName" value="piattaforme"/>
         <property name="User" value="root"/>
-        <property name="Password" value=""/>
+        <property name="Password" value="ciccio"/>
         <property name="URL" value="jdbc:mysql://localhost:3306/piattaforme?zeroDateTimeBehavior=convertToNull"/>
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
     </jdbc-connection-pool>
@@ -22,4 +22,5 @@
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="collegamento" object-type="user" pool-name="mysql_mysql_rootPool"/>
     <jdbc-resource enabled="true" jndi-name="piattaformeDS" object-type="user" pool-name="mysql_piattaforme_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="collegametoDB" object-type="user" pool-name="mysql_piattaforme_rootPool"/>
 </resources>
