@@ -13,12 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
  *
- * @author Lorenzo
+ * @author maidenfp
  */
 @Entity
 @NamedQueries({
@@ -39,6 +38,32 @@ public class Prodotto implements Serializable {
             private int prezzo;
                 private String descrizione;
                     private int quantita;
+                    @ManyToOne
+                    private Foto foto;
+
+    public Foto getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Foto foto) {
+        this.foto = foto;
+    }
+
+    public Marca getMarca() {
+        return marca;
+    }
+
+    public void setMarca(Marca marca) {
+        this.marca = marca;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
     
     @OneToOne
     private Marca marca;
