@@ -34,6 +34,9 @@ public class Registrazione implements RegistrazioneLocal {
         c.setPassword(password);
         c.setNascita(dataNascita);
         c.setIndirizzoSpe(via);
+        if (clienteManager.ePresente(c)) {
+            // genera eccezione
+        }
         clienteManager.creaCliente(c);
       }
 
