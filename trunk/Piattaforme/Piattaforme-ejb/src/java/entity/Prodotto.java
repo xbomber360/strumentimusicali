@@ -23,7 +23,9 @@ import javax.persistence.OneToOne;
 @NamedQueries({
     @NamedQuery(name="cercaProdottoPerId",query="SELECT p FROM Prodotto p WHERE p.id=?1"),
     @NamedQuery(name="cercaProdottoPerNome",query="SELECT p FROM Prodotto p WHERE p.nome=?1"),
-    @NamedQuery(name="cercaTuttiProdotti",query="SELECT p FROM Prodotto p")
+    @NamedQuery(name="cercaTuttiProdotti",query="SELECT p FROM Prodotto p"),
+    @NamedQuery(name="cercaTuttiProdottiDellaMarca",query = "SELECT p FROM Prodotto p WHERE p.nome=?1 AND p.marca=?2")
+
 })
 public class Prodotto implements Serializable {
     
