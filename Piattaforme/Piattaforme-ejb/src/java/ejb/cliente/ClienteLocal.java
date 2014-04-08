@@ -6,6 +6,9 @@
 
 package ejb.cliente;
 
+import entity.Comune;
+import entity.Provincia;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -15,9 +18,17 @@ import javax.ejb.Local;
 @Local
 public interface ClienteLocal {
     
+    void setComune (Comune c);
+    Comune getComune();
+    void setProvincia (Provincia p);
+    Provincia getProvicina ();
     void setNome (String nome);
     void setID ( Long id);
     Long getID();
     String getNome();
+    Cliente getCliente();
+    boolean isLogged();
+    CarrelloLocal getCarrelloEJB();
+    List<entity.Ordine> getOrdiniCliente();
     
 }
