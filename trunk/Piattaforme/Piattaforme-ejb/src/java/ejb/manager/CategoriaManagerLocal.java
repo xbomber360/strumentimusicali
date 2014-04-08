@@ -6,15 +6,13 @@
 
 package ejb.manager;
 
-import javax.ejb.Stateless;
+import javax.ejb.Local;
 
 /**
  *
  * @author maidenfp
  */
-@Stateless
-public class CategoriaManaher implements CategoriaManaherLocal {
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+@Local
+public interface CategoriaManagerLocal {
+    
 }
