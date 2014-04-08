@@ -6,6 +6,7 @@
 
 package ejb.cliente;
 
+import ejb.shopping.CarrelloLocal;
 import entity.Comune;
 import entity.Provincia;
 import java.util.List;

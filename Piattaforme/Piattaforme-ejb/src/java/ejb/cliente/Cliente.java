@@ -7,6 +7,7 @@
 package ejb.cliente;
 
 import ejb.manager.UtenteManagerLocal;
+import ejb.shopping.CarrelloLocal;
 import entity.Comune;
 import entity.Provincia;
 import facade.ComuneFacade;
