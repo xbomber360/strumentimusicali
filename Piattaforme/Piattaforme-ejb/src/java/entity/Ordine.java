@@ -4,6 +4,7 @@
  */
 package entity;
 
+import ejb.gestoremagazzino.StatoOrdine;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
@@ -42,7 +43,6 @@ public class Ordine implements Serializable {
             private Date dataOrdine;
             @OneToOne
             private Fattura fattura;
-            @OneToOne
             private StatoOrdine stato;
     /**
      * Get the value of dataOrdine
