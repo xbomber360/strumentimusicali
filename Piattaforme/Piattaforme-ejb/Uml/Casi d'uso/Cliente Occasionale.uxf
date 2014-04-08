@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.umlet.element.Actor</type>
+    <coordinates>
+      <x>130</x>
+      <y>330</y>
+      <w>140</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Cliente Occasionale
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>320</x>
+      <y>290</y>
+      <w>150</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Registrazione</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.UseCase</type>
+    <coordinates>
+      <x>320</x>
+      <y>400</y>
+      <w>150</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Consultare Catalogo</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>200</x>
+      <y>290</y>
+      <w>130</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>30;70;110;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>200</x>
+      <y>340</y>
+      <w>130</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>30;30;110;70</additional_attributes>
+  </element>
+</diagram>
