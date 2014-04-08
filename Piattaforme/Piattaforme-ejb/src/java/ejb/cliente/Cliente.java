@@ -34,8 +34,6 @@ public class Cliente implements ClienteLocal {
     private ComuneFacade comuneFacade;
     @EJB
     private ProvinciaFacade provinciaFacade;
-    @EJB
-    private UtenteManagerLocal clienteManager;
     
     @PersistenceContext(unitName = "Piattaforme-ejbPU")
     private EntityManager em;
