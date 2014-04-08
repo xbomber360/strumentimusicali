@@ -12,10 +12,12 @@ import entity.Comune;
 import entity.Provincia;
 import facade.ComuneFacade;
 import facade.ProvinciaFacade;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -79,7 +81,7 @@ public class Cliente implements ClienteLocal {
     @Override
     public void setProvincia(Provincia p) {
 
-        this.setIdProvincia(p.getId());
+        this.setIDProvincia(p.getId());
     }
 
     @Override
@@ -89,33 +91,44 @@ public class Cliente implements ClienteLocal {
         }
         return null;
 
-    }
+    }    
     
-    @Override
-    public void setIdProvincia(Long idProvincia) {
+    public void setIDProvincia(Long idProvincia) {
         if (provinciaFacade.find(idProvincia) == null) {
             throw new IllegalArgumentException("La provincia selezionata non è presente nel database");
         }
         this.idProvincia = idProvincia;
-        resetByProvincia();
+        
     }
 
-    @Override
-    public void setIdComune(Long idComune) {
+    
+    public void setIDComune(Long idComune) {
         if (idProvincia == null) {
             throw new IllegalStateException("Bisogna settare prima la provincia");
         }
         this.idComune = idComune;
-        resetByComune();
+        
     }
     
+      @Override
+    public CarrelloLocal getCarrelloEJB() {
+        return carrelloEJB;
+    }
+    
+    @Override
+    public boolean isLogged() {
+        return this.id != null && this.nome != null;
+    }
+    
+     @Override
+    public List<entity.Ordine> getOrdiniCliente() {
+        if(id==null){
+            return null;
+        }
+        Query q=em.createNamedQuery("ordine.cercaOrdinePerId");
+        q.setParameter(1, id);
+        return q.getResultList();
+    }
    
     }
-    
-    
 
-    
-    
-    
-    
-}
