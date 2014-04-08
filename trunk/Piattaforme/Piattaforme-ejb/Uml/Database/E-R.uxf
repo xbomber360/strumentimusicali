@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.umlet.element.custom.EER_Entity</type>
+    <coordinates>
+      <x>920</x>
+      <y>670</y>
+      <w>160</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>CLIENTE
+REGISTRATO
+--
+indirizzo spedizione
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1130</x>
+      <y>540</y>
+      <w>50</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30;30;30;80</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.EER_Entity</type>
+    <coordinates>
+      <x>1080</x>
+      <y>410</y>
+      <w>130</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>UTENTE
+--
+_id_
+username
+password
+nome
+cognome
+mail
+nascita</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.EER_Entity</type>
+    <coordinates>
+      <x>1100</x>
+      <y>670</y>
+      <w>130</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>GESTORE
+MAGAZZINO
+--
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.EER_Entity</type>
+    <coordinates>
+      <x>1260</x>
+      <y>670</y>
+      <w>130</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>AMMINISTRATORE
+--
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>940</x>
+      <y>590</y>
+      <w>410</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>30;30;390;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>940</x>
+      <y>590</y>
+      <w>50</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>30;30;30;80</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1130</x>
+      <y>590</y>
+      <w>50</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>30;30;30;80</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1300</x>
+      <y>590</y>
+      <w>50</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>30;30;30;80</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.EER_Entity</type>
+    <coordinates>
+      <x>1810</x>
+      <y>630</y>
+      <w>130</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>TIPO DI
+CARTA
+--
+_id_
+tipo carta
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.EER_Entity</type>
+    <coordinates>
+      <x>1360</x>
+      <y>410</y>
+      <w>130</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>COMUNE
+--
+_id_
+nome
+cap
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.EER_Entity</type>
+    <coordinates>
+      <x>1640</x>
+      <y>410</y>
+      <w>130</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>PROVINCIA
+--
+_id_
+nome
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.EER_Entity</type>
+    <coordinates>
+      <x>1500</x>
+      <y>630</y>
+      <w>170</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>METODO DI
+PAGAMENTO
+--
+_id_
+dati
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.EER_Entity</type>
+    <coordinates>
+      <x>440</x>
+      <y>560</y>
+      <w>130</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>SPEDIZIONE
+--
+_id_
+data
+tracking
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.EER_Entity</type>
+    <coordinates>
+      <x>1100</x>
+      <y>260</y>
+      <w>130</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>CATEGORIA
+--
+_id_
+nome
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1180</x>
+      <y>390</y>
+      <w>200</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;EER</panel_attributes>
+    <additional_attributes>180;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1460</x>
+      <y>390</y>
+      <w>200</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;EER</panel_attributes>
+    <additional_attributes>180;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.EER_Entity</type>
+    <coordinates>
+      <x>820</x>
+      <y>140</y>
+      <w>130</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>PRODOTTO
+--
+_id_
+nome
+descrizione
+quantità
+prezzo
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.EER_Entity</type>
+    <coordinates>
+      <x>1100</x>
+      <y>130</y>
+      <w>130</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>MARCA
+--
+_id_
+nome</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1640</x>
+      <y>620</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;EER</panel_attributes>
+    <additional_attributes>170;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>920</x>
+      <y>120</y>
+      <w>200</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;EER</panel_attributes>
+    <additional_attributes>180;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.EER_Entity</type>
+    <coordinates>
+      <x>610</x>
+      <y>410</y>
+      <w>130</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>ORDINE
+--
+_id_
+data
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.EER_Entity</type>
+    <coordinates>
+      <x>620</x>
+      <y>560</y>
+      <w>130</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>FATTURA
+--
+_id_
+data
+dettaglio
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.EER_Entity</type>
+    <coordinates>
+      <x>770</x>
+      <y>560</y>
+      <w>130</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>STATO
+ORDINE
+--
+_id_
+tipo
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>480</x>
+      <y>390</y>
+      <w>150</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;EER&gt;</panel_attributes>
+    <additional_attributes>30;170;30;30;130;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>660</x>
+      <y>450</y>
+      <w>50</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;EER&gt;</panel_attributes>
+    <additional_attributes>30;110;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>710</x>
+      <y>400</y>
+      <w>150</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;EER</panel_attributes>
+    <additional_attributes>130;160;130;80;30;80;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>920</x>
+      <y>130</y>
+      <w>200</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;EER</panel_attributes>
+    <additional_attributes>180;150;30;150;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>710</x>
+      <y>400</y>
+      <w>390</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;EER</panel_attributes>
+    <additional_attributes>370;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.EER_Rel_Diamond</type>
+    <coordinates>
+      <x>640</x>
+      <y>210</y>
+      <w>90</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Oggetto 
+Ordinato
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>650</x>
+      <y>130</y>
+      <w>190</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>30;80;30;30;170;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>650</x>
+      <y>250</y>
+      <w>50</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>30;160;30;30</additional_attributes>
+  </element>
+</diagram>
