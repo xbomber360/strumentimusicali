@@ -21,12 +21,12 @@ public interface CarrelloLocal {
     void rimuoviProdottoDalCarrello(OggettoOrdinato o);
 
 
-    public void aggiungiQuantitaProdotto(long idProdotto, int quantita);
+    public void aggiungiQuantitaProdotto(Long idProdotto, int quantita);
 
-    public void rimuoviQuantitaProdotto(long idProdotto, int quantita);
+    public void rimuoviQuantitaProdotto(Long idProdotto, int quantita);
 
     void svuotaCarrello();
 
-    void creaOrdine(long idCliente);
+    void creaOrdine(Long idCliente);
     
 }

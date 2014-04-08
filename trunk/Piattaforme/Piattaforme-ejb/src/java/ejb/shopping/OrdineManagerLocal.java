@@ -18,6 +18,5 @@ public interface OrdineManagerLocal {
 
     void creaOrdine(Ordine o);
 
-    public void creaOrdine(Ordine o);
     
 }

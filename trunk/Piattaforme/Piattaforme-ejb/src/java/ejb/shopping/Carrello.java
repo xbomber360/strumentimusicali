@@ -9,7 +9,6 @@ package ejb.shopping;
 import classi.OggettoOrdinato;
 import ejb.gestoremagazzino.ProductManagerLocal;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.LinkedList;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -57,12 +56,12 @@ public class Carrello implements CarrelloLocal,Serializable {
     }
 
     @Override
-    public void aggiungiQuantitaProdotto(long idProdotto , int quantita) {
+    public void aggiungiQuantitaProdotto(Long idProdotto , int quantita) {
         
     }
 
     @Override
-    public void rimuoviQuantitaProdotto(long idProdotto, int quantita) {
+    public void rimuoviQuantitaProdotto(Long idProdotto, int quantita) {
     }
 
     @Override
@@ -73,7 +72,7 @@ public class Carrello implements CarrelloLocal,Serializable {
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     @Override
-    public void creaOrdine(long idCliente) {
+    public void creaOrdine(Long idCliente) {
     }
     
     
