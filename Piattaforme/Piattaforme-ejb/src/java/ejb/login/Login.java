@@ -6,14 +6,13 @@
 
 package ejb.login;
 
-import ejb.amministratore.AmministratoreLocal;
-import ejb.cliente.ClienteLocal;
-import ejb.gestoremagazzino.GestoreMagazzinoLocal;
 import ejb.manager.ClienteManager;
 import entity.Cliente;
 import entity.Utente;
+import exception.ClienteLoginException;
+import exception.ClienteNonPresenteException;
+import exception.UtenteBloccatoException;
 import javax.ejb.EJB;
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -29,27 +28,53 @@ import javax.ejb.TransactionManagementType;
 public class Login implements LoginLocal {
     
     @EJB
-    private GestoreMagazzinoLocal gestoremagEJB;
-    @EJB
-    private AmministratoreLocal amministratoreEJB;
-    @EJB
-    private ClienteLocal clienteEJB;
-    @EJB
     private ClienteManager manager;
 
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public Utente accesso(String username, String password) {
+    public Utente accesso(String username, String password) throws UtenteBloccatoException, ClienteNonPresenteException, ClienteLoginException {
         Cliente cliente = new Cliente();
         cliente.setUsername(username);
         
         // verifico se esiste l'account
         
         if (!manager.ePresente(cliente)) {
-            throw new ClienteNonPresenteException();
+            throw new ClienteLoginException();
+        }
+        
+        cliente = manager.ottieniCliente(cliente);
+        
+        // controllo password
+        
+        try {
+            
+            if (!password.equals(cliente.getPassword())) {
+                throw new ClienteLoginException() ;
+            }
+        } catch (Exception ex) {
+            
+        }
+        return verificaCliente(cliente);
+    }
+    
+    private Cliente verificaCliente(Cliente c) throws ClienteLoginException, UtenteBloccatoException {
+
+        if (c == null) {
+
+            throw new ClienteLoginException();
+        }
+
+        switch (c.getStato()) {
+
+            case Bloccato:
+                throw new UtenteBloccatoException();
+            case Attivo:
+                return manager.cercaPerEmail(c.getEmail());
+
+            default:
+                return null;
         }
     }
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
 }
+
+  

@@ -7,6 +7,8 @@
 package ejb.login;
 
 import entity.Utente;
+import exception.ClienteLoginException;
+import exception.ClienteNonPresenteException;
 import exception.UtenteBloccatoException;
 import javax.ejb.Local;
 
@@ -17,5 +19,5 @@ import javax.ejb.Local;
 @Local
 public interface LoginLocal {
     
-    Utente accesso (String username, String password) throws UtenteBloccatoException;
+    Utente accesso (String username, String password) throws UtenteBloccatoException, ClienteNonPresenteException, ClienteLoginException;
 }
