@@ -4,7 +4,6 @@
  */
 package entity;
 
-import ejb.gestoremagazzino.StatoOrdine;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
@@ -18,6 +17,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import manager.StatoOrdini;
 
 /**
  *
@@ -43,7 +43,7 @@ public class Ordine implements Serializable {
             private Date dataOrdine;
             @OneToOne
             private Fattura fattura;
-            private StatoOrdine stato;
+            private StatoOrdini stato;
     /**
      * Get the value of dataOrdine
      *
@@ -105,11 +105,11 @@ public class Ordine implements Serializable {
         this.fattura = fattura;
     }
 
-    public StatoOrdine getStato() {
+    public StatoOrdini getStato() {
         return stato;
     }
 
-    public void setStato(StatoOrdine stato) {
+    public void setStato(StatoOrdini stato) {
         this.stato = stato;
     }
     

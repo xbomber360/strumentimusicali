@@ -7,11 +7,15 @@
 package ejb.registrazione;
 
 import ejb.manager.ClienteManagerLocal;
+import entity.Amministratore;
 import entity.Cliente;
 import entity.Comune;
+import exception.UtenteRegistratoException;
 import java.sql.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 
 /**
  *
@@ -24,7 +28,7 @@ public class Registrazione implements RegistrazioneLocal {
     private ClienteManagerLocal clienteManager;
     
     @Override
-    public void registraUtente(String nome, String cognome, String codiceFiscale, Date dataNascita, Comune comune, String via, String username, String password) {
+    public void registraUtente(String nome, String cognome, String codiceFiscale, Date dataNascita, Comune comune, String via, String username, String password) throws UtenteRegistratoException {
         
         Cliente c = new Cliente();
         c.setNome(nome);
@@ -35,9 +39,11 @@ public class Registrazione implements RegistrazioneLocal {
         c.setNascita(dataNascita);
         c.setIndirizzoSpe(via);
         if (clienteManager.ePresente(c)) {
-            // genera eccezione
+            throw new UtenteRegistratoException();
         }
         clienteManager.creaCliente(c);
       }
-
+    
+   
+    
     }

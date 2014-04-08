@@ -21,7 +21,7 @@ public interface ClienteLocal {
     void setComune (Comune c);
     Comune getComune();
     void setProvincia (Provincia p);
-    Provincia getProvicina ();
+    Provincia getProvincia();
     void setNome (String nome);
     void setID ( Long id);
     Long getID();
