@@ -48,5 +48,49 @@ public class ClienteManager implements ClienteManagerLocal {
     public void rimuoviCliente(Cliente c) {
         utenteFacade.remove(c);
     }
+    
+    @Override
+    public Cliente ottieniCliente(Cliente c) {
+        
+        Query q = em.createNamedQuery("Utente.isRegistrato");
+        q.setParameter(1, c.getUsername());
+        return (Cliente) q.getSingleResult();
+    }
+    
+    @Override
+    public boolean esisteID (Long id) {
+        Query q = em.createNamedQuery("EsisteAccount");
+        q.setParameter(1, id);
+        if (!q.getResultList().isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+    
+    @Override    
+    public Cliente cercaPerEmail(String email) {
+        if (email == null) {
+
+            throw new NullPointerException();
+        }
+
+        Query q = em.createNamedQuery("ClienteEmail");
+        q.setParameter(1, email);
+
+        return (Cliente) q.getSingleResult();
+    }
+    
+    @Override    
+    public Cliente cercaPerID (Long id) {
+        if (id == null) {
+
+            throw new NullPointerException();
+        }
+
+        Query q = em.createNamedQuery("ClienteID");
+        q.setParameter(1, id);
+
+        return (Cliente) q.getSingleResult();
+    }
 
 }

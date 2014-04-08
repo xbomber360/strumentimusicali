@@ -19,4 +19,10 @@ public interface ClienteManagerLocal {
     boolean ePresente (Cliente c);
     void creaCliente (Cliente c);
     void rimuoviCliente (Cliente c);
+    Cliente ottieniCliente (Cliente c);
+    Cliente cercaPerEmail (String email);
+    Cliente cercaPerID (Long id);
+   // void modificaPassword (String newPassword, Long Id);
+    boolean esisteID (Long id);
+    
 }

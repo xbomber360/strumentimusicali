@@ -6,6 +6,8 @@
 
 package ejb.amministratore;
 
+import facade.AmministratoreFacade;
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 
 /**
@@ -14,7 +16,7 @@ import javax.ejb.Stateful;
  */
 @Stateful
 public class Amministratore implements AmministratoreLocal {
-
+   
     private Long id;
     private String nome;    
 
@@ -37,6 +39,11 @@ public class Amministratore implements AmministratoreLocal {
     public String getNome() {
         return nome;
     }
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    
+    @Override
+    public void setAmministratore (Amministratore admin) {
+        this.id = admin.getID();
+        this.nome = admin.getNome();
+    }
+        
 }
