@@ -6,7 +6,9 @@
 
 package ejb.registrazione;
 
+import entity.Amministratore;
 import entity.Comune;
+import entity.GestoreMagazzino;
 import java.sql.Date;
 import javax.ejb.Local;
 
@@ -18,4 +20,6 @@ import javax.ejb.Local;
 public interface RegistrazioneLocal {
     
     void registraUtente (String nome, String cognome, String codiceFiscale, Date dataNascita, Comune comune, String via, String username, String password);
+    void registraAmministratore (Amministratore admin);
+    void registraGestoreMagazzino (GestoreMagazzino getmag);
 }
