@@ -7,6 +7,9 @@
 package ejb.shopping;
 
 import classi.OggettoOrdinato;
+import entity.Spedizione;
+import exception.ProdottoNonTrovatoException;
+import exception.ProdottoQuantitaException;
 import javax.ejb.Local;
 
 /**
@@ -16,10 +19,9 @@ import javax.ejb.Local;
 @Local
 public interface CarrelloLocal {
 
-    void aggiungiProdottoAlCarrello(OggettoOrdinato o);
+    void aggiungiProdottoAlCarrello(Long idProdotto , int quantita)throws ProdottoNonTrovatoException,ProdottoQuantitaException;
 
-    void rimuoviProdottoDalCarrello(OggettoOrdinato o);
-
+    void rimuoviProdottoDalCarrello(Long idProdotto);
 
     public void aggiungiQuantitaProdotto(Long idProdotto, int quantita);
 
@@ -28,5 +30,7 @@ public interface CarrelloLocal {
     void svuotaCarrello();
 
     void creaOrdine(Long idCliente);
+
+    Float getTotale(Spedizione spese);
     
 }
