@@ -85,5 +85,9 @@ public class Fattura implements Serializable {
     public String toString() {
         return "entity.Fattura[ id=" + id + " ]";
     }
+
+    public void setDataOrdine(Date date) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
