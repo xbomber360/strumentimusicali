@@ -58,6 +58,7 @@ public class Carrello implements CarrelloLocal,Serializable {
     @Override
     public void aggiungiQuantitaProdotto(Long idProdotto , int quantita) {
         
+        
     }
 
     @Override

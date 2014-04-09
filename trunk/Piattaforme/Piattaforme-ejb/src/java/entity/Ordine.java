@@ -29,7 +29,7 @@ import manager.StatoOrdini;
     
 })
 public class Ordine implements Serializable {
-    @ManyToOne
+    @OneToOne
     private Utente utente;
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,6 +44,8 @@ public class Ordine implements Serializable {
             @OneToOne
             private Fattura fattura;
             private StatoOrdini stato;
+            private Float totale;
+            
     /**
      * Get the value of dataOrdine
      *
@@ -76,9 +78,7 @@ public class Ordine implements Serializable {
      *
      * @param listaOggettiOrdinati new value of listaOggettiOrdinati
      */
-    public void setListaOggettiOrdinati(List<OggettoOrdinato> listaOggettiOrdinati) {
-        this.listaOggettiOrdinati = listaOggettiOrdinati;
-    }
+   
 
 
     public Long getId() {
@@ -139,5 +139,13 @@ public class Ordine implements Serializable {
     public String toString() {
         return "entity.Ordine[ id=" + id + " ]";
     }
+
+    public void setListaOggettiOrdinati(List<classi.OggettoOrdinato> carrello) {
+        this.listaOggettiOrdinati = listaOggettiOrdinati;
+    }
+
+   
+
+    
     
 }

@@ -6,8 +6,13 @@
 
 package ejb.shopping;
 
+import classi.OggettoOrdinato;
+import entity.Fattura;
 import entity.Ordine;
+import entity.Spedizione;
+import java.util.List;
 import javax.ejb.Local;
+import manager.StatoOrdini;
 
 /**
  *
@@ -17,6 +22,20 @@ import javax.ejb.Local;
 public interface OrdineManagerLocal {
 
     void creaOrdine(Ordine o);
+
+    void creaOrdine(Long idCliente , List<OggettoOrdinato> carrello, Spedizione spedizione);
+
+    void rimuoviOrdine(Ordine o );
+
+    void modificaStatoOrdine(Ordine o, StatoOrdini s);
+
+    void aggiungiSpedizione(Ordine o, Spedizione s);
+
+    void aggiungiFattura(Ordine o, Fattura f);
+
+    void rimuoviFattura(Ordine o);
+
+    void rimuoviSpedizione(Ordine o);
 
     
 }
