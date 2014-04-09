@@ -7,9 +7,13 @@
 package ejb.shopping;
 
 import classi.OggettoOrdinato;
-import ejb.gestoremagazzino.ProductManagerLocal;
+import ejb.manager.ProdottoManagerLocal;
+import entity.Spedizione;
+import exception.ProdottoNonTrovatoException;
+import exception.ProdottoQuantitaException;
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
@@ -28,9 +32,9 @@ public class Carrello implements CarrelloLocal,Serializable {
     @EJB
     private OrdineManagerLocal om;
     @EJB
-    private ProductManagerLocal pm;
+    private ProdottoManagerLocal pm;
     
-    private  LinkedList<OggettoOrdinato> listaOggettiOrdinati;
+    private Map<Long, OggettoOrdinato> carrello;
     
     private Float subTotale; 
  
@@ -41,22 +45,38 @@ public class Carrello implements CarrelloLocal,Serializable {
 
     @PostConstruct
     protected void init() {
-        this.listaOggettiOrdinati = new LinkedList<OggettoOrdinato>();
+        this.carrello = new HashMap<Long,OggettoOrdinato>();
         this.subTotale = new Float(0.00);
     }
     
     @Override
-    public void aggiungiProdottoAlCarrello(OggettoOrdinato o) {
-        this.listaOggettiOrdinati.add(o);
+    public void aggiungiProdottoAlCarrello(Long idProdotto , int quantita)throws ProdottoNonTrovatoException,ProdottoQuantitaException {
+        if (pm.controllaQuantita(idProdotto, quantita)){
+            OggettoOrdinato o = new OggettoOrdinato();
+            o.setIdProdotto(idProdotto);
+            o.setQuantita(quantita);
+            subTotale+= pm.cercaProdottoPerId(idProdotto).getPrezzo();
+            
+        }//if
+        else
+            throw new ProdottoQuantitaException();
+        
     }
 
     @Override
-    public void rimuoviProdottoDalCarrello(OggettoOrdinato o) {
-        this.listaOggettiOrdinati.remove(o);
+    public void rimuoviProdottoDalCarrello(Long idprodotto) {
+        if(carrello.get(idprodotto) == null)
+            return;
+        OggettoOrdinato o = carrello.remove(idprodotto);
+        subTotale+= pm.cercaProdottoPerId(o.getIdProdotto()).getPrezzo();
+
+        
     }
 
     @Override
     public void aggiungiQuantitaProdotto(Long idProdotto , int quantita) {
+        
+        
         
         
     }
@@ -67,7 +87,7 @@ public class Carrello implements CarrelloLocal,Serializable {
 
     @Override
     public void svuotaCarrello() {
-        this.listaOggettiOrdinati.clear();
+        this.carrello.clear();
         subTotale= new Float(0.00);
     }
 
@@ -75,6 +95,14 @@ public class Carrello implements CarrelloLocal,Serializable {
     @Override
     public void creaOrdine(Long idCliente) {
     }
+
+    @Override
+    public Float getTotale(Spedizione spese) {
+   }
+    
+    
+} 
+    
     
     
     

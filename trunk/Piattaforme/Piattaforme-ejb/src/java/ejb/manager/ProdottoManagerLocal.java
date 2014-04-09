@@ -6,6 +6,8 @@
 
 package ejb.manager;
 
+import entity.Prodotto;
+import exception.ProdottoNonTrovatoException;
 import javax.ejb.Local;
 
 /**
@@ -14,5 +16,9 @@ import javax.ejb.Local;
  */
 @Local
 public interface ProdottoManagerLocal {
+
+    boolean controllaQuantita(Long idProdotto, int quantita)throws ProdottoNonTrovatoException;
+
+    Prodotto cercaProdottoPerId(Long idProdotto);
     
 }

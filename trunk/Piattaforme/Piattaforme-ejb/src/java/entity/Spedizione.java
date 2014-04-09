@@ -33,6 +33,7 @@ public class Spedizione implements Serializable {
     private Long tracking;
     @OneToOne
     private Ordine ordine;
+    
 
     /**
      * Get the value of tracking
