@@ -6,6 +6,9 @@
 
 package ejb.manager;
 
+import entity.Comune;
+import entity.Provincia;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -14,5 +17,11 @@ import javax.ejb.Local;
  */
 @Local
 public interface ComuneManagerLocal {
+    
+    List<Comune> trovaDaProvincia(Provincia provincia);
+
+    List<Comune> trovaDaIdProvincia(Long idProvincia);
+
+    Comune trovaDaId(Long id);
     
 }

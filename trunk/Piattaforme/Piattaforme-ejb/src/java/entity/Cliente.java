@@ -5,7 +5,6 @@
 package entity;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -16,7 +15,6 @@ import manager.StatoClienti;
  * @author Lorenzo
  */
 @Entity
-@DiscriminatorValue(value="C")
 @NamedQueries({
 @NamedQuery(name = "Utente.isRegistrato", query = "SELECT u FROM Utente u WHERE u.username=?1"),
 @NamedQuery(name = "EsisteCliente", query = "SELECT c From Cliente c WHERE c.id=?1"),

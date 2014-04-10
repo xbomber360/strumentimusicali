@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -18,6 +20,8 @@ import javax.persistence.OneToMany;
  * @author Lorenzo
  */
 @Entity
+@NamedQueries({
+@NamedQuery(name="cercaPerNome", query="SELECT c FROM Categoria c WHERE c.nome=?1")})
 public class Categoria implements Serializable {
     private static final long serialVersionUID = 1L;
     
