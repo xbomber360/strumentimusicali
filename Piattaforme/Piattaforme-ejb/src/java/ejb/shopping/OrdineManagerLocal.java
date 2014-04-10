@@ -10,6 +10,7 @@ import classi.OggettoOrdinato;
 import entity.Fattura;
 import entity.Ordine;
 import entity.Spedizione;
+import entity.TipoSpedizione;
 import java.util.List;
 import javax.ejb.Local;
 import manager.StatoOrdini;
@@ -36,6 +37,10 @@ public interface OrdineManagerLocal {
     void rimuoviFattura(Ordine o);
 
     void rimuoviSpedizione(Ordine o);
+
+    public void creaFattura(Fattura f);
+
+    public Float cercaPrezzoSpedizione(TipoSpedizione spese);
 
     
 }

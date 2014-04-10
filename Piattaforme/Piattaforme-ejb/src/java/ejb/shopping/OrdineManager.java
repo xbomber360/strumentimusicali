@@ -10,6 +10,7 @@ import classi.OggettoOrdinato;
 import entity.Fattura;
 import entity.Ordine;
 import entity.Spedizione;
+import entity.TipoSpedizione;
 import facade.FatturaFacade;
 import facade.OrdineFacade;
 import facade.SpedizioneFacade;
@@ -121,6 +122,16 @@ public class OrdineManager implements OrdineManagerLocal {
               throw new IllegalArgumentException("L'ordine è null");
          o.setSpedizione(null);
          of.edit(o);
+    }
+
+    @Override
+    public void creaFattura(Fattura f) {
+        
+    }
+
+    @Override
+    public Float cercaPrezzoSpedizione(TipoSpedizione spese) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
