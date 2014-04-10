@@ -6,6 +6,8 @@
 
 package ejb.manager;
 
+import entity.Categoria;
+import entity.Marca;
 import entity.Prodotto;
 import exception.ProdottoNonTrovatoException;
 import javax.ejb.Local;
@@ -20,5 +22,21 @@ public interface ProdottoManagerLocal {
     boolean controllaQuantita(Long idProdotto, int quantita)throws ProdottoNonTrovatoException;
 
     Prodotto cercaProdottoPerId(Long idProdotto);
+
+    void aggiungiCategoria(Categoria c);
+
+    void aggiungiMarca(Marca m);
+
+    void aggiungiProdotto(Prodotto p, Marca m, Categoria c);
+
+    void modificaQuantitaProdotto(Prodotto p, int quantita);
+
+    void rimuoviCategoria(Categoria c);
+
+    void rimuoviProdotto(Prodotto p);
+
+    List<Prodotto> cercaProdottoPerNome(String parameter);
+
+    List<Prodotto> cercaTuttiProdotti();
     
 }
