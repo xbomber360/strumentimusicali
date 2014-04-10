@@ -30,6 +30,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import manager.StatoOrdini;
 
 /**
  *
@@ -142,8 +143,12 @@ public class Carrello implements CarrelloLocal,Serializable {
             throw new ClienteNonPresenteException("Il cliente non e' stato trovato durante la creazione dell'ordine ");
         
         o.setCliente(c);
+        o.setTipoSpedizione(sp);
         Date dataOrdine=new Date(new GregorianCalendar().getTimeInMillis());
         o.setDataOrdine(dataOrdine);
+        o.setStato(StatoOrdini.inLavorazione);
+        LinkedList<OggettoOrdinato> lista = new LinkedList<OggettoOrdinato>;
+        
         
         
     }
