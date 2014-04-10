@@ -16,18 +16,22 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 
 /**
  *
  * @author maidenfp
  */
 @Stateless
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class Registrazione implements RegistrazioneLocal {
 
     @EJB
     private ClienteManagerLocal clienteManager;
     
     @Override
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void registraUtente(String nome, String cognome, String codiceFiscale, Date dataNascita, Comune comune, String via, String username, String password) throws UtenteRegistratoException {
         
         Cliente c = new Cliente();

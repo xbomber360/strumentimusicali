@@ -23,7 +23,7 @@ public interface CategoriaManagerLocal {
 
     List<Categoria> cercaTutto();
 
-    void modificaMarchio(Categoria marchio);
+    void modificaCategoria(Categoria cat);
 
-    void rimuoviMarchio(Categoria marchio);
+    void rimuoviCategoria(Categoria cat);
 }
