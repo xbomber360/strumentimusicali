@@ -34,6 +34,7 @@ public class Spedizione implements Serializable {
     @OneToOne
     private Ordine ordine;
     
+    
 
     /**
      * Get the value of tracking
@@ -114,5 +115,9 @@ public class Spedizione implements Serializable {
     public String toString() {
         return "entity.Spedizione[ id=" + id + " ]";
     }
+
+    
+    
+    
     
 }

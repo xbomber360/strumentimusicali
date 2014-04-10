@@ -6,8 +6,8 @@
 
 package ejb.shopping;
 
-import classi.OggettoOrdinato;
-import entity.Spedizione;
+import entity.TipoSpedizione;
+import exception.ClienteNonPresenteException;
 import exception.ProdottoNonTrovatoException;
 import exception.ProdottoQuantitaException;
 import javax.ejb.Local;
@@ -29,8 +29,8 @@ public interface CarrelloLocal {
 
     void svuotaCarrello();
 
-    void creaOrdine(Long idCliente);
+    void creaOrdine(Long idCliente, TipoSpedizione sp)throws ClienteNonPresenteException;
 
-    Float getTotale(Spedizione spese);
+    Float getTotale(TipoSpedizione spese);
     
 }
