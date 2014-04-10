@@ -6,7 +6,7 @@
 
 package ejb.login;
 
-import ejb.manager.ClienteManager;
+import ejb.manager.ClienteManagerLocal;
 import entity.Cliente;
 import entity.Utente;
 import exception.ClienteLoginException;
@@ -28,7 +28,7 @@ import javax.ejb.TransactionManagementType;
 public class Login implements LoginLocal {
     
     @EJB
-    private ClienteManager manager;
+    private ClienteManagerLocal manager;
 
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRED)

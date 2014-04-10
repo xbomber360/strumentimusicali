@@ -19,6 +19,6 @@ public interface AmministratoreLocal {
     void setID ( Long id);
     Long getID();
     String getNome();
-    void setAmministratore ( Amministratore admin);
+    void setAmministratore (Amministratore admin);
     
 }
