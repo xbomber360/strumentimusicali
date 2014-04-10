@@ -10,6 +10,7 @@ import entity.Categoria;
 import entity.Marca;
 import entity.Prodotto;
 import exception.ProdottoNonTrovatoException;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -38,5 +39,9 @@ public interface ProdottoManagerLocal {
     List<Prodotto> cercaProdottoPerNome(String parameter);
 
     List<Prodotto> cercaTuttiProdotti();
+
+    List<Prodotto> cercaProdottiPerMarca(String marca);
+
+    void modificaQuantitaProdottoId(Long idProdotto, int quantita);
     
 }

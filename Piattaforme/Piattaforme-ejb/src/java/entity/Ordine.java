@@ -29,8 +29,8 @@ import manager.StatoOrdini;
     
 })
 public class Ordine implements Serializable {
-    @OneToOne
-    private Utente utente;
+    @ManyToOne
+    private Cliente cliente;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,7 +44,9 @@ public class Ordine implements Serializable {
             @OneToOne
             private Fattura fattura;
             private StatoOrdini stato;
-            private Float totale;
+            private float totale;
+            @ManyToOne
+            TipoSpedizione tipoSpedizione;
             
     /**
      * Get the value of dataOrdine
@@ -64,6 +66,23 @@ public class Ordine implements Serializable {
         this.dataOrdine = dataOrdine;
     }
 
+    public float getTotale() {
+        return totale;
+    }
+
+    public void setTotale(float totale) {
+        this.totale = totale;
+    }
+
+    public TipoSpedizione getTipoSpedizione() {
+        return tipoSpedizione;
+    }
+
+    public void setTipoSpedizione(TipoSpedizione tipoSpedizione) {
+        this.tipoSpedizione = tipoSpedizione;
+    }
+
+    
     /**
      * Get the value of listaOggettiOrdinati
      *
@@ -77,10 +96,17 @@ public class Ordine implements Serializable {
      * Set the value of listaOggettiOrdinati
      *
      * @param listaOggettiOrdinati new value of listaOggettiOrdinati
+     * @return 
      */
-   
+    public Cliente getCliente() {
+        return cliente;
+    }
 
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
+  
     public Long getId() {
         return id;
     }

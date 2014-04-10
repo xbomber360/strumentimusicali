@@ -10,6 +10,7 @@ import entity.Marca;
 import entity.Prodotto;
 import exception.ProdottoNonTrovatoException;
 import facade.ProdottoFacade;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 
@@ -53,6 +54,8 @@ public class ProdottoManager implements ProdottoManagerLocal {
     @Override
     public void modificaQuantitaProdotto(Prodotto p, int quantita) {
     }
+    
+    
 
     @Override
     public void rimuoviCategoria(Categoria c) {
@@ -78,6 +81,16 @@ public class ProdottoManager implements ProdottoManagerLocal {
     public List<Prodotto> cercaTuttiProdotti() {
         return null;
     }
+
+    @Override
+    public List<Prodotto> cercaProdottiPerMarca(String marca) {
+        return null;
+    }
+
+    @Override
+    public void modificaQuantitaProdottoId(Long idProdotto, int quantita) {
+    }
+    
     
     
 
