@@ -8,8 +8,6 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -56,6 +54,8 @@ public class Utente implements Serializable {
     private Comune comune;
     @OneToMany(mappedBy = "utente")
     private List<Ordine> listaOrdini;
+    @Column (nullable = false)
+    private String metodopagamento;
 
     /**
      * Get the value of listaOrdini
@@ -75,19 +75,16 @@ public class Utente implements Serializable {
         this.listaOrdini = listaOrdini;
     }
 
+    public String getMetodopagamento() {
+        return metodopagamento;
+    }
 
-    /**
-     * Get the value of nascita
-     *
-     * @return the value of nascita
-     */
+    public void setMetodopagamento(String metodopagamento) {
+        this.metodopagamento = metodopagamento;
+    }
+
+
     
-
-    /**
-     * Get the value of comune
-     *
-     * @return the value of comune
-     */
     public Comune getComune() {
         return comune;
     }

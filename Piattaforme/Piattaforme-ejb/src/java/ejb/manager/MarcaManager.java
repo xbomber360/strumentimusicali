@@ -6,8 +6,8 @@
 
 package ejb.manager;
 
-import entity.Categoria;
-import facade.CategoriaFacade;
+import entity.Marca;
+import facade.MarcaFacade;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -21,29 +21,31 @@ import javax.persistence.Query;
  *
  * @author maidenfp
  */
+
 @Stateless
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
-public class CategoriaManager implements CategoriaManagerLocal {
+
+public class MarcaManager implements MarcaManagerLocal {
 @PersistenceContext(unitName = "Piattaforme-ejbPU")
     private EntityManager em;
     @EJB
-    private CategoriaFacade categoriaFacade;
+    private MarcaFacade marcaFacade;
 
     @Override
-    public void creaCategoria(Categoria cat) {
-        Query q = em.createNamedQuery("categoria.cercaPerNome");
-        q.setParameter(1, cat.getNome());
+    public void creaMarca (Marca m) {
+        Query q = em.createNamedQuery("marca.cercaMarcaPerNome");
+        q.setParameter(1, m.getNome());
         if (!q.getResultList().isEmpty()) {
             return;
         }
-        categoriaFacade.create(cat);
+        marcaFacade.create(m);
     }
 
     @Override
-    public Categoria cercaPerNome(String nome) {
-        Query q = em.createNamedQuery("categoria.cercaPerNome");
+    public Marca cercaPerNome(String nome) {
+        Query q = em.createNamedQuery("marca.cercaMarcaPerNome");
         q.setParameter(1, nome);
-        List<Categoria> res = q.getResultList();
+        List<Marca> res = q.getResultList();
         if (res.isEmpty()) {
             return null;
         }
@@ -51,18 +53,18 @@ public class CategoriaManager implements CategoriaManagerLocal {
     }
 
        @Override
-    public List<Categoria> cercaTutto() {
-        List<Categoria> res = categoriaFacade.findAll();
+    public List<Marca> cercaTutto() {
+        List<Marca> res = marcaFacade.findAll();
         return res;
     }
 
     @Override
-    public void modificaCategoria(Categoria cat) {
-        categoriaFacade.edit(cat);
+    public void modificaMarca(Marca m) {
+        marcaFacade.edit(m);
     }
 
     @Override
-    public void rimuoviCategoria(Categoria cat) {
-        categoriaFacade.remove(cat);
+    public void rimuoviMarca(Marca m) {
+        marcaFacade.remove(m);
     }
 }

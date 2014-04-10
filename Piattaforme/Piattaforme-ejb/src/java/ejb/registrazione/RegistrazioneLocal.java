@@ -21,5 +21,5 @@ import javax.ejb.Local;
 public interface RegistrazioneLocal {
     
     void registraUtente (String nome, String cognome, String codiceFiscale, Date dataNascita, Comune comune, String via, String username, String password) throws UtenteRegistratoException ;
-
+    
 }

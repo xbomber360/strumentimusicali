@@ -27,7 +27,7 @@ public interface ClienteLocal {
     void setID ( Long id);
     Long getID();
     String getNome();
-     boolean isLogged();
+    boolean isLogged();
     CarrelloLocal getCarrelloEJB();
     List<entity.Ordine> getOrdiniCliente();
     
