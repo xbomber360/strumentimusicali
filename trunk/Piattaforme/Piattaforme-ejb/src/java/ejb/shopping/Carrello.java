@@ -8,12 +8,10 @@ package ejb.shopping;
 
 import classi.OggettoOrdinato;
 import ejb.manager.ClienteManagerLocal;
-import ejb.manager.FatturaManagerLocal;
 import ejb.manager.ProdottoManagerLocal;
-import ejb.manager.SpedizioneManagerLocal;
 import entity.Cliente;
+import entity.Fattura;
 import entity.Ordine;
-import entity.Spedizione;
 import entity.TipoSpedizione;
 import exception.ClienteNonPresenteException;
 import exception.ProdottoNonTrovatoException;
@@ -22,7 +20,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -46,10 +44,6 @@ public class Carrello implements CarrelloLocal,Serializable {
     private ProdottoManagerLocal pm;
     @EJB
     private ClienteManagerLocal cm;
-    @EJB
-    private SpedizioneManagerLocal sm;
-    @EJB
-    private FatturaManagerLocal fm;
     
     private Map<Long, OggettoOrdinato> carrello;
     
@@ -147,7 +141,21 @@ public class Carrello implements CarrelloLocal,Serializable {
         Date dataOrdine=new Date(new GregorianCalendar().getTimeInMillis());
         o.setDataOrdine(dataOrdine);
         o.setStato(StatoOrdini.inLavorazione);
-        LinkedList<OggettoOrdinato> lista = new LinkedList<OggettoOrdinato>;
+        LinkedList<OggettoOrdinato> lista = new LinkedList<OggettoOrdinato>();
+        for(OggettoOrdinato daAggiungere : carrello.values() ){
+            lista.add(daAggiungere);
+        }
+        o.setListaOggettiOrdinati(lista);
+        float totale =getTotale(sp);
+        o.setTotale(totale);
+        om.creaOrdine(o);
+        Fattura f = new Fattura();
+        f.setData(dataOrdine);
+        f.setDettaglio("Gli oggetti acquistati sono :" + lista.toString() + "Il prezzo è " + totale);
+        f.setOrdine(o);
+        om.creaFattura(f);
+        this.carrello.clear();
+        subTotale= new Float(0.00);
         
         
         
@@ -155,7 +163,7 @@ public class Carrello implements CarrelloLocal,Serializable {
 
     @Override
     public Float getTotale(TipoSpedizione spese) {
-        return subTotale+sm.cercaPrezzoSpedizione(spese);
+        return subTotale+om.cercaPrezzoSpedizione(spese);
    }
     
     

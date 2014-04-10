@@ -7,8 +7,10 @@
 package ejb.manager;
 
 import entity.Categoria;
+import entity.Fattura;
 import entity.Marca;
 import entity.Prodotto;
+import entity.TipoSpedizione;
 import exception.ProdottoNonTrovatoException;
 import java.util.List;
 import javax.ejb.Local;
@@ -43,5 +45,6 @@ public interface ProdottoManagerLocal {
     List<Prodotto> cercaProdottiPerMarca(String marca);
 
     void modificaQuantitaProdottoId(Long idProdotto, int quantita);
+
     
 }
