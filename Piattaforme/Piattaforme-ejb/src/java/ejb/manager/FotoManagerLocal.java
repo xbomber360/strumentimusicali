@@ -6,6 +6,9 @@
 
 package ejb.manager;
 
+import entity.Foto;
+import exception.IdFotoNonValido;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -15,4 +18,18 @@ import javax.ejb.Local;
 @Local
 public interface FotoManagerLocal {
     
+    void creaFoto(Foto f);
+
+    Foto cercaFotoDaId(Long id)throws IdFotoNonValido;
+
+    List<Foto> trovaFotoPerNome(String nome);
+
+    void modificaFoto(Foto foto);
+
+    void eliminaFoto(Foto foto);
+    
+    List<Foto> getFotoProdotti();
+
+    boolean esisteFoto(Foto foto);
+
 }

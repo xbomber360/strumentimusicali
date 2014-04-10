@@ -28,8 +28,7 @@ import javax.persistence.OneToMany;
  * @author maidenfp
  */
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="TIPO_UTENTE", discriminatorType=DiscriminatorType.STRING, length=1)
+@Inheritance(strategy=InheritanceType.JOINED)
 @NamedQueries({
 @NamedQuery(name = "cercaUtentePerEmail" , query= "SELECT u FROM Utente u WHERE u.email=?1"  ),
 @NamedQuery(name = "cercaUtentePerUsername" , query= "SELECT u FROM Utente u WHERE u.username=?1"  ),
