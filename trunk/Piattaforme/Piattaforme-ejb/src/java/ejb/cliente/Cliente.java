@@ -9,6 +9,7 @@ package ejb.cliente;
 import ejb.manager.UtenteManagerLocal;
 import ejb.shopping.CarrelloLocal;
 import entity.Comune;
+import entity.Ordine;
 import entity.Provincia;
 import facade.ComuneFacade;
 import facade.ProvinciaFacade;
@@ -119,7 +120,7 @@ public class Cliente implements ClienteLocal {
     }
     
      @Override
-    public List<entity.Ordine> getOrdiniCliente() {
+    public List<Ordine> getOrdiniCliente() {
         if(id==null){
             return null;
         }

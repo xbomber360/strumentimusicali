@@ -24,14 +24,14 @@ fontsize=12
 
 
 // This text will be stored with each diagram;  use it for notes.</help_text>
-  <zoom_level>10</zoom_level>
+  <zoom_level>12</zoom_level>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1110</x>
-      <y>450</y>
-      <w>290</w>
-      <h>200</h>
+      <x>1260</x>
+      <y>540</y>
+      <w>348</w>
+      <h>240</h>
     </coordinates>
     <panel_attributes>AccountManager
 --
@@ -50,10 +50,10 @@ fontsize=12
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1000</x>
-      <y>30</y>
-      <w>550</w>
-      <h>280</h>
+      <x>1116</x>
+      <y>36</y>
+      <w>660</w>
+      <h>336</h>
     </coordinates>
     <panel_attributes>ProductManager
 --
@@ -84,14 +84,15 @@ fontsize=12
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1320</x>
-      <y>340</y>
-      <w>210</w>
-      <h>60</h>
+      <x>1512</x>
+      <y>408</y>
+      <w>252</w>
+      <h>72</h>
     </coordinates>
-    <panel_attributes>Enum StatoOrdine //da vedere 
+    <panel_attributes>Enum StatoOrdine 
 --
-disponibile , esaurito , inArrivo 
+Nuovo, inLavorazione, Pronto,
+inPartenza, Spedito, Cancellato
 
 
 </panel_attributes>
@@ -100,14 +101,14 @@ disponibile , esaurito , inArrivo
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>500</x>
-      <y>700</y>
-      <w>340</w>
-      <h>140</h>
+      <x>528</x>
+      <y>840</y>
+      <w>408</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>Login
 --
--AccountManagerLocal accountManager;
+-ClienteManagerLocal manager
 --
 +accesso(String username,String password):Utente
 
@@ -118,17 +119,18 @@ disponibile , esaurito , inArrivo
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>480</x>
-      <y>510</y>
-      <w>390</w>
-      <h>140</h>
+      <x>504</x>
+      <y>612</y>
+      <w>468</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>Registrazione
 --
--AccountManagerLocal accountManager
+-ClienteManagerLocal clienteManager
 --
-+nuovoUtente(String email,String username,String password,
-String nome,String cognome,String comune, Date nascita):void
++registraUtente(String nome, String cognome, String codiceFiscale,
+Date dataNascita, Comune comune, String via, String username,
+String password):void
 
 
 </panel_attributes>
@@ -137,10 +139,10 @@ String nome,String cognome,String comune, Date nascita):void
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>60</x>
-      <y>30</y>
-      <w>350</w>
-      <h>260</h>
+      <x>0</x>
+      <y>36</y>
+      <w>420</w>
+      <h>312</h>
     </coordinates>
     <panel_attributes>OrdineManager
 --
@@ -159,7 +161,8 @@ String nome,String cognome,String comune, Date nascita):void
 +aggiungiFattura(Ordine o , Fattura f):void
 +rimuoviSpedizione(Ordine o, Spedizione s):boolean
 +rimuoviFattura(Ordine o , Fattura f)
-
++creaFattura(Fattura f):void
++Float cercaPrezzoSpedizione(TipoSpedizione spese):Float
 
 
 
@@ -169,10 +172,10 @@ String nome,String cognome,String comune, Date nascita):void
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>590</x>
-      <y>330</y>
-      <w>210</w>
-      <h>140</h>
+      <x>636</x>
+      <y>396</y>
+      <w>252</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>OggettoOrdinato
 --
@@ -181,16 +184,18 @@ int quantità
 --
 +setId(Long id)
 +setQuantità(int quantità)
++getQuantità:int
++getId:Long
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>500</x>
+      <x>528</x>
       <y>0</y>
-      <w>390</w>
-      <h>270</h>
+      <w>468</w>
+      <h>324</h>
     </coordinates>
     <panel_attributes>Carrello (Stateful)
 --
@@ -219,71 +224,71 @@ int quantità
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>840</x>
-      <y>480</y>
-      <w>290</w>
-      <h>100</h>
+      <x>936</x>
+      <y>576</y>
+      <w>348</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;80;270;30</additional_attributes>
+    <additional_attributes>36;96;324;36</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>810</x>
-      <y>570</y>
-      <w>320</w>
-      <h>210</h>
+      <x>900</x>
+      <y>684</y>
+      <w>384</w>
+      <h>252</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;190;300;30</additional_attributes>
+    <additional_attributes>36;228;360;36</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>380</x>
-      <y>30</y>
-      <w>140</w>
-      <h>90</h>
+      <x>384</x>
+      <y>36</y>
+      <w>168</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>120;30;30;70</additional_attributes>
+    <additional_attributes>144;36;36;84</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>670</x>
-      <y>240</y>
-      <w>50</w>
-      <h>110</h>
+      <x>732</x>
+      <y>288</y>
+      <w>48</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n
 r1=Role</panel_attributes>
-    <additional_attributes>30;30;30;90</additional_attributes>
+    <additional_attributes>36;36;36;108</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>860</x>
-      <y>10</y>
-      <w>160</w>
-      <h>90</h>
+      <x>960</x>
+      <y>12</y>
+      <w>180</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;30;140;70</additional_attributes>
+    <additional_attributes>36;36;156;84</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1070</x>
-      <y>340</y>
-      <w>200</w>
-      <h>60</h>
+      <x>1212</x>
+      <y>408</y>
+      <w>240</w>
+      <h>72</h>
     </coordinates>
-    <panel_attributes>Enum StatoCliente //da vedere 
+    <panel_attributes>Enum StatoCliente 
 --
-disponibile , esaurito , inArrivo 
+Attivo, Bloccato 
 
 
 </panel_attributes>
@@ -292,10 +297,10 @@ disponibile , esaurito , inArrivo
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>0</x>
-      <y>370</y>
-      <w>210</w>
-      <h>140</h>
+      <x>24</x>
+      <y>456</y>
+      <w>252</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>ComuneManager
 --
@@ -312,32 +317,78 @@ EntityManager em
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1530</x>
-      <y>450</y>
-      <w>290</w>
-      <h>200</h>
+      <x>72</x>
+      <y>744</y>
+      <w>252</w>
+      <h>168</h>
     </coordinates>
-    <panel_attributes>FatturaManager
+    <panel_attributes>GestoreMagazzino
 --
-SpedizioneFacade sf
+Long id
+String name
 --
-+generaFattura(TipoSpedizione sp):Spedizione
++setNome:void
++setID:void
++getNome:String
++getID:Long
+
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>1620</x>
-      <y>170</y>
-      <w>290</w>
-      <h>200</h>
+      <x>1272</x>
+      <y>840</y>
+      <w>252</w>
+      <h>384</h>
     </coordinates>
-    <panel_attributes>SpedizioneManager
+    <panel_attributes>Cliente
 --
-FatturaFacade sf
+-CarrelloLocal carrelloEJB
+-ComuneFacade comuneFacade
+-ProvinciaFacade provinciaFacade
+-EntityManager em;
+-Long id;
+-String nome; 
+-Long idProvincia;
+-Long idComune;
 --
-+generaFattura(Ordine o):Fattura
++setNome:void
++setID:void
++getNome:String
++getID:Long
++setComune:void
++getComune:Comune
++setProvincia:void
++getProvincia:Provincia
++setIDProvincia:void
++setIDComune:void
++getCarrelloEJB:CarrelloLocal
++isLogged:boolean
++getOrdineCliente:List&lt;Ordine&gt;
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>120</x>
+      <y>1020</y>
+      <w>252</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>Amministratore
+--
+Long id
+String name
+--
++setNome:void
++setID:void
++getNome:String
++getID:Long
++setAmministratore:void
 </panel_attributes>
     <additional_attributes/>
   </element>
