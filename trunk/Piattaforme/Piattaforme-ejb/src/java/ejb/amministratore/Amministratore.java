@@ -41,9 +41,8 @@ public class Amministratore implements AmministratoreLocal {
     }
     
     @Override
-    public void setAmministratore (Amministratore admin) {
-        this.id = admin.getID();
-        this.nome = admin.getNome();
+    public void setAmministratore (Long id) {
+        this.id = id;
     }
         
 }

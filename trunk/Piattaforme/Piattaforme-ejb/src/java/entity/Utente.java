@@ -52,7 +52,7 @@ public class Utente implements Serializable {
     private String email;
     @ManyToOne
     private Comune comune;
-    @OneToMany(mappedBy = "utente")
+    @OneToMany(mappedBy = "Utente")
     private List<Ordine> listaOrdini;
     @Column (nullable = false)
     private String metodopagamento;
