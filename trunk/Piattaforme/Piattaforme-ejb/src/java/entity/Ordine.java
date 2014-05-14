@@ -30,12 +30,12 @@ import manager.StatoOrdini;
 })
 public class Ordine implements Serializable {
     @ManyToOne
-    private Cliente cliente;
+    private Utente utente;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-        @OneToMany(mappedBy = "ordine")
+       @OneToMany(mappedBy = "ordine")
         private List<OggettoOrdinato> listaOggettiOrdinati;
             @OneToOne
             private Spedizione spedizione;
@@ -98,12 +98,12 @@ public class Ordine implements Serializable {
      * @param listaOggettiOrdinati new value of listaOggettiOrdinati
      * @return 
      */
-    public Cliente getCliente() {
-        return cliente;
+    public Utente getUtente() {
+        return utente;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setCliente(Utente utente) {
+        this.utente = utente;
     }
 
   
