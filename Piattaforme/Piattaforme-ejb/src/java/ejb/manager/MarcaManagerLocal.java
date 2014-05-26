@@ -8,13 +8,13 @@ package ejb.manager;
 
 import entity.Marca;
 import java.util.List;
-import javax.ejb.Stateless;
+import javax.ejb.Local;
 
 /**
  *
  * @author maidenfp
  */
-@Stateless
+@Local
 public interface MarcaManagerLocal {
     
     void creaMarca(Marca m);

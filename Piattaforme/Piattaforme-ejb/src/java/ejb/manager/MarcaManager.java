@@ -24,7 +24,6 @@ import javax.persistence.Query;
 
 @Stateless
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
-
 public class MarcaManager implements MarcaManagerLocal {
 @PersistenceContext(unitName = "Piattaforme-ejbPU")
     private EntityManager em;
