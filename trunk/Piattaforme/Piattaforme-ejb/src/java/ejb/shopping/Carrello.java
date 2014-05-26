@@ -36,7 +36,7 @@ import manager.StatoOrdini;
  */
 @Stateful
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
-public class Carrello implements CarrelloLocal,Serializable {
+public class Carrello implements CarrelloLocal {
 
     @EJB
     private OrdineManagerLocal om;
