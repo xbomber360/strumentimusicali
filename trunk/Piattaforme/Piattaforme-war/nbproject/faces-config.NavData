@@ -5,10 +5,10 @@
         <Node id="Home.xhtml" x="670" y="323" zoom="true"/>
         <Node id="PannelloControlloUtente.xhtml" x="150" y="300" zoom="true"/>
         <Node id="welcomePrimefaces.xhtml" x="150" y="150" zoom="true"/>
-        <Node id="Registrazione.xhtml" x="400" y="450" zoom="true"/>
-        <Node id="index.jsp" x="900" y="150" zoom="true"/>
         <Node id="Carrello.xhtml" x="650" y="150" zoom="true"/>
         <Node id="Login.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="index.jsp" x="900" y="150" zoom="true"/>
+        <Node id="Registrazione.xhtml" x="400" y="450" zoom="true"/>
         <Node id="prova.xhtml" x="671" y="503" zoom="true"/>
         <Node id="CreaProdotto.xhtml" x="400" y="150" zoom="true"/>
     </Scope>
