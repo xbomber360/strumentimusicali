@@ -2,23 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <h:head>
-        <title>Facelet Title</title>
+        <title>Home Page </title>
+        <ui:include src="Header.xhtml"/>
+
     </h:head>
     <h:body>
-        questa è la homepage
-        <p:editor /> 
-         <br />
-        <p:commandLink target="navigazione" action="navigazione" value="navigazione verso proba" />
-          <br />
-          <p:commandButton action="navigazione" title="bottone" />
-                   <br />
-
-          <h:outputLink value="navigazione" >ciao</h:outputLink>
-                    <br />
-          <h:link value="link" outcome="navigazione" />
+        ciao
     </h:body>
 </html>
 

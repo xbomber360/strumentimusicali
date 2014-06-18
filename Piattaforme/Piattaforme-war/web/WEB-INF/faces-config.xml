@@ -10,8 +10,27 @@
             <to-view-id>/prova.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>case1</from-outcome>
+            <from-outcome>navigaRegistrazione</from-outcome>
             <to-view-id>/Registrazione.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>navigaLogin</from-outcome>
+            <to-view-id>/Login.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>navigaCarrello</from-outcome>
+            <to-view-id>/Carrello.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>ritornoHome</from-outcome>
+            <to-view-id>/Home.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/Carrello.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>navigaLogin</from-outcome>
+            <to-view-id>/Login.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

@@ -2,15 +2,16 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="Home.xhtml" x="670" y="323" zoom="true"/>
-        <Node id="PannelloControlloUtente.xhtml" x="150" y="300" zoom="true"/>
-        <Node id="welcomePrimefaces.xhtml" x="150" y="150" zoom="true"/>
-        <Node id="Carrello.xhtml" x="650" y="150" zoom="true"/>
-        <Node id="Login.xhtml" x="400" y="300" zoom="true"/>
-        <Node id="index.jsp" x="900" y="150" zoom="true"/>
-        <Node id="Registrazione.xhtml" x="400" y="450" zoom="true"/>
-        <Node id="prova.xhtml" x="671" y="503" zoom="true"/>
-        <Node id="CreaProdotto.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="Home.xhtml" x="545" y="118" zoom="true"/>
+        <Node id="PannelloControlloUtente.xhtml" x="102" y="652" zoom="true"/>
+        <Node id="welcomePrimefaces.xhtml" x="115" y="708" zoom="true"/>
+        <Node id="Login.xhtml" x="365" y="418" zoom="true"/>
+        <Node id="index.jsp" x="101" y="456" zoom="true"/>
+        <Node id="Carrello.xhtml" x="159" y="224" zoom="true"/>
+        <Node id="Registrazione.xhtml" x="523" y="470" zoom="true"/>
+        <Node id="Header.xhtml" x="745" y="160" zoom="false"/>
+        <Node id="prova.xhtml" x="686" y="386" zoom="true"/>
+        <Node id="CreaProdotto.xhtml" x="103" y="577" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>
