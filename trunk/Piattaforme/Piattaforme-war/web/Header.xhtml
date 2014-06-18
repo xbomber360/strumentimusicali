@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+
+    </h:head>
+    <h:body>
+        <img src="immagini/bannerProva.jpg" alt="Risorsa non trovata" />
+        <p:menubar>
+            <p:menuitem value="Home" outcome="faces/Home.xhtml"/>
+       <p:submenu label="Catalogo">
+             <p:menuitem value="Chitarre" url="http://www.youtube.com" />
+             <p:menuitem value="Bassi" url="http://www.break.com" />
+             <p:menuitem value="Amplificatori" url="http://www.break.com" />
+             <p:menuitem value="Effetti" url="http://www.break.com"  />
+       </p:submenu>
+       <p:menuitem value="Info" url="#"/>
+       <f:facet name="options">
+            <p:inputText style="margin-right:10px" placeholder="Ricerca"/>
+            <p:button  value="Carrello" icon="ui-icon-extlink" outcome="faces/Carrello.xhtml" />
+            <p:button  value="Login" icon="ui-icon-extlink" outcome="navigaLogin" />
+            <p:button  value="Registrazione" icon="ui-icon-extlink" outcome="navigaRegistrazione" />
+
+        </f:facet>
+                
+</p:menubar>
+    </h:body>
+</html>
+
