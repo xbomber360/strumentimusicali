@@ -6,36 +6,33 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Catalogo</title>
-    </h:head>
+         <ui:include src="Header.xhtml"/>
+    </h:head
     <h:body>
-         <p:layout fullPage="true">
+        
+        <p:layout style="min-width:400px;min-height:200px;">
+            <p:layoutUnit position="west" resizable="true" size="270" minSize="40" maxSize="400">
+                 <p:menu>
+                                <p:submenu label="Marche">
+                                    <p:menuitem value="Fender" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                                    <p:menuitem value="Gibson" url="http://www.primefaces.org/documentation.html" />
+                                    <p:menuitem value="Ibanez" url="http://forum.primefaces.org/" />
+                                    <p:menuitem value="Jackson" url="http://www.primefaces.org/themes.html" />
 
-                <p:layoutUnit position="north" size="340" resizable="true" closable="true" collapsible="true">
-                   <ui:include src="Header.xhtml"/>
-                </p:layoutUnit>
-
-                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
-                    Footer
-                </p:layoutUnit>
-
-                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
-                    <p:menu>
-                        <p:submenu label="Resources">
-                            <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
-                            <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
-                            <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
-                            <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
-
-                        </p:submenu>
-
-                    </p:menu>
-                </p:layoutUnit>
-
-                <p:layoutUnit position="center">
-                    Welcome to PrimeFaces
-                </p:layoutUnit>
-
-            </p:layout>
+                                </p:submenu>
+                  </p:menu>
+            </p:layoutUnit>
+ 
+            <p:layoutUnit position="center">
+                <div>
+            
+                </div>
+            </p:layoutUnit>
+        </p:layout>
+       
+        
+       
+            
     </h:body>
 </html>
 
