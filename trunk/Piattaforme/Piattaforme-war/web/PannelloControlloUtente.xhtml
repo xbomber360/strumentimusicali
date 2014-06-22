@@ -1,12 +1,23 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Pannello Controllo Utente</title>
+        <ui:include src="Header.xhtml"/>
+        
     </h:head>
     <h:body>
-        In questa pagina l'utente può gestire le sue credenziali
+        Questa pagina serve all'utente per fargli eseguire dell'azioni . Alcune azioni devono essere abilitate in base al tipo di utente loggato. :
+        1 modifica credenziali 
+        2 visualizzare acquisti
+        3 aggiungi prodotto in magazzino (SOLO GESTORE MAGAZZINO)
+        4 gestione utenti (SOLO ADMIN)
+        5 modifica categorie , marche , prodotto (SOLO GESTORE MAGAZZINO)
+        6 modifica stato ordini (SOLO GESTORE MAGAZZINO)
+        
+        ecc
     </h:body>
 </html>
 
