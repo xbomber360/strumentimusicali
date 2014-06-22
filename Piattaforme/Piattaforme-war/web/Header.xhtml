@@ -11,9 +11,9 @@
     <h:body>
         <img src="immagini/bannerProva.jpg" alt="Risorsa non trovata" />
         <p:menubar>
-            <p:menuitem value="Home" outcome="faces/Home.xhtml"/>
+            <p:menuitem value="Home" outcome="Home"/>
        <p:submenu label="Catalogo">
-             <p:menuitem value="Chitarre" url="http://www.youtube.com" />
+             <p:menuitem value="Chitarre" outcome="CatalogoProdotti" />
              <p:menuitem value="Bassi" url="http://www.break.com" />
              <p:menuitem value="Amplificatori" url="http://www.break.com" />
              <p:menuitem value="Effetti" url="http://www.break.com"  />
@@ -21,9 +21,9 @@
        <p:menuitem value="Info" url="#"/>
        <f:facet name="options">
             <p:inputText style="margin-right:10px" placeholder="Ricerca"/>
-            <p:button  value="Carrello" icon="ui-icon-extlink" outcome="faces/Carrello.xhtml" />
-            <p:button  value="Login" icon="ui-icon-extlink" outcome="navigaLogin" />
-            <p:button  value="Registrazione" icon="ui-icon-extlink" outcome="navigaRegistrazione" />
+            <p:button  value="Carrello" icon="ui-icon-extlink" outcome="Carrello" />
+            <p:button  value="Login" icon="ui-icon-extlink" outcome="Login" />
+            <p:button  value="Registrazione" icon="ui-icon-extlink" outcome="Registrazione" />
 
         </f:facet>
                 
