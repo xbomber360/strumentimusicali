@@ -66,6 +66,7 @@ public class DataMenuBean {
     }
     
     public void setIdMarcaSelezionata(Long id){
+        System.out.println("L'id della marca selezionata è " + id);
         this.idMarcaSelezionata=id;
     }
     
