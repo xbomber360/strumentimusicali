@@ -46,5 +46,7 @@ public interface ProdottoManagerLocal {
 
     void modificaQuantitaProdottoId(Long idProdotto, int quantita);
 
+    public List<Prodotto> cercaProdottiPerMarcaCategoria(Long idMarca, Long idCategoria);
+
     
 }

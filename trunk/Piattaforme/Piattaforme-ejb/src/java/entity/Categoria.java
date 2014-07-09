@@ -21,7 +21,11 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @NamedQueries({
-@NamedQuery(name="cercaPerNome", query="SELECT c FROM Categoria c WHERE c.nome=?1")})
+@NamedQuery(name="cercaPerNome", query="SELECT c FROM Categoria c WHERE c.nome=?1"),
+@NamedQuery(name="cercaPerId",query="SELECT c FROM Categoria c WHERE c.id=?1")
+
+})
+
 public class Categoria implements Serializable {
     private static final long serialVersionUID = 1L;
     
