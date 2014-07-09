@@ -259,8 +259,8 @@ int quantità
     <coordinates>
       <x>732</x>
       <y>288</y>
-      <w>48</w>
-      <h>120</h>
+      <w>60</w>
+      <h>132</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n

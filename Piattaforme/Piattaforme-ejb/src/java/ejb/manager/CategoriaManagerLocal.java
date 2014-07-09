@@ -7,6 +7,7 @@
 package ejb.manager;
 
 import entity.Categoria;
+import entity.Marca;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -26,4 +27,8 @@ public interface CategoriaManagerLocal {
     void modificaCategoria(Categoria cat);
 
     void rimuoviCategoria(Categoria cat);
+
+    List<Marca> getMarcheCategoria(Long idCategoria);
+
+    public Categoria cercaPerId(Long id);
 }

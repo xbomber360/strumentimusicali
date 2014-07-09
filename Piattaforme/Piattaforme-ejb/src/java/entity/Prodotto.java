@@ -40,14 +40,13 @@ public class Prodotto implements Serializable {
             private int prezzo;
                 private String descrizione;
                     private int quantita;
-                    @ManyToOne
-                    private Foto foto;
+                        private String foto;
 
-    public Foto getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(Foto foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
     }
 

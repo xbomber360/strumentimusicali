@@ -3,36 +3,54 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Catalogo</title>
-         <ui:include src="Header.xhtml"/>
-    </h:head
+        <ui:include src="Header.xhtml"/>
+    </h:head>
     <h:body>
-        
-        <p:layout style="min-width:400px;min-height:200px;">
-            <p:layoutUnit position="west" resizable="true" size="270" minSize="40" maxSize="400">
-                 <p:menu>
-                                <p:submenu label="Marche">
-                                    <p:menuitem value="Fender" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
-                                    <p:menuitem value="Gibson" url="http://www.primefaces.org/documentation.html" />
-                                    <p:menuitem value="Ibanez" url="http://forum.primefaces.org/" />
-                                    <p:menuitem value="Jackson" url="http://www.primefaces.org/themes.html" />
+        <h:form>
+            <p:layout style="min-width:400px;min-height:200px;">
+                <p:layoutUnit position="west" resizable="true" size="270" minSize="40" maxSize="800">
+                    <p:menu id="dataMenu">
+                        <p:submenu label="Marche">
+                            <c:forEach items="#{dataMenuBean.getMarche(param['idCategoria'])}" var="m">
+                                <p:menuitem value="#{m.nome}"  />
+                            </c:forEach>
 
-                                </p:submenu>
-                  </p:menu>
-            </p:layoutUnit>
- 
-            <p:layoutUnit position="center">
-                <div>
-            
-                </div>
-            </p:layoutUnit>
-        </p:layout>
-       
-        
-       
-            
+                        </p:submenu>
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center" resizable="true" maxSize="800" minSize="2000" >
+                    
+                    <p:dataScroller value="#{dataMenuBean.getProdottoMarcaCatagoria(1,1)}" var="prodotto">
+                            <f:facet name="header">
+                                Vi seguito sono riportati i prodotti della marca 
+                            </f:facet>
+
+                            <h:panelGrid columns="2" style="width:100%">
+                                <p:outputPanel>
+                                    <h:panelGrid columns="2" cellpadding="5">
+                                        <h:outputText value="Codice Prodotto:" />
+                                        <h:outputText value="numero" style="font-weight: bold"/>
+                                        
+                                        <h:outputText value="Modello:" />
+                                        <h:outputText value="nome" style="font-weight: bold"/>
+
+                                        
+                                    </h:panelGrid>
+                                </p:outputPanel>
+
+                            </h:panelGrid>
+
+
+                        </p:dataScroller> 
+                </p:layoutUnit>
+            </p:layout>
+        </h:form>
     </h:body>
 </html>
 

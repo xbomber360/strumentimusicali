@@ -9,10 +9,13 @@ import entity.Categoria;
 import entity.Marca;
 import entity.Prodotto;
 import exception.ProdottoNonTrovatoException;
-import facade.ProdottoFacade;
+import facade.ProdottoFacadeLocal;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -20,9 +23,11 @@ import javax.persistence.EntityManager;
  */
 @Stateless
 public class ProdottoManager implements ProdottoManagerLocal {
-
-    EntityManager em;
-    ProdottoFacade pf;
+    @EJB
+    private ProdottoFacadeLocal pf;
+    @PersistenceContext(unitName = "Piattaforme-ejbPU")
+    private EntityManager em;
+    
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -89,6 +94,20 @@ public class ProdottoManager implements ProdottoManagerLocal {
 
     @Override
     public void modificaQuantitaProdottoId(Long idProdotto, int quantita) {
+    }
+    
+    
+    @Override
+    public List<Prodotto> cercaProdottiPerMarcaCategoria( Long idMarca,Long idCategoria ){
+        Query q = em.createQuery("SELECT p FROM Prodotto p WHERE p.categoria.id=?1 AND p.marca.id=?2");
+        q.setParameter(1, idCategoria);
+        q.setParameter(2, idMarca);
+        return q.getResultList();
+       
+    }
+
+    public void persist(Object object) {
+        em.persist(object);
     }
     
     
