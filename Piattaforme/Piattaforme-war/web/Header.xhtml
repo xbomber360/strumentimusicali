@@ -16,7 +16,7 @@
             <p:menuitem value="Home" outcome="Home"/>
             <p:submenu label="Catalogo">
                 <c:forEach items="#{dataMenuBean.listaCategoria}" var="c" >
-                    <p:menuitem value="#{c.nome}" outcome="CatalogoProdotti?idCategoria=#{c.id}" />
+                    <p:menuitem value="#{c.nome}" outcome="CatalogoProdotti?idCategoria=#{c.id}"/>
                 </c:forEach>
             </p:submenu>
             <p:menuitem value="Info" url="#"/>
