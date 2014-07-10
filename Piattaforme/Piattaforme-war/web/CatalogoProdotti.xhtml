@@ -12,26 +12,27 @@
     </h:head>
     <h:body>
         <h:form>
-            <p:layout style="min-width:400px;min-height:200px;">
+            <p:layout style="min-width:400px;min-height:800px;">
                 <p:layoutUnit position="west" resizable="true" size="270" minSize="40" maxSize="800">
                     <p:menu id="dataMenu">
                         <p:submenu label="Marche">
                             <c:forEach items="#{dataMenuBean.getMarche(param['idCategoria'])}" var="m">
-                                <p:menuitem value="#{m.nome}" outcome="CatalogoProdotti?idCategoria=#{c.id}" />
+                                <p:menuitem value="#{m.nome}" outcome="CatalogoProdotti?idCategoria=#{param['idCategoria']}" /> 
                             </c:forEach>
-
+                            
                         </p:submenu>
                     </p:menu>
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center" resizable="true" maxSize="800" minSize="2000" >
-                    
-                    <p:dataScroller value="#{dataMenuBean.getProdottoMarcaCatagoria(1,1)}" var="prodotto">
+                  
+                    <p:dataScroller value="#{dataMenuBean.getProdottoMarcaCatagoria(1,param[idCategoria])}" var="prodotto"> da chiedere come si passano più parametri
                             <f:facet name="header">
                                 Di seguito sono riportati i prodotti della marca #{dataMenuBean.idMarcaSelezionata}
                             </f:facet>
-
+                        
                             <h:panelGrid columns="2" style="width:100%">
+                                <p:graphicImage url="#{prodotto.foto}"/>
                                 <p:outputPanel>
                                     <h:panelGrid columns="2" cellpadding="5">
                                         <h:outputText value="Codice Prodotto:" />
@@ -40,16 +41,14 @@
                                         <h:outputText value="Modello:" />
                                         <h:outputText value="#{prodotto.nome}" style="font-weight: bold"/>
                                         
-                                        <h:outputText value="Quantità" />
+                                        <h:outputText value="Quantità:" />
                                         <h:outputText value="#{prodotto.quantita}" style="font-weight: bold"/>
                                         
-                                        <h:outputText value="Prezzo" />
-                                        <h:outputText value="#{prodotto.prezzo}" style="font-weight: bold"/>
-
-
-                                        
+                                        <h:outputText value="Prezzo:" />
+                                        <h:outputText value="#{prodotto.prezzo}€" style="font-weight: bold"/>
                                     </h:panelGrid>
                                 </p:outputPanel>
+                                <p:button outcome="DescrizioneProdotto?idProdotto=#{prodotto.id}" value="Acquista"/>
 
                             </h:panelGrid>
 
