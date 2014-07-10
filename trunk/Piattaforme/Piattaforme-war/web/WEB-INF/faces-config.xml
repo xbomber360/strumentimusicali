@@ -38,4 +38,9 @@
         <managed-bean-class>managedBean.DataMenuBean</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>gestioneProdottoBean</managed-bean-name>
+        <managed-bean-class>managedBean.GestioneProdottoBean</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
 </faces-config>
