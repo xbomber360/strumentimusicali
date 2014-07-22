@@ -43,4 +43,20 @@
         <managed-bean-class>managedBean.GestioneProdottoBean</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>login</managed-bean-name>
+        <managed-bean-class>managedBean.Login</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>registrazione</managed-bean-name>
+        <managed-bean-class>managedBean.Registrazione</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>provinciaManaged</managed-bean-name>
+        <managed-bean-class>managedBean.ProvinciaManaged</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
 </faces-config>
