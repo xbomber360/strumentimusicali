@@ -2,14 +2,32 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Login</title>
            <ui:include src="Header.xhtml"/>
 
     </h:head>
     <h:body>
-        In questa pagina l'utente può inserire i dati ed effettuare la login 
+        <h:form>
+            <h:panelGrid columns="2">
+                 <p:outputLabel for="user" value="Username:" />
+                 <p:inputText id="user" required="true" requiredMessage= "Username è richiesto" value="#{Login.username}"/> 
+                 <p:outputLabel for="password" value="Password:" />
+                 <p:inputText id="password" required="true" requiredMessage= "La password è richiesta" value="#{Login.password}" />
+            </h:panelGrid>
+            <p:commandButton value="Accedi" action="#{Login.accesso(gestioneCliente, gestioneSito, gestioneNegozio)}" ></p:commandButton>
+             
+        </h:form> 
+        
+        <h3>
+             <p:outputLabel value="Non sei ancora un utente registrato?"/>
+        </h3>
+        <h:form >
+
+               <p:button style="color: #831608" value="Registrati" outcome="Registrazione"/>
+        </h:form>
     </h:body>
 </html>
 

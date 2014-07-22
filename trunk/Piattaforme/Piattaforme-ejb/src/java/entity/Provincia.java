@@ -25,6 +25,7 @@ public class Provincia implements Serializable {
     private Long id;
         @Column(nullable = false , unique = true)
         private String nome;
+        private String sigla;
                 @OneToMany(mappedBy = "provincia")
                 private List<Comune> listaComuni;
 
@@ -54,6 +55,14 @@ public class Provincia implements Serializable {
      */
     public String getNome() {
         return nome;
+    }
+
+    public String getSigla() {
+        return sigla;
+    }
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
     }
 
     /**

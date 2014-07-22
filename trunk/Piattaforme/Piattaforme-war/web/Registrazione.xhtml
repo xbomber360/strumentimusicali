@@ -2,13 +2,61 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Registrazione</title>
           <ui:include src="Header.xhtml"/>
     </h:head>
     <h:body>
-        Questa è la pagina web che l'utente utilizzerà per registrarsi
+        <h:form>
+    <p:panel id="panel" header="Form Registrazione" style="margin-bottom:10px;">
+        <p:messages id="messages" />
+        <h:panelGrid columns="2" cellpadding="5">
+            
+            <p:outputLabel for="nome" value="Nome:" />
+            <p:inputText id="nome" required="true" />
+ 
+            <p:outputLabel for="cognome" value="Cognome:" />
+            <p:inputText id="cognome" required="true" />
+ 
+            <p:outputLabel for="via" value="Via:" />
+            <p:inputText id="via" required="true" />
+            
+            <p:outputLabel for="citta" value="Città:" />
+            <p:inputText id="citta" required="true" />
+            
+            <p:outputLabel for="provincia" value="Provincia"/> 
+            <p:selectOneMenu id="provincia" required="true" requiredMessage="Provincia Richiesta" value="#{provinciaManaged.provincia}" >  
+             <f:selectItem itemLabel="Seleziona Provincia" itemValue="" noSelectionOption="true"/>  
+             <f:selectItems value="#{provinciaManaged.province}" var="p" itemLabel="#{p.nome}, #{p.sigla}" itemValue="#{p}"/>
+            </p:selectOneMenu>  
+            
+            <p:outputLabel for="codpos" value="Codice Postale:" />
+            <p:inputText id="codpos" required="true" />
+                      
+            <p:outputLabel for="user" value="Username:" />
+            <p:inputText id="user" required="true" />
+            
+            <p:outputLabel for="password" value="Password:" />
+            <p:inputText id="password" required="true" />
+            
+            <p:outputLabel for="confermapassword" value="Conferma password:" />
+            <p:inputText id="confermapassword" required="true" />
+            
+            <p:outputLabel for="email" value="Email:" />
+            <p:inputText id="email" required="true" />
+            
+            <p:outputLabel for="confermaemail" value="Conferma email:" />
+            <p:inputText id="confermaemail" required="true" />
+            
+        </h:panelGrid>
+    </p:panel>
+ 
+    <p:commandButton value="Registra" action="#{Registrazione.registra}" />
+    <p:commandButton type="reset" value="Reset"></p:commandButton> 
+</h:form>
     </h:body>
 </html>
 
