@@ -12,6 +12,7 @@ import ejb.manager.ProdottoManagerLocal;
 import entity.Cliente;
 import entity.Fattura;
 import entity.Ordine;
+import entity.Prodotto;
 import entity.TipoSpedizione;
 import exception.ClienteNonPresenteException;
 import exception.ProdottoNonTrovatoException;
@@ -21,6 +22,7 @@ import java.sql.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -123,6 +125,11 @@ public class Carrello implements CarrelloLocal {
             
             
     }
+    
+     @Override
+    public List<Prodotto> getProdotti() {
+        return pm.prodottiDaUnSet(carrello.keySet());
+    }
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     @Override
@@ -160,11 +167,30 @@ public class Carrello implements CarrelloLocal {
         
         
     }
+    
+    @Override
+    public Integer getQuantitaProdotto(Long idProdotto) {
+        OggettoOrdinato oo;
+        if ((oo = carrello.get(idProdotto)) == null) {
+            throw new IllegalArgumentException();
+        }
+        return oo.getQuantita();
+    }
+
+    @Override
+    public Integer getQuantitaProdotto(Prodotto prodotto) {
+        return this.getQuantitaProdotto(prodotto.getId());
+    }
 
     @Override
     public Float getTotale(TipoSpedizione spese) {
         return subTotale+om.cercaPrezzoSpedizione(spese);
    }
+    
+     @Override
+    public Float getSubTotale() {
+        return subTotale;
+    }
     
     
 } 
