@@ -6,10 +6,12 @@
 
 package ejb.shopping;
 
+import entity.Prodotto;
 import entity.TipoSpedizione;
 import exception.ClienteNonPresenteException;
 import exception.ProdottoNonTrovatoException;
 import exception.ProdottoQuantitaException;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -32,5 +34,13 @@ public interface CarrelloLocal {
     void creaOrdine(Long idCliente, TipoSpedizione sp)throws ClienteNonPresenteException;
 
     Float getTotale(TipoSpedizione spese);
+
+    public List<Prodotto> getProdotti();
+
+    public Float getSubTotale();
+
+    public Integer getQuantitaProdotto(Prodotto prodotto);
+
+    public Integer getQuantitaProdotto(Long idProdotto);
     
 }

@@ -58,5 +58,10 @@
         <managed-bean-class>managedBean.ProvinciaManaged</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>carrelloManagerBean</managed-bean-name>
+        <managed-bean-class>managedBean.CarrelloManagerBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
     
 </faces-config>

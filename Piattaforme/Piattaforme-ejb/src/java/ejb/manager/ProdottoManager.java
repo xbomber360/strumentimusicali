@@ -74,7 +74,7 @@ public class ProdottoManager implements ProdottoManagerLocal {
     
      @Override
     public Prodotto cercaProdottoPerId(Long idProdotto) {
-        return null;
+        return pf.find(idProdotto);
     }
 
     @Override
@@ -108,6 +108,19 @@ public class ProdottoManager implements ProdottoManagerLocal {
 
     public void persist(Object object) {
         em.persist(object);
+    }
+    
+    @Override
+    public List<Prodotto> prodottiDaUnSet(java.util.Set<Long> codiceBarre) {
+        if(codiceBarre==null){
+            return null;
+        }
+        if(codiceBarre.isEmpty()){
+            return null;
+        }
+        Query q = em.createNamedQuery("prodotto.prodottiDaUnSet");
+        q.setParameter("lista", codiceBarre);
+        return q.getResultList();
     }
     
     

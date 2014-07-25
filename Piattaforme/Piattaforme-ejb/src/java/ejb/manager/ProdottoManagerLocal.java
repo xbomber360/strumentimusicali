@@ -13,6 +13,7 @@ import entity.Prodotto;
 import entity.TipoSpedizione;
 import exception.ProdottoNonTrovatoException;
 import java.util.List;
+import java.util.Set;
 import javax.ejb.Local;
 
 /**
@@ -47,6 +48,8 @@ public interface ProdottoManagerLocal {
     void modificaQuantitaProdottoId(Long idProdotto, int quantita);
 
     public List<Prodotto> cercaProdottiPerMarcaCategoria(Long idMarca, Long idCategoria);
+
+    public List<Prodotto> prodottiDaUnSet(Set<Long> codiceBarre);
 
     
 }
