@@ -38,7 +38,7 @@ import manager.StatoOrdini;
  */
 @Stateful
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
-public class Carrello implements CarrelloLocal {
+public class Carrello implements CarrelloLocal,Serializable {
 
     @EJB
     private OrdineManagerLocal om;
@@ -57,10 +57,16 @@ public class Carrello implements CarrelloLocal {
         subTotale= new Float(0.00);
     }
 
-    @PostConstruct
-    protected void init() {
+    //@PostConstruct
+   // protected void init() {
+     //   this.carrello = new HashMap<Long,OggettoOrdinato>();
+       // this.subTotale = new Float(0.00);
+    //}
+    
+    public Carrello(){
         this.carrello = new HashMap<Long,OggettoOrdinato>();
         this.subTotale = new Float(0.00);
+        
     }
     
     @Override
@@ -70,6 +76,7 @@ public class Carrello implements CarrelloLocal {
             o.setIdProdotto(idProdotto);
             o.setQuantita(quantita);
             subTotale+= pm.cercaProdottoPerId(idProdotto).getPrezzo()*quantita;
+            System.out.println("Aggiunto prodotto"+ idProdotto +" quantita: " + quantita);
             
         }//if
         else

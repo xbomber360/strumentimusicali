@@ -9,6 +9,8 @@ import entity.Categoria;
 import entity.Marca;
 import entity.Prodotto;
 import exception.ProdottoNonTrovatoException;
+import facade.CategoriaFacadeLocal;
+import facade.MarcaFacadeLocal;
 import facade.ProdottoFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
@@ -25,6 +27,11 @@ import javax.persistence.Query;
 public class ProdottoManager implements ProdottoManagerLocal {
     @EJB
     private ProdottoFacadeLocal pf;
+    @EJB
+    private CategoriaFacadeLocal cf;
+    @EJB
+    private MarcaFacadeLocal mf;
+    
     @PersistenceContext(unitName = "Piattaforme-ejbPU")
     private EntityManager em;
     
@@ -46,29 +53,37 @@ public class ProdottoManager implements ProdottoManagerLocal {
 
     @Override
     public void aggiungiCategoria(Categoria c) {
+        cf.create(c);
     }
 
     @Override
     public void aggiungiMarca(Marca m) {
+        mf.create(m);
     }
 
     @Override
-    public void aggiungiProdotto(Prodotto p, Marca m, Categoria c) {
+    public void aggiungiProdotto(Prodotto p) {
+        pf.create(p);
+        
     }
 
     @Override
     public void modificaQuantitaProdotto(Prodotto p, int quantita) {
+        Prodotto temp = pf.find(p.getId());
+        temp.setQuantita(quantita);
+        pf.edit(temp);
     }
     
     
 
     @Override
     public void rimuoviCategoria(Categoria c) {
+        cf.remove(c);
     }
 
     @Override
     public void rimuoviProdotto(Prodotto p) {
-        
+        pf.remove(p);
         
     }
     
@@ -78,22 +93,40 @@ public class ProdottoManager implements ProdottoManagerLocal {
     }
 
     @Override
-    public List<Prodotto> cercaProdottoPerNome(String parameter) {
-        return null;
+    public Prodotto cercaProdottoPerNome(String parameter) {
+        Query q = em.createNamedQuery("Prodotto.cercaProdottoPerNome");
+        q.setParameter(1, parameter);
+        List<Prodotto> res = q.getResultList();
+        if (res.isEmpty()) {
+            return null;
+        }
+        return res.get(0);
     }
 
     @Override
     public List<Prodotto> cercaTuttiProdotti() {
+        Query q = em.createNamedQuery("Prodotto.cercaTuttiProdotti");
+        List<Prodotto> res = q.getResultList();
+        if(res.isEmpty()){
         return null;
+        }
+        return res;
     }
 
     @Override
     public List<Prodotto> cercaProdottiPerMarca(String marca) {
+        Query q = em.createNamedQuery("Prodotto.cercaTuttiProdottiDellaMarca");
+        q.setParameter(1, marca);
+        List<Prodotto> res = q.getResultList();
+        if(res.isEmpty()){
         return null;
+        }
+        return res;
     }
 
     @Override
     public void modificaQuantitaProdottoId(Long idProdotto, int quantita) {
+        
     }
     
     
@@ -122,9 +155,5 @@ public class ProdottoManager implements ProdottoManagerLocal {
         q.setParameter("lista", codiceBarre);
         return q.getResultList();
     }
-    
-    
-    
-
     
 }

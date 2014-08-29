@@ -57,6 +57,7 @@ public class CategoriaManager implements CategoriaManagerLocal {
         q.setParameter(1, id);
         List<Categoria> res = q.getResultList();
         if (res.isEmpty()) {
+            System.out.println("CATEGORIA NON TROVATA");
             return null;
         }
         return res.get(0);
@@ -90,5 +91,12 @@ public class CategoriaManager implements CategoriaManagerLocal {
         return q.getResultList();
         }
         return null;
+    }
+
+    @Override
+    public List<String> cercaPattern(String query) {
+        Query q = em.createQuery("SELECT c.nome FROM Categoria c WHERE c.nome LIKE ?1");
+        q.setParameter(1, query+"%");
+        return q.getResultList();
     }
 }

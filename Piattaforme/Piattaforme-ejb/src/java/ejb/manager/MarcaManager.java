@@ -7,7 +7,7 @@
 package ejb.manager;
 
 import entity.Marca;
-import facade.MarcaFacade;
+import facade.MarcaFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -28,7 +28,7 @@ public class MarcaManager implements MarcaManagerLocal {
 @PersistenceContext(unitName = "Piattaforme-ejbPU")
     private EntityManager em;
     @EJB
-    private MarcaFacade marcaFacade;
+    private MarcaFacadeLocal marcaFacade;
 
     @Override
     public void creaMarca (Marca m) {
@@ -46,6 +46,7 @@ public class MarcaManager implements MarcaManagerLocal {
         q.setParameter(1, nome);
         List<Marca> res = q.getResultList();
         if (res.isEmpty()) {
+            System.out.println("MARCA NON TROVATA");
             return null;
         }
         return res.get(0);

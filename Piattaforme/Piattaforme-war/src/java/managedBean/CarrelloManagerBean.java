@@ -6,12 +6,14 @@
 
 package managedBean;
 
+import ejb.shopping.Carrello;
 import ejb.shopping.CarrelloLocal;
 import entity.Prodotto;
 import entity.TipoSpedizione;
 import exception.ClienteNonPresenteException;
 import exception.ProdottoNonTrovatoException;
 import exception.ProdottoQuantitaException;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.Dependent;
@@ -23,7 +25,7 @@ import javax.inject.Named;
  */
 @Named(value = "carrelloManagerBean")
 @Dependent
-public class CarrelloManagerBean {
+public class CarrelloManagerBean implements Serializable{
     
     @EJB
     private CarrelloLocal carrello;
@@ -32,6 +34,7 @@ public class CarrelloManagerBean {
      * Creates a new instance of CarrelloManagerBean
      */
     public CarrelloManagerBean() {
+        
     }
     
     public void aggiungiProdottoAlCarrello(Long idProdotto , int quantita) throws ProdottoNonTrovatoException, ProdottoQuantitaException{
@@ -50,6 +53,7 @@ public class CarrelloManagerBean {
     }
     
     public List<Prodotto> getProdotti() {
+        System.out.println("I prodotti nel carrello sono " + carrello.getProdotti());
         return carrello.getProdotti();
     }
     
