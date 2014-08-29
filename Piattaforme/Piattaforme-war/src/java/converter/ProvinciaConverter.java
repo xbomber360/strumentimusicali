@@ -1,4 +1,4 @@
-package managedBean;
+package converter;
 
 /*
  * To change this template, choose Tools | Templates

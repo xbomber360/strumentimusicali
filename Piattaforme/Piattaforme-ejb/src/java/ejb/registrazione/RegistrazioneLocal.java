@@ -20,6 +20,6 @@ import javax.ejb.Local;
 @Local
 public interface RegistrazioneLocal {
     
-    void registraUtente (String nome, String cognome, String codiceFiscale, Date dataNascita, Comune comune, String via, String username, String password) throws UtenteRegistratoException ;
+    void registraUtente (String nome, String cognome, String codiceFiscale, Date dataNascita, Comune comune, String via, String username, String password, String email) throws UtenteRegistratoException ;
     
 }

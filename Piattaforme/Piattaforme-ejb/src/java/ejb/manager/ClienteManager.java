@@ -8,7 +8,7 @@ package ejb.manager;
 
 import entity.Cliente;
 import entity.Utente;
-import facade.UtenteFacade;
+import facade.UtenteFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -26,7 +26,7 @@ public class ClienteManager implements ClienteManagerLocal {
     @PersistenceContext(unitName = "Piattaforme-ejbPU")
     private EntityManager em;
     @EJB
-    private UtenteFacade utenteFacade;
+    private UtenteFacadeLocal utenteFacade;
     
     @Override
     public boolean ePresente(Cliente c) {

@@ -30,5 +30,7 @@ public interface ProvinciaFacadeLocal {
     List<Provincia> findRange(int[] range);
 
     int count();
+
+    List<Provincia> findAllOrdered();
     
 }

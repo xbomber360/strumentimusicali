@@ -18,6 +18,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import manager.StatoClienti;
 
 /**
  *
@@ -32,7 +33,7 @@ public class Registrazione implements RegistrazioneLocal {
     
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public void registraUtente(String nome, String cognome, String codiceFiscale, Date dataNascita, Comune comune, String via, String username, String password) throws UtenteRegistratoException {
+    public void registraUtente(String nome, String cognome, String codiceFiscale, Date dataNascita, Comune comune, String via, String username, String password, String email) throws UtenteRegistratoException {
         
         Cliente c = new Cliente();
         c.setNome(nome);
@@ -42,6 +43,9 @@ public class Registrazione implements RegistrazioneLocal {
         c.setPassword(password);
         c.setNascita(dataNascita);
         c.setIndirizzoSpe(via);
+        c.setEmail(email);
+        c.setStato(StatoClienti.Attivo);
+        c.setMetodopagamento("contrassegno");
         if (clienteManager.ePresente(c)) {
             throw new UtenteRegistratoException();
         }

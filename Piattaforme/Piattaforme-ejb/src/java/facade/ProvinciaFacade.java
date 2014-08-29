@@ -7,9 +7,11 @@
 package facade;
 
 import entity.Provincia;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -24,9 +26,16 @@ public class ProvinciaFacade extends AbstractFacade<Provincia> implements Provin
     protected EntityManager getEntityManager() {
         return em;
     }
+    
 
     public ProvinciaFacade() {
         super(Provincia.class);
+    }
+
+    @Override
+    public List<Provincia> findAllOrdered() {
+        Query q = em.createNamedQuery("provincia.findall");
+        return q.getResultList();
     }
     
 }
