@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -18,7 +19,8 @@ import javax.persistence.OneToMany;
  * @author Lorenzo
  */
 @Entity
-public class Provincia implements Serializable {
+@NamedQuery(name="provincia.findall",query="SELECT p FROM Provincia p ORDER BY p.nome")
+public class Provincia implements Serializable, Comparable<Provincia> {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -105,7 +107,12 @@ public class Provincia implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Provincia[ id=" + id + " ]";
+        return id+","+nome+","+sigla;
+    }
+
+    @Override
+    public int compareTo(Provincia o) {
+        return this.id.compareTo(o.id);
     }
     
 }

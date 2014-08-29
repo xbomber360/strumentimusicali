@@ -26,7 +26,7 @@ import javax.persistence.OneToOne;
 @NamedQueries({
 @NamedQuery(name="trovaComuniConProvincia", query="SELECT c FROM Comune c WHERE c.provincia=?1"),
 @NamedQuery(name="trovaComunePerNome", query="SELECT c FROM Comune c WHERE c.nome=?1"),
-@NamedQuery(name="trovaComunePerCap", query="SELECT c FROM Comune c WHERE c.cap=?1"),
+//@NamedQuery(name="trovaComunePerCap", query="SELECT c FROM Comune c WHERE c.cap=?1"),
 
 })
 
@@ -36,10 +36,10 @@ public class Comune implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-        @Column(nullable = false , unique = true)
+        @Column(nullable = false , unique = false)
         private String nome;        
-            @Column(nullable = false, unique = true)
-            private Integer cap;
+         //   @Column(nullable = false, unique = true)
+         //   private Integer cap;
                     @ManyToOne
                     private Provincia provincia;      
                         @OneToMany(mappedBy = "comune")
@@ -88,18 +88,18 @@ public class Comune implements Serializable {
      *
      * @return the value of cap
      */
-    public Integer getCap() {
-        return cap;
-    }
+  //  public Integer getCap() {
+  //     return cap;
+  //  }
 
     /**
      * Set the value of cap
      *
      * @param cap new value of cap
      */
-    public void setCap(Integer cap) {
-        this.cap = cap;
-    }
+   // public void setCap(Integer cap) {
+   //     this.cap = cap;
+   // }
 
 
     /**
@@ -151,7 +151,7 @@ public class Comune implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Comune[ id=" + id + " ]";
+        return id+","+nome;
     }
     
 }

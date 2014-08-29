@@ -12,49 +12,54 @@
     <h:body>
         <h:form>
     <p:panel id="panel" header="Form Registrazione" style="margin-bottom:10px;">
-        <p:messages id="messages" />
-        <h:panelGrid columns="2" cellpadding="5">
+        <p:messages id="messages" autoUpdate="true"/>
+        <h:panelGrid id = "grid" columns="2" cellpadding="5">
             
             <p:outputLabel for="nome" value="Nome:" />
-            <p:inputText id="nome" required="true" />
+            <p:inputText id="nome" required="true" requiredMessage="Inserire nome" value="#{registrazione.nome}" />
  
             <p:outputLabel for="cognome" value="Cognome:" />
-            <p:inputText id="cognome" required="true" />
+            <p:inputText id="cognome" required="true" requiredMessage="Inserire cognome" value="#{registrazione.cognome}" />
  
             <p:outputLabel for="via" value="Via:" />
-            <p:inputText id="via" required="true" />
+            <p:inputText id="via" required="true" requiredMessage="Inserire via" value="#{registrazione.via}" />
             
-            <p:outputLabel for="citta" value="Città:" />
-            <p:inputText id="citta" required="true" />
-            
+                     
             <p:outputLabel for="provincia" value="Provincia"/> 
-            <p:selectOneMenu id="provincia" required="true" requiredMessage="Provincia Richiesta" value="#{provinciaManaged.provincia}" >  
+            <p:selectOneMenu id="provincia" required="true"  requiredMessage="Selezionare provincia" value="#{provinciaManaged.provincia}" converter ="provinciaConverter" >  
              <f:selectItem itemLabel="Seleziona Provincia" itemValue="" noSelectionOption="true"/>  
-             <f:selectItems value="#{provinciaManaged.province}" var="p" itemLabel="#{p.nome}, #{p.sigla}" itemValue="#{p}"/>
+             <f:selectItems value="#{provinciaManaged.province}" var="p" itemLabel="#{p.nome}, #{p.sigla}" itemValue="#{p}" />             
+             <p:ajax event="valueChange" update="comune" listener="#{provinciaManaged.handleComuni()}" />
             </p:selectOneMenu>  
             
+            <p:outputLabel for="comune" value="Città"/> 
+            <p:selectOneMenu id="comune" required="true" requiredMessage="Selezionare città" value="#{provinciaManaged.comune}" converter="comuneConverter" >  
+             <f:selectItem itemLabel="Seleziona Città" itemValue="" noSelectionOption="true"/>  
+             <f:selectItems value="#{provinciaManaged.comuni}" var="c" itemLabel="#{c.nome}" itemValue="#{c}"/>
+            </p:selectOneMenu> 
+            
             <p:outputLabel for="codpos" value="Codice Postale:" />
-            <p:inputText id="codpos" required="true" />
+            <p:inputText id="codpos" required="true" requiredMessage="Inserire cap" value="#{registrazione.codicePostale}"/>
                       
             <p:outputLabel for="user" value="Username:" />
-            <p:inputText id="user" required="true" />
+            <p:inputText id="user" required="true" requiredMessage="Inserire username" value="#{registrazione.username}" />
             
             <p:outputLabel for="password" value="Password:" />
-            <p:inputText id="password" required="true" />
+            <p:password id="password" match="confermapassword" requiredMessage="Inserire password" promptLabel="Efficacia Password" 
+            weakLabel="Fragile" goodLabel="Buona" strongLabel="Forte"
+            validatorMessage="Le password inserite non corrispondono" required ="true" value="#{registrazione.password}" />
             
             <p:outputLabel for="confermapassword" value="Conferma password:" />
-            <p:inputText id="confermapassword" required="true" />
+            <p:password id="confermapassword" required="true" requiredMessage="Reinserire password" value="#{registrazione.password}"/>
             
             <p:outputLabel for="email" value="Email:" />
-            <p:inputText id="email" required="true" />
+            <p:inputText id="email" required="true" requiredMessage="Inserire email" value="#{registrazione.email}"/>
             
-            <p:outputLabel for="confermaemail" value="Conferma email:" />
-            <p:inputText id="confermaemail" required="true" />
-            
+                      
         </h:panelGrid>
     </p:panel>
- 
-    <p:commandButton value="Registra" action="#{Registrazione.registra}" />
+    
+            <p:commandButton value="Conferma Dati" action="#{registrazione.registra(provinciaManaged)}" update="grid"/>
     <p:commandButton type="reset" value="Reset"></p:commandButton> 
 </h:form>
     </h:body>

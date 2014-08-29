@@ -8,8 +8,8 @@ package ejb.manager;
 
 import entity.Comune;
 import entity.Provincia;
-import facade.ComuneFacade;
-import facade.ProvinciaFacade;
+import facade.ComuneFacadeLocal;
+import facade.ProvinciaFacadeLocal;
 import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -31,9 +31,9 @@ import javax.persistence.Query;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class ComuneManager implements ComuneManagerLocal {
     @EJB
-    private ComuneFacade comuneFacade;
+    private ComuneFacadeLocal comuneFacade;
     @EJB
-    private ProvinciaFacade provinciaFacade;
+    private ProvinciaFacadeLocal provinciaFacade;
     @PersistenceContext(unitName = "Piattaforme-ejbPU")
     private EntityManager em;
     
@@ -44,7 +44,7 @@ public class ComuneManager implements ComuneManagerLocal {
            System.out.println("Provincia non valida");
            return new LinkedList<Comune>();
        }
-       Query q=em.createNamedQuery("comune.trovaComuniConProvincia");
+       Query q=em.createNamedQuery("trovaComuniConProvincia");
        q.setParameter(1, provincia);
        List<Comune> res = q.getResultList();
        return res;
