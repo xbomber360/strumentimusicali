@@ -26,6 +26,14 @@
             <to-view-id>/Home.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    <converter>
+        <converter-id>comuneConverter</converter-id>
+        <converter-class>converter.ComuneConverter</converter-class>
+    </converter>
+     <converter>
+        <converter-id>provinciaConverter</converter-id>
+        <converter-class>converter.ProvinciaConverter</converter-class>
+    </converter>
     <navigation-rule>
         <from-view-id>/Carrello.xhtml</from-view-id>
         <navigation-case>
@@ -58,10 +66,20 @@
         <managed-bean-class>managedBean.ProvinciaManaged</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/Registrazione.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>SuccessoRegistrazione</from-outcome>
+            <to-view-id>/EsitoRegistrazione.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
     <managed-bean>
         <managed-bean-name>carrelloManagerBean</managed-bean-name>
         <managed-bean-class>managedBean.CarrelloManagerBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
     
+
 </faces-config>
