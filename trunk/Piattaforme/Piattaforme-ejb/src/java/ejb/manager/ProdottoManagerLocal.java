@@ -31,7 +31,6 @@ public interface ProdottoManagerLocal {
 
     void aggiungiMarca(Marca m);
 
-    void aggiungiProdotto(Prodotto p, Marca m, Categoria c);
 
     void modificaQuantitaProdotto(Prodotto p, int quantita);
 
@@ -39,7 +38,7 @@ public interface ProdottoManagerLocal {
 
     void rimuoviProdotto(Prodotto p);
 
-    List<Prodotto> cercaProdottoPerNome(String parameter);
+    Prodotto cercaProdottoPerNome(String parameter);
 
     List<Prodotto> cercaTuttiProdotti();
 
@@ -50,6 +49,8 @@ public interface ProdottoManagerLocal {
     public List<Prodotto> cercaProdottiPerMarcaCategoria(Long idMarca, Long idCategoria);
 
     public List<Prodotto> prodottiDaUnSet(Set<Long> codiceBarre);
+
+    public void aggiungiProdotto(Prodotto p);
 
     
 }

@@ -14,6 +14,8 @@ import entity.Prodotto;
 import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 
 /**
@@ -30,14 +32,15 @@ public class DataMenuBean {
     
     private Categoria c = null; 
     private Long idMarcaSelezionata = null;
+    private Long idCategoriaSelezionata = null;
 
     public List<Categoria> getListaCategoria(){
         return categoriaManager.cercaTutto(); 
     }
     
-    public List<Marca> getMarche(Long idCategoria){
-         if(idCategoria != null){
-             return categoriaManager.getMarcheCategoria(idCategoria);
+    public List<Marca> getMarche(Long id){
+         if(id != null){
+             return categoriaManager.getMarcheCategoria(id);
              
          }
          return new LinkedList<Marca>();
@@ -58,26 +61,34 @@ public class DataMenuBean {
        return null;
     }
     
-    public void setCategoria(Long id){
-        Categoria nuova = categoriaManager.cercaPerId(id);
-        if(nuova!=null){
-        c = nuova;}
-      
+    public void setCategoriaSelezionata(Long id){
+      idCategoriaSelezionata = id;
+        System.out.println("categoria selezionata:"+idCategoriaSelezionata);
     }
     
-    public void setIdMarcaSelezionata(Long id){
+    public void setMarcaSelezionata(Long id){
         System.out.println("L'id della marca selezionata è " + id);
         this.idMarcaSelezionata=id;
     }
     
-    public Long getIdMarcaSelezionata(){
+    public Long getMarcaSelezionata(){
         if(idMarcaSelezionata!=null)
             return idMarcaSelezionata;
         return (long) -1;
     }
     
-    public List<Prodotto> getProdottoMarcaCatagoria(Long idMarca, Long idCategoria) {
-    return prodottoManager.cercaProdottiPerMarcaCategoria( new Long(1) ,new Long(1));
+    public List<Prodotto> getProdottoMarcaCatagoria() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        Long idCategoria = Long.parseLong(fc.getExternalContext().getRequestParameterMap().get("idCategoria"));
+        String idMarcaS = fc.getExternalContext().getRequestParameterMap().get("idMarca");
+        if(idMarcaS == null){
+            //TODO scegli una marca a muzzo e fammella vida
+            return null;
+        }
+        Long idMarca=Long.parseLong(idMarcaS);
+        System.out.println("idCategoria:"+idCategoria);
+        System.out.println("idMarca:"+idMarca);
+        return prodottoManager.cercaProdottiPerMarcaCategoria(idMarca, idCategoria);
     }  
     
 }

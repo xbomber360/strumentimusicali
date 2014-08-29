@@ -21,8 +21,8 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @NamedQueries({
-@NamedQuery(name="cercaPerNome", query="SELECT c FROM Categoria c WHERE c.nome=?1"),
-@NamedQuery(name="cercaPerId",query="SELECT c FROM Categoria c WHERE c.id=?1")
+@NamedQuery(name="categoria.cercaPerNome", query="SELECT c FROM Categoria c WHERE c.nome=?1"),
+@NamedQuery(name="categoria.cercaPerId",query="SELECT c FROM Categoria c WHERE c.id=?1")
 
 })
 

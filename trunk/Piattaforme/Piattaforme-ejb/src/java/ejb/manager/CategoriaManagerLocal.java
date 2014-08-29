@@ -31,4 +31,6 @@ public interface CategoriaManagerLocal {
     List<Marca> getMarcheCategoria(Long idCategoria);
 
     public Categoria cercaPerId(Long id);
+
+    List<String> cercaPattern(String query);
 }

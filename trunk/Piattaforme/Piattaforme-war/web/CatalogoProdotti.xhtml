@@ -14,10 +14,13 @@
         <h:form>
             <p:layout style="min-width:400px;min-height:800px;">
                 <p:layoutUnit position="west" resizable="true" size="270" minSize="40" maxSize="800">
-                    <p:menu id="dataMenu">
+                    <p:menu id="menuMarche">
                         <p:submenu label="Marche">
                             <c:forEach items="#{dataMenuBean.getMarche(param['idCategoria'])}" var="m">
-                                <p:menuitem value="#{m.nome}" outcome="CatalogoProdotti?idCategoria=#{param['idCategoria']}" /> 
+                                <p:menuitem value="#{m.nome}"  outcome="CatalogoProdotti.jsf"> 
+                                    <f:param name="idCategoria" value="#{param['idCategoria']}"/>
+                                    <f:param name="idMarca" value="#{m.id}"/>
+                                </p:menuitem>
                             </c:forEach>
                             
                         </p:submenu>
@@ -26,9 +29,9 @@
 
                 <p:layoutUnit position="center" resizable="true" maxSize="800" minSize="2000" >
                   
-                    <p:dataScroller value="#{dataMenuBean.getProdottoMarcaCatagoria(1,param[idCategoria])}" var="prodotto"> da chiedere come si passano più parametri
+                    <p:dataScroller id="listaProdotti" value="#{dataMenuBean.getProdottoMarcaCatagoria()}" var="prodotto">
                             <f:facet name="header">
-                                Di seguito sono riportati i prodotti della marca #{dataMenuBean.idMarcaSelezionata}
+                                Di seguito sono riportati i prodotti della marca
                             </f:facet>
                         
                             <h:panelGrid columns="2" style="width:100%">
@@ -48,7 +51,7 @@
                                         <h:outputText value="#{prodotto.prezzo}€" style="font-weight: bold"/>
                                     </h:panelGrid>
                                 </p:outputPanel>
-                                <p:button outcome="DescrizioneProdotto?idProdotto=#{prodotto.id}" value="Acquista"/>
+                                <p:button outcome="DescrizioneProdotto?idProdotto=#{prodotto.id}" value="Descrizione"/>
 
                             </h:panelGrid>
 

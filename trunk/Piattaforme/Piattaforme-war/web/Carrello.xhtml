@@ -11,7 +11,8 @@
 
     </h:head>
     <h:body>
-        
+         #{carrelloManagerBean.prodotti} 
+         
         <div>
             <h:form>
                 <p:dataTable id="table" var="p" value="#{carrelloManagerBean.prodotti}" emptyMessage="Non ci sono elementi nel carrello">
