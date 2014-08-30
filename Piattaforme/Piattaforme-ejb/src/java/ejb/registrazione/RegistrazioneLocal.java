@@ -9,6 +9,8 @@ package ejb.registrazione;
 import entity.Amministratore;
 import entity.Comune;
 import entity.GestoreMagazzino;
+import exception.AmministratoreException;
+import exception.GestoreMagazzinoException;
 import exception.UtenteRegistratoException;
 import java.sql.Date;
 import javax.ejb.Local;
@@ -21,5 +23,6 @@ import javax.ejb.Local;
 public interface RegistrazioneLocal {
     
     void registraUtente (String nome, String cognome, String codiceFiscale, Date dataNascita, Comune comune, String via, String username, String password, String email) throws UtenteRegistratoException ;
-    
+    void registraAmministratore(Amministratore amministratore) throws AmministratoreException;
+    void registraAddettoNegozio(GestoreMagazzino gestoreMagazzino) throws GestoreMagazzinoException;
 }

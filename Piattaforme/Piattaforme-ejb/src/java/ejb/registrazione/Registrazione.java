@@ -10,6 +10,9 @@ import ejb.manager.ClienteManagerLocal;
 import entity.Amministratore;
 import entity.Cliente;
 import entity.Comune;
+import entity.GestoreMagazzino;
+import exception.AmministratoreException;
+import exception.GestoreMagazzinoException;
 import exception.UtenteRegistratoException;
 import java.sql.Date;
 import javax.ejb.EJB;
@@ -51,6 +54,18 @@ public class Registrazione implements RegistrazioneLocal {
         }
         clienteManager.creaCliente(c);
       }
+
+    @Override
+    public void registraAmministratore(Amministratore amministratore) throws AmministratoreException {
+       
+        
+        
+    }
+
+    @Override
+    public void registraAddettoNegozio(GestoreMagazzino gestoreMagazzino) throws GestoreMagazzinoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
    
     

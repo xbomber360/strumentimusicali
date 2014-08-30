@@ -20,10 +20,12 @@
                 </c:forEach>
             </p:submenu>
             <p:menuitem value="Info" url="#"/>
+            <p:menuitem value="Pannello utente" action="#{tipoAccesso.pannelloUtente()}" rendered="#{redirect.accesso}"/>
             <f:facet name="options">
                 <p:inputText style="margin-right:10px" placeholder="Ricerca"/>
                 <p:button  value="Carrello" icon="ui-icon-extlink" outcome="Carrello" />
-                <p:button  value="Login" icon="ui-icon-extlink" outcome="Login" />
+                <p:button  value="Login" icon="ui-icon-extlink" outcome="Login" rendered="#{!redirect.accesso}"/>
+                <p:commandButton value="Logout" action="#{redirect.logout()}" rendered="#{redirect.accesso}"/>
                 <p:button  value="Registrazione" icon="ui-icon-extlink" outcome="Registrazione" />
 
             </f:facet>

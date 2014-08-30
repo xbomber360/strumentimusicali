@@ -46,19 +46,17 @@ public class Login implements LoginLocal {
         
         // controllo password
         
-        try {
+     
             
             if (!password.equals(cliente.getPassword())) {
                 throw new ClienteLoginException() ;
             }
-        } catch (Exception ex) {
-            
-        }
+        
         return verificaCliente(cliente);
     }
     
     private Cliente verificaCliente(Cliente c) throws ClienteLoginException, UtenteBloccatoException {
-
+        System.out.println("verificaCliente");
         if (c == null) {
 
             throw new ClienteLoginException();

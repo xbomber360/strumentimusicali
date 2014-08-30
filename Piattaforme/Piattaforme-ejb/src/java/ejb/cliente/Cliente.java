@@ -6,13 +6,12 @@
 
 package ejb.cliente;
 
-import ejb.manager.UtenteManagerLocal;
 import ejb.shopping.CarrelloLocal;
 import entity.Comune;
 import entity.Ordine;
 import entity.Provincia;
-import facade.ComuneFacade;
-import facade.ProvinciaFacade;
+import facade.ComuneFacadeLocal;
+import facade.ProvinciaFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
@@ -32,9 +31,9 @@ public class Cliente implements ClienteLocal {
     @EJB
     private CarrelloLocal carrelloEJB;
     @EJB
-    private ComuneFacade comuneFacade;
+    private ComuneFacadeLocal comuneFacade;
     @EJB
-    private ProvinciaFacade provinciaFacade;
+    private ProvinciaFacadeLocal provinciaFacade;
     
     @PersistenceContext(unitName = "Piattaforme-ejbPU")
     private EntityManager em;
