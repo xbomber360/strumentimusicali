@@ -30,8 +30,8 @@ public class ClienteManager implements ClienteManagerLocal {
     
     @Override
     public boolean ePresente(Cliente c) {
-        Query q = em.createNamedQuery("cercaUtentePerEmail");
-        q.setParameter(1, c.getEmail());
+        Query q = em.createNamedQuery("cercaUtentePerUsername");
+        q.setParameter(1, c.getUsername());
         List<Utente> l = q.getResultList();
         if (!l.isEmpty()) {
             return true;
@@ -91,6 +91,17 @@ public class ClienteManager implements ClienteManagerLocal {
         q.setParameter(1, id);
 
         return (Cliente) q.getSingleResult();
+    }
+    
+     @Override
+    public void modificaPassword(String newPassword, Long idAccount) throws AccountException {
+        if (esisteID (idAccount)) {
+            Account a = accountFacade.find(idAccount);
+            
+            utenteFacade.edit(a);
+        } else {
+            throw new AccountException();
+        }
     }
 
 }

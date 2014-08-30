@@ -8,9 +8,9 @@ package managedBean;
 
 import ejb.manager.ComuneManagerLocal;
 import ejb.registrazione.RegistrazioneLocal;
+import entity.Amministratore;
 import entity.Comune;
 import exception.UtenteRegistratoException;
-import facade.ComuneFacade;
 import java.sql.Date;
 import javax.ejb.EJB;
 
@@ -128,10 +128,16 @@ public class Registrazione {
             Comune c = comuneManager.trovaDaId(provComSel.getComune().getId());
             registrazione.registraUtente(nome, cognome, codiceFiscale, dataNascita, c , via, username, password, email);
         } catch (UtenteRegistratoException ex) {
-          return "";
+          return "RegistrazioneNonAvvenuta";
         }       
         return "SuccessoRegistrazione";
     }
+    
+    public void registraAmministratore () {
+        
+        
+    }
+    
   
     
 }

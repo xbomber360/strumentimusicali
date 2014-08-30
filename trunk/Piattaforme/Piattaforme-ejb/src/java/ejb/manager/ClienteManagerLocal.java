@@ -22,7 +22,7 @@ public interface ClienteManagerLocal {
     Cliente ottieniCliente (Cliente c);
     Cliente cercaPerEmail (String email);
     Cliente cercaPerID (Long id);
-   // void modificaPassword (String newPassword, Long Id);
+    void modificaPassword (String newPassword, Long Id);
     boolean esisteID (Long id);
     
 }
