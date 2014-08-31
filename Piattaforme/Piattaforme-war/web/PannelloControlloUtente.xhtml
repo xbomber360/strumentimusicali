@@ -2,22 +2,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Pannello Controllo Utente</title>
         <ui:include src="Header.xhtml"/>
         
     </h:head>
     <h:body>
-        Questa pagina serve all'utente per fargli eseguire dell'azioni . Alcune azioni devono essere abilitate in base al tipo di utente loggato. :
-        1 modifica credenziali 
-        2 visualizzare acquisti
-        3 aggiungi prodotto in magazzino (SOLO GESTORE MAGAZZINO)
-        4 gestione utenti (SOLO ADMIN)
-        5 modifica categorie , marche , prodotto (SOLO GESTORE MAGAZZINO)
-        6 modifica stato ordini (SOLO GESTORE MAGAZZINO)
+        <h3><p:outputLabel value="Benvenuto "/><p:outputLabel value="#{gestioneCliente.nome}"/><p:outputLabel value=";"/></h3><br/>
         
-        ecc
+        
+        <p:commandButton value="Modifica Credenziali"  rendered="#{redirect.accessoCliente}"/>
+        <p:commandButton value="I Miei Ordini" rendered="#{redirect.accessoCliente}"/>
+        <p:commandButton value="Aggiungi Prodotti" rendered="#{redirect.accessoGestoreMagazzino}"/>
+        <p:commandButton value="Gestisci Utenti" rendered="#{redirect.accessoAmministratore}"/>
+        <p:commandButton value="Modifica Categorie/Marche/Prodotti" rendered="#{redirect.accessoGestoreMagazzino}"/>
+        <p:commandButton value="Modifica Stato Ordini"  rendered="#{redirect.accessoGestoreMagazzino}"/>
     </h:body>
 </html>
 

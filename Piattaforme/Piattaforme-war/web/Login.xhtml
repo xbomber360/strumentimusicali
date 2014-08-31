@@ -19,7 +19,7 @@
                  <p:outputLabel for="password" value="Password:" />
                  <p:password id="password" required="true" requiredMessage= "Inserire password" value="#{login.password}" />
             </h:panelGrid>
-            <p:commandButton update="grid" value="Accedi" action="#{login.accesso()}" ></p:commandButton>
+            <p:commandButton update="grid" value="Accedi" action="#{login.accesso(gestioneCliente, gestioneSito)}" ></p:commandButton>
              
         </h:form> 
         

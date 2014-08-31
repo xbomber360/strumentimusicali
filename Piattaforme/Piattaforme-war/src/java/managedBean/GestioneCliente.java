@@ -9,10 +9,8 @@ package managedBean;
 import ejb.cliente.ClienteLocal;
 import ejb.shopping.CarrelloLocal;
 import ejb.shopping.OrdineManagerLocal;
-import entity.Cliente;
 import entity.Comune;
 import entity.Provincia;
-import facade.ProvinciaFacade;
 import facade.ProvinciaFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
@@ -48,7 +46,7 @@ public class GestioneCliente implements Serializable {
     }// setNome
     
      public String getNome() {
-
+         System.out.println("prova"+clienteEJB.getNome());
         return clienteEJB.getNome();
     }// getNome
 

@@ -45,7 +45,7 @@
         <from-view-id>*</from-view-id>
     <navigation-case>
             <from-outcome>AccessoCliente</from-outcome>
-            <to-view-id>/GestioneUtenti.xhtml</to-view-id>
+            <to-view-id>/Home.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule> 
@@ -121,4 +121,9 @@
             <redirect/>  
         </navigation-case>
     </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>tipologiaPannello</managed-bean-name>
+        <managed-bean-class>managedBean.TipologiaPannello</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>

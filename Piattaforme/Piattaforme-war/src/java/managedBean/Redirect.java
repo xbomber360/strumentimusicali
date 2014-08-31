@@ -23,6 +23,9 @@ import javax.servlet.http.HttpSession;
 public class Redirect implements Serializable {
 
     public static boolean accesso;
+    public static boolean accessoCliente;
+    public static boolean accessoAmministratore;
+    public static boolean accessoGestoreMagazzino;
     public Utente utente;
     
     public Redirect() {
@@ -35,6 +38,32 @@ public class Redirect implements Serializable {
     public void setAccesso(boolean accesso) {
         this.accesso = accesso;
     }
+
+    public boolean isAccessoCliente() {
+        return accessoCliente;
+    }
+
+    public void setAccessoCliente(boolean accessoCliente) {
+        this.accessoCliente = accessoCliente;
+    }
+
+    public boolean isAccessoAmministratore() {
+        return accessoAmministratore;
+    }
+
+    public  void setAccessoAmministratore(boolean accessoAmministratore) {
+        this.accessoAmministratore = accessoAmministratore;
+    }
+
+    public boolean isAccessoGestoreMagazzino() {
+        return accessoGestoreMagazzino;
+    }
+
+    public void setAccessoGestoreMagazzino(boolean accessoGestoreMagazzino) {
+        this.accessoGestoreMagazzino = accessoGestoreMagazzino;
+    }
+    
+    
 
     public Utente getUtente() {
         return utente;
@@ -157,6 +186,9 @@ public class Redirect implements Serializable {
     public void init() {
 
         this.accesso = false;
+        this.accessoCliente = false;
+        this.accessoAmministratore = false;
+        this.accessoGestoreMagazzino = false;
         this.utente = null;
     }
 }

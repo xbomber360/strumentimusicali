@@ -7,7 +7,7 @@
 package ejb.manager;
 
 import entity.Cliente;
-import facade.ClienteFacade;
+import facade.ClienteFacadeLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -26,7 +26,7 @@ import manager.StatoClienti;
 public class UtenteManager implements UtenteManagerLocal {
     
     @EJB
-    private ClienteFacade clienteFacade;
+    private ClienteFacadeLocal clienteFacade;
 
     @Override
     public void attivaCliente(Cliente c) {
