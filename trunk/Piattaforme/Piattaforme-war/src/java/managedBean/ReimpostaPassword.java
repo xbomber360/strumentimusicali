@@ -6,9 +6,10 @@
 
 package managedBean;
 
+import ejb.manager.ClienteManagerLocal;
+import exception.AccountException;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import ejb.manager.ClienteManagerLocal;
 
 /**
  *
@@ -40,6 +41,16 @@ public class ReimpostaPassword implements Serializable {
         this.idAccount = idAccount;
     }
     
+    public String reimposta() {
+        try {
+            manager.modificaPassword(password, idAccount);
+            return "PM";
+        } catch (AccountException ex) {
+            
+            return "PNM";
+        }
+
+    }
     
     
 }

@@ -8,6 +8,7 @@ package ejb.manager;
 
 import entity.Cliente;
 import entity.Utente;
+import exception.AccountException;
 import facade.UtenteFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
@@ -54,6 +55,7 @@ public class ClienteManager implements ClienteManagerLocal {
         
         Query q = em.createNamedQuery("Utente.isRegistrato");
         q.setParameter(1, c.getUsername());
+        System.out.println("Dal database prelevo un istanza di tipo"+  q.getSingleResult());
         return (Cliente) q.getSingleResult();
     }
     
@@ -96,8 +98,13 @@ public class ClienteManager implements ClienteManagerLocal {
      @Override
     public void modificaPassword(String newPassword, Long idAccount) throws AccountException {
         if (esisteID (idAccount)) {
-            Account a = accountFacade.find(idAccount);
-            
+            Utente a = utenteFacade.find(idAccount);
+            try {
+                a.setPassword(newPassword);
+            } catch (Exception ex) {
+                
+                return;
+            }
             utenteFacade.edit(a);
         } else {
             throw new AccountException();

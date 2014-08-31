@@ -6,6 +6,7 @@
 
 package managedBean;
 
+import ejb.cliente.ClienteLocal;
 import ejb.login.LoginLocal;
 import entity.Amministratore;
 import entity.GestoreMagazzino;
@@ -31,6 +32,7 @@ public class Login {
     private String password;
     private Utente utente;
     private Redirect redirect ;
+   
     
     public Login() { 
       
@@ -60,31 +62,38 @@ public class Login {
         this.username = username;
     }
     
-    public String accesso ()  {
+    public String accesso (GestioneCliente gc, GestioneSito gs)  {
                     
  
         try {
 
             utente = login.accesso(username, password);
+            System.out.println(utente);
+            System.out.println("lavoro con un istanza di tipo" + utente.getClass());
             redirect = new Redirect();
             redirect.setAccesso(true);
             redirect.setUtente(utente);
             
+            
             if (utente instanceof Amministratore) {
-                
-                //sito.setIDAmministratore(utente.getId());
-                //sito.setNomeAmministratore(utente.getNome());
+                System.out.println("Sono un amministratore");
+                gs.setIDAmministratore(utente.getId());
+                gs.setNomeAmministratore(utente.getNome());
+                redirect.setAccessoAmministratore(true);
               
                 return "AccessoAmministratore";
             }
             else if (utente instanceof GestoreMagazzino) {
-                //sito.setIDGestoreMagazzino(utente.getId());
-                //sito.setNomeGestoreMagazzino(utente.getNome());
+                System.out.println("Sono un gestore magazzino");
+                gs.setIDGestoreMagazzino(utente.getId());
+                gs.setNomeGestoreMagazzino(utente.getNome());
+                redirect.setAccessoGestoreMagazzino(true);
                 return "AccessoMagazzino";
             }
-            
-            //cliente.setNome(utente.getNome());
-            //cliente.setId(utente.getId());
+            System.out.println("Sono un cliente");
+            gc.setNome(utente.getNome());
+            gc.setId(utente.getId());
+            redirect.setAccessoCliente(true);
             return "AccessoCliente";
             
         }catch (ClienteLoginException ex ) {

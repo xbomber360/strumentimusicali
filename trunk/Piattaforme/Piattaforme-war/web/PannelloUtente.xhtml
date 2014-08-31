@@ -1,16 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>#{msg.benvenutoLabel}#{gestioneCliente.nome}</title>
+        <style>
+            .ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td {
+                padding: 0px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        
+            <ui:include src="Header.xhtml"/>
+      
+                #{redirect.redirectCliente(gestioneCliente, "Login.jsf")}
+                <p:growl autoUpdate="true"/>
+                <h3><p:outputLabel value="Benvenuto"/><p:outputLabel value="#{gestioneCliente.nome}"/><p:outputLabel value=";"/></h3><br/>
+                <h:form>
+                    <h:outputLink value="http://localhost:8080/Piattaforme-war/ReimpostaPassword.jsf">
+                        <f:param name="iac" value="#{gestioneCliente.id}"/>
+                        <h:outputText value="Reimposta Password"/>
+                    </h:outputLink>
+                </h:form><br/>
+                
+                
+          
+    </h:body>
 </html>
