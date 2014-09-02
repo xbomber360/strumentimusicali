@@ -36,12 +36,13 @@ public class OrdineManagedBean {
         return ordineManager.cercaTuttiGliOrdini();
     }
     
-    public void modificaStatoOrdine(){
-        ordineManager.modificaStatoOrdine(ordineSelezionato, statoOrdineSelezionato);
+    public void spedisciOrdine(Ordine ordineSelezionato ){
+        ordineManager.modificaStatoOrdine(ordineSelezionato, StatoOrdini.Spedito);
         
     }
     
-    public void eliminaOrdine(Ordine o){
+    public void eliminaOrdine(Ordine ordineSelezionato){
+        ordineManager.rimuoviOrdine(ordineSelezionato);
         
     }
     

@@ -11,5 +11,5 @@ package manager;
  * @author maidenfp
  */
 public enum StatoOrdini {
-    Nuovo, inLavorazione, Pronto, inPartenza, Spedito, Cancellato;
+    Nuovo, Lavorazione, Pronto, Partenza, Spedito, Cancellato;
 }

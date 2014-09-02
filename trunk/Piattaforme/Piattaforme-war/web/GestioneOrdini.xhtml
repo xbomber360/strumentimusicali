@@ -34,15 +34,15 @@
                                 <f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
                             </h:outputFormat> €
                         </p:column>
-                    <p:column id="stato" headerText="Stato">
-                        <p:outputLabel value="#{ordine.stato}"/>
+                    <p:column  headerText="Stato">
+                        <p:outputLabel id="stato" value="#{ordine.stato}"/>
                         </p:column>
                     
                     <p:column >
-                        <p:commandButton title="Spedisci"/>
+                        <p:commandButton value="Spedisci" actionListener="#{ordineManagedBean.spedisciOrdine(ordine)}" />
                         </p:column>
                     <p:column >
-                        <p:commandButton title="Rimuovi"/>
+                        <p:commandButton value="Rimuovi" actionListener="#{ordineManagedBean.eliminaOrdine(ordine)}"/>
                         </p:column>
                     
                     

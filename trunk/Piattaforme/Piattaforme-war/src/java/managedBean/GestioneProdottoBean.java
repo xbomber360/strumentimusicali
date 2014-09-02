@@ -44,17 +44,24 @@ public class GestioneProdottoBean {
     }
     
     public List<String> categoriaUpdate(String query){
-       // System.out.println("query:"+query );
         List<String> res =categoriaManager.cercaPattern(query); 
-        System.out.println(res);
         return res;
     }
     
     public List<String> marcaUpdate(String query){
         List<String> res = marcaManager.cercaPattern(query);
-        System.out.println(res);
         return res;
     }
+    
+    public List<Prodotto> getProdotti(){
+        return prodottoManager.cercaTuttiProdotti();
+    }
+    
+    public void  prova(){
+        System.out.println("ciao");
+    }
+    
+    
     
     public void cercaProdotto(Long id){
         Prodotto p =prodottoManager.cercaProdottoPerId(id);
