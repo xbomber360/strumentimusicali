@@ -16,7 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import manager.StatoOrdini;
 
 /**
@@ -37,12 +36,8 @@ public class Ordine implements Serializable {
     private Long id;
        @OneToMany(mappedBy = "ordine")
         private List<OggettoOrdinato> listaOggettiOrdinati;
-            @OneToOne
-            private Spedizione spedizione;
             @Column (nullable = false)          
             private Date dataOrdine;
-            @OneToOne
-            private Fattura fattura;
             private StatoOrdini stato;
             private float totale;
             @ManyToOne
@@ -91,6 +86,11 @@ public class Ordine implements Serializable {
     public List<OggettoOrdinato> getListaOggettiOrdinati() {
         return listaOggettiOrdinati;
     }
+    
+     public void setListaOggettiOrdinati(List<OggettoOrdinato> carrello) {
+        this.listaOggettiOrdinati = carrello;
+    }
+
 
     /**
      * Set the value of listaOggettiOrdinati
@@ -115,22 +115,8 @@ public class Ordine implements Serializable {
         this.id = id;
     }
 
-    public Spedizione getSpedizione() {
-        return spedizione;
-    }
-
-    public void setSpedizione(Spedizione spedizione) {
-        this.spedizione = spedizione;
-    }
-
-    public Fattura getFattura() {
-        return fattura;
-    }
-
-    public void setFattura(Fattura fattura) {
-        this.fattura = fattura;
-    }
-
+   
+    
     public StatoOrdini getStato() {
         return stato;
     }
@@ -166,10 +152,7 @@ public class Ordine implements Serializable {
         return "entity.Ordine[ id=" + id + " ]";
     }
 
-    public void setListaOggettiOrdinati(List<classi.OggettoOrdinato> carrello) {
-        this.listaOggettiOrdinati = listaOggettiOrdinati;
-    }
-
+   
    
 
     

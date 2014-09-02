@@ -6,7 +6,7 @@
 
 package ejb.shopping;
 
-import classi.OggettoOrdinato;
+import entity.OggettoOrdinato;
 import ejb.manager.ClienteManagerLocal;
 import ejb.manager.ProdottoManagerLocal;
 import entity.Cliente;
@@ -73,7 +73,7 @@ public class Carrello implements CarrelloLocal,Serializable {
     public void aggiungiProdottoAlCarrello(Long idProdotto , int quantita)throws ProdottoNonTrovatoException,ProdottoQuantitaException {
         if (pm.controllaQuantita(idProdotto, quantita)){
             OggettoOrdinato o = new OggettoOrdinato();
-            o.setIdProdotto(idProdotto);
+            o.setId(idProdotto);
             o.setQuantita(quantita);
             subTotale+= pm.cercaProdottoPerId(idProdotto).getPrezzo()*quantita;
             System.out.println("Aggiunto prodotto"+ idProdotto +" quantita: " + quantita);
@@ -89,8 +89,8 @@ public class Carrello implements CarrelloLocal,Serializable {
         if(carrello.get(idprodotto) == null)
             return;
         OggettoOrdinato o = carrello.remove(idprodotto);
-        subTotale-= pm.cercaProdottoPerId(o.getIdProdotto()).getPrezzo()*o.getQuantita();
-        pm.modificaQuantitaProdottoId(idprodotto, o.getQuantita());
+        subTotale-= pm.cercaProdottoPerId(o.getId()).getPrezzo()*o.getQuantita();
+        pm.modificaQuantitaProdotto(idprodotto, o.getQuantita());
 
         
     }
@@ -101,7 +101,7 @@ public class Carrello implements CarrelloLocal,Serializable {
             return;
        carrello.get(idProdotto).setQuantita(carrello.get(idProdotto).getQuantita()+quantita); //non so se va fatta cosi o con la remove
        subTotale+= pm.cercaProdottoPerId(idProdotto).getPrezzo()*quantita;
-       pm.modificaQuantitaProdottoId(idProdotto, quantita);
+       pm.modificaQuantitaProdotto(idProdotto, quantita);
 
 
     }//metodo
@@ -113,14 +113,14 @@ public class Carrello implements CarrelloLocal,Serializable {
        int temp = carrello.get(idProdotto).getQuantita();
        if(temp - quantita == 0){
            carrello.remove(idProdotto);
-           pm.modificaQuantitaProdottoId(idProdotto, quantita);
+           pm.modificaQuantitaProdotto(idProdotto, quantita);
 
        }else
            if(temp<0)
                    throw new IllegalArgumentException("Quantità non valida da rimuovere");
            else {
                 carrello.get(idProdotto).setQuantita(carrello.get(idProdotto).getQuantita()+quantita); //non so se va fatta cosi o con la remove
-                pm.modificaQuantitaProdottoId(idProdotto, quantita);
+                pm.modificaQuantitaProdotto(idProdotto, quantita);
 
            }//else
         
@@ -166,8 +166,6 @@ public class Carrello implements CarrelloLocal,Serializable {
         Fattura f = new Fattura();
         f.setData(dataOrdine);
         f.setDettaglio("Gli oggetti acquistati sono :" + lista.toString() + "Il prezzo è " + totale);
-        f.setOrdine(o);
-        om.creaFattura(f);
         this.carrello.clear();
         subTotale= new Float(0.00);
         

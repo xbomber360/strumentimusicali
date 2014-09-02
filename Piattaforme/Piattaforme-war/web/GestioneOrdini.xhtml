@@ -2,13 +2,55 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>GestoreOrdini</title>
         <ui:include src="Header.xhtml"/>
     </h:head>
     <h:body>
-        In questa pagina verranno visualizzati in lista gli ordini ed il gestore di magazzino può cambiare il loro stato 
+        <div>
+            <h:form>
+                <p:dataTable id="table" var="ordine" value="#{ordineManagedBean.ordini}" emptyMessage="Non ci sono ordini disponibili">
+                     <f:facet name="header">
+                            <p:outputLabel value="Lista ordini"/>
+                        </f:facet>
+                   <p:column headerText="#ID">
+                       <p:outputLabel value="#{ordine.id}"/>
+
+                   </p:column>
+                    
+                     <p:column headerText="Data">
+                         <p:outputLabel value="#{ordine.dataOrdine}"/>
+                     </p:column>
+                    
+                     <p:column headerText="Utente">
+                         <p:outputLabel value="#{ordine.utente.username}"/>
+                     </p:column>
+                    
+                     <p:column headerText="Totale">
+                         <h:outputFormat value="#{ordine.totale}">
+                                <f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                            </h:outputFormat> €
+                        </p:column>
+                    <p:column id="stato" headerText="Stato">
+                        <p:outputLabel value="#{ordine.stato}"/>
+                        </p:column>
+                    
+                    <p:column >
+                        <p:commandButton title="Spedisci"/>
+                        </p:column>
+                    <p:column >
+                        <p:commandButton title="Rimuovi"/>
+                        </p:column>
+                    
+                    
+                </p:dataTable>
+                
+            </h:form>
+            
+        </div>
     </h:body>
 </html>
 

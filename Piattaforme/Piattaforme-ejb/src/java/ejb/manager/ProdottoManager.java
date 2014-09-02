@@ -9,8 +9,6 @@ import entity.Categoria;
 import entity.Marca;
 import entity.Prodotto;
 import exception.ProdottoNonTrovatoException;
-import facade.CategoriaFacadeLocal;
-import facade.MarcaFacadeLocal;
 import facade.ProdottoFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
@@ -28,9 +26,9 @@ public class ProdottoManager implements ProdottoManagerLocal {
     @EJB
     private ProdottoFacadeLocal pf;
     @EJB
-    private CategoriaFacadeLocal cf;
+    private CategoriaManagerLocal cm;
     @EJB
-    private MarcaFacadeLocal mf;
+    private MarcaManagerLocal mm;
     
     @PersistenceContext(unitName = "Piattaforme-ejbPU")
     private EntityManager em;
@@ -53,37 +51,71 @@ public class ProdottoManager implements ProdottoManagerLocal {
 
     @Override
     public void aggiungiCategoria(Categoria c) {
-        cf.create(c);
+        cm.creaCategoria(c);
     }
 
     @Override
     public void aggiungiMarca(Marca m) {
-        mf.create(m);
+        mm.creaMarca(m);
     }
 
     @Override
     public void aggiungiProdotto(Prodotto p) {
+        Query q = em.createNamedQuery("prodotto.cercaProdottoPerNome");
+        q.setParameter(1, p.getNome());
+        if (!q.getResultList().isEmpty()) {
+            System.out.println("[ProdottoManager] Impossibile inserire il prodotto con " +p.getNome() + " prodotto già esistente.");
+            return;
+            
+        }
         pf.create(p);
+        System.out.println("[ProdottoManager] Prodotto inserito con successo");
         
     }
 
     @Override
     public void modificaQuantitaProdotto(Prodotto p, int quantita) {
         Prodotto temp = pf.find(p.getId());
-        temp.setQuantita(quantita);
+        if(temp==null){
+         System.out.println("[ProdottoManager] Impossibile modificare la quantita del prodotto con nome " +p.getNome() + " prodotto non trovato.");
+         return;
+        }
+        int quantitaModificata = temp.getQuantita()+quantita;
+        temp.setQuantita(quantitaModificata);
         pf.edit(temp);
+        System.out.println("[ProdottoManager] Modificata quantità prodotto, nuova quantita= " +quantitaModificata);
+
     }
     
     
+    @Override
+    public void modificaQuantitaProdotto(Long idProdotto, int quantita) {
+        Prodotto p = pf.find(idProdotto);
+        if(p==null){
+         System.out.println("[ProdottoManager] Impossibile modificare la quantita del prodotto con id " +idProdotto + " prodotto non trovato.");
+         return;
+        }
+        int quantitaModificata = p.getQuantita()+quantita;
+        p.setQuantita(quantitaModificata);
+        pf.edit(p);
+        System.out.println("[ProdottoManager] Modificata quantità prodotto, nuova quantita= " +quantitaModificata);
+    }
+
 
     @Override
     public void rimuoviCategoria(Categoria c) {
-        cf.remove(c);
+        cm.rimuoviCategoria(c);
     }
 
     @Override
     public void rimuoviProdotto(Prodotto p) {
+        Prodotto temp = pf.find(p.getId());
+        if(temp==null){
+         System.out.println("[ProdottoManager] Impossibile eliminare il prodotto "+ p.getNome() + " prodotto non trovato");   
+         return;
+        }
         pf.remove(p);
+        System.out.println("[ProdottoManager] I prodotto "+ p.getNome() + " è stato rimosso con successo");
         
     }
     
@@ -94,10 +126,11 @@ public class ProdottoManager implements ProdottoManagerLocal {
 
     @Override
     public Prodotto cercaProdottoPerNome(String parameter) {
-        Query q = em.createNamedQuery("Prodotto.cercaProdottoPerNome");
+        Query q = em.createNamedQuery("prodotto.cercaProdottoPerNome");
         q.setParameter(1, parameter);
         List<Prodotto> res = q.getResultList();
         if (res.isEmpty()) {
+            System.out.println("[ProdottoManager] Prodotto non trovato con il nome "+ parameter);
             return null;
         }
         return res.get(0);
@@ -105,9 +138,10 @@ public class ProdottoManager implements ProdottoManagerLocal {
 
     @Override
     public List<Prodotto> cercaTuttiProdotti() {
-        Query q = em.createNamedQuery("Prodotto.cercaTuttiProdotti");
+        Query q = em.createNamedQuery("prodotto.cercaTuttiProdotti");
         List<Prodotto> res = q.getResultList();
         if(res.isEmpty()){
+        System.out.println("[ProdottoManager] Non sono presenti prodotti");
         return null;
         }
         return res;
@@ -115,27 +149,27 @@ public class ProdottoManager implements ProdottoManagerLocal {
 
     @Override
     public List<Prodotto> cercaProdottiPerMarca(String marca) {
-        Query q = em.createNamedQuery("Prodotto.cercaTuttiProdottiDellaMarca");
+        Query q = em.createNamedQuery("prodotto.cercaTuttiProdottiDellaMarca");
         q.setParameter(1, marca);
         List<Prodotto> res = q.getResultList();
         if(res.isEmpty()){
+        System.out.println("[ProdottoManager] Non sono presenti prodotti della marca " +marca);
         return null;
         }
         return res;
     }
 
     @Override
-    public void modificaQuantitaProdottoId(Long idProdotto, int quantita) {
-        
-    }
-    
-    
-    @Override
     public List<Prodotto> cercaProdottiPerMarcaCategoria( Long idMarca,Long idCategoria ){
         Query q = em.createQuery("SELECT p FROM Prodotto p WHERE p.categoria.id=?1 AND p.marca.id=?2");
         q.setParameter(1, idCategoria);
         q.setParameter(2, idMarca);
-        return q.getResultList();
+        List<Prodotto> res = q.getResultList();
+         if(res.isEmpty()){
+        System.out.println("[ProdottoManager] Non sono presenti prodotti della marca con idMarca " +idMarca+" e idCategoria " + idCategoria);
+        return null;
+        }
+        return res;
        
     }
 
@@ -155,5 +189,10 @@ public class ProdottoManager implements ProdottoManagerLocal {
         q.setParameter("lista", codiceBarre);
         return q.getResultList();
     }
+
+    
+
+    
+    
     
 }

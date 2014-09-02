@@ -26,4 +26,6 @@ public interface MarcaManagerLocal {
     void modificaMarca (Marca m);
 
     void rimuoviMarca(Marca m);
+
+    List<String> cercaPattern(String query);
 }

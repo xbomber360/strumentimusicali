@@ -44,8 +44,14 @@ public class GestioneProdottoBean {
     }
     
     public List<String> categoriaUpdate(String query){
-        System.out.println("query:"+query );
+       // System.out.println("query:"+query );
         List<String> res =categoriaManager.cercaPattern(query); 
+        System.out.println(res);
+        return res;
+    }
+    
+    public List<String> marcaUpdate(String query){
+        List<String> res = marcaManager.cercaPattern(query);
         System.out.println(res);
         return res;
     }
@@ -136,29 +142,42 @@ public class GestioneProdottoBean {
     }
     
     public String inserisciProdotto(){
-        Prodotto p = new Prodotto();
         Marca m = marcaManager.cercaPerNome(marca);
         Categoria c = categoriaManager.cercaPerNome(categoria);
-        //TODO da inserire il controllo 
+        Prodotto temp = prodottoManager.cercaProdottoPerNome(nome);
+        Long idProdotto;
+        if(temp!=null){
+         idProdotto= temp.getId(); //In caso il prodotto già ci sia aggiorno solo la quantità
+        
+        if(idProdotto!=null && m!=null && c!=null){
+            
+            if(temp.getNome().equals(nome)&& temp.getMarca().toString().equals(marca) && temp.getCategoria().toString().equals(categoria)){ //questo controllo serve perchè ci potrebbe essere un prodotto con lo stesso nome ma stessa categoria e marca e va a modificare quello
+            prodottoManager.modificaQuantitaProdotto(idProdotto, quantità);
+            return "";}
+            return""; //il controllo se ci sta è gia in aggiungi prodotto, il prodotto è gia presente , esci dal metodo
+            }//if interno
+        }//if esterno
+        if (m==null){ // se la marca non esiste la creo
+            m = new Marca();
+            m.setNome(marca);
+            marcaManager.creaMarca(m);
+        }
+        if (c==null){ // se la categoria non esiste la creo
+            c = new Categoria();
+            c.setNome(categoria);
+            categoriaManager.creaCategoria(c);
+        }
+        
+        Prodotto p = new Prodotto();
         p.setNome(nome);
         p.setCategoria(c);
         p.setMarca(m);
         p.setDescrizione(descrizione);
-        p.setFoto(nome);
+        p.setFoto(urlFoto);
         p.setPrezzo(prezzo);
         p.setQuantita(quantità);
-        System.out.println(nome);
-        System.out.println(marca);
-        System.out.println(categoria);
-        System.out.println(prezzo);
-        
-        System.out.println(p);
-
-
-
-        
+      
         prodottoManager.aggiungiProdotto(p);
-        System.out.println("Prodotto aggiunto");
         return "";
     }
     

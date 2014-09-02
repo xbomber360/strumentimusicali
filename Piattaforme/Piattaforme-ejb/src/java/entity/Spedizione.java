@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -31,8 +30,6 @@ public class Spedizione implements Serializable {
     private Long id;
     private Date dataSpedizione;
     private Long tracking;
-    @OneToOne
-    private Ordine ordine;
     
     
 
@@ -53,16 +50,7 @@ public class Spedizione implements Serializable {
     public void setTracking(Long tracking) {
         this.tracking = tracking;
     }
-
-    public Ordine getOrdine() {
-        return ordine;
-    }
-
-    public void setOrdine(Ordine ordine) {
-        this.ordine = ordine;
-    }
-
-    
+ 
     
     /**
      * Get the value of dataSpedizione

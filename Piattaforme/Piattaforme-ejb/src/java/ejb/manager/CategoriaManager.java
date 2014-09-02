@@ -35,9 +35,11 @@ public class CategoriaManager implements CategoriaManagerLocal {
         Query q = em.createNamedQuery("categoria.cercaPerNome");
         q.setParameter(1, cat.getNome());
         if (!q.getResultList().isEmpty()) {
+            System.out.println("[Categoria Manager] Impossibile inserire la Categoria con il nome: " + cat.getNome()+" categoria già esistente");
             return;
         }
         categoriaFacade.create(cat);
+        System.out.println("[Categoria Manager] Creata nuova categoria di nome: " + cat.getNome());
     }
 
     @Override
@@ -46,6 +48,7 @@ public class CategoriaManager implements CategoriaManagerLocal {
         q.setParameter(1, nome);
         List<Categoria> res = q.getResultList();
         if (res.isEmpty()) {
+            System.out.println("[Categoria Manager] Categoria non trovata con il nome: "+ nome);
             return null;
         }
         return res.get(0);
@@ -57,7 +60,7 @@ public class CategoriaManager implements CategoriaManagerLocal {
         q.setParameter(1, id);
         List<Categoria> res = q.getResultList();
         if (res.isEmpty()) {
-            System.out.println("CATEGORIA NON TROVATA");
+            System.out.println("[Categoria Manager] Categoria non trovata con l'id: "+ id);
             return null;
         }
         return res.get(0);
@@ -67,20 +70,20 @@ public class CategoriaManager implements CategoriaManagerLocal {
     public List<Categoria> cercaTutto() {
         List<Categoria> res = categoriaFacade.findAll();
         
-        //List<Categoria> res = null;
-        //Query q = em.createQuery("SELECT c FROM Categoria c");
-        //res = q.getResultList();
+        if(res==null){
+            System.out.println("[CategoriaManager] Non sono presenti categorie");
+        }
         return res;
     }
 
     @Override
     public void modificaCategoria(Categoria cat) {
-       // categoriaFacade.edit(cat);
+        categoriaFacade.edit(cat);
     }
 
     @Override
     public void rimuoviCategoria(Categoria cat) {
-      //  categoriaFacade.remove(cat);
+      categoriaFacade.remove(cat);
     }
 
     @Override
