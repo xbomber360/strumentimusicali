@@ -24,8 +24,6 @@ public class Fattura implements Serializable {
     private Long id;
     private Date data;
     private String dettaglio;
-    @OneToOne
-    private Ordine ordine;
 
     public Long getId() {
         return id;
@@ -51,14 +49,6 @@ public class Fattura implements Serializable {
         this.dettaglio = dettaglio;
     }
 
-    public Ordine getOrdine() {
-        return ordine;
-    }
-
-    public void setOrdine(Ordine ordine) {
-        this.ordine = ordine;
-    }
-    
     
 
     @Override

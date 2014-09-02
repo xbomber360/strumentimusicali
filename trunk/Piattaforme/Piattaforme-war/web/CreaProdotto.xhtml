@@ -10,19 +10,18 @@
         <ui:include src="Header.xhtml"/>
     </h:head>
     <h:body>
-        <p:growl id="messaggi"/>
-        <h:outputText value="Completa i campi per aggiungere un nuovo prodotto in magazzino"/>
+        <p:panel id="panel" header="Completa i campi per aggiungere un nuovo prodotto in magazzino" style="margin-bottom:10px;">
         <h:form> 
+            <h:panelGrid id="grid" columns="2" cellpadding="5">
 
-            <h:panelGrid columns="2" cellpadding="5">
                 <h:outputText value="Modello:"/>
                 <p:inputText label="Modello" required="true" value="#{gestioneProdottoBean.nome}"/>
 
                 <h:outputText value="Marca:"/>
-                <p:inputText label="Marca" required="true" value="#{gestioneProdottoBean.marca}"/>
+                <p:autoComplete id="marca" required="true" value="#{gestioneProdottoBean.marca}" completeMethod="#{gestioneProdottoBean.marcaUpdate}"/>
 
                 <h:outputText value="Categoria:"/>
-                <p:autoComplete id= "categoria" value="#{gestioneProdottoBean.categoria}"  completeMethod="#{gestioneProdottoBean.categoriaUpdate}"/>
+                <p:autoComplete id= "categoria" required="true" value="#{gestioneProdottoBean.categoria}"  completeMethod="#{gestioneProdottoBean.categoriaUpdate}"/>
                 
                 <h:outputText value="Url Foto:"/>
                 <p:inputText label="Foto" required="true" value="#{gestioneProdottoBean.urlFoto}" />
@@ -37,11 +36,14 @@
             <h:outputText value="Descrizione:"/>
             <p:editor id="editor" widgetVar="editorWidget" value="#{gestioneProdottoBean.descrizione}" width="800" />
             <h:panelGrid columns="2" style="margin-top: 10px">
-                <p:commandButton value="Aggiungi Prodotto" update=":messaggi" action="#{gestioneProdottoBean.inserisciProdotto()}" icon="ui-icon-disk" />
+                <p:commandButton value="Aggiungi Prodotto" update="grid" action="#{gestioneProdottoBean.inserisciProdotto()}" icon="ui-icon-disk" />
 
                 <p:commandButton value="Cancella" type="button" onclick="PF('editorWidget').clear();" icon="ui-icon-close" />
             </h:panelGrid>
+
         </h:form> 
+                                        </p:panel>
+
     </h:body>
 </html>
 

@@ -82,7 +82,7 @@ public class DataMenuBean {
         Long idCategoria = Long.parseLong(fc.getExternalContext().getRequestParameterMap().get("idCategoria"));
         String idMarcaS = fc.getExternalContext().getRequestParameterMap().get("idMarca");
         if(idMarcaS == null){
-            //TODO scegli una marca a muzzo e fammella vida
+            //TODO scegli una marca a caso e mostrala
             return null;
         }
         Long idMarca=Long.parseLong(idMarcaS);

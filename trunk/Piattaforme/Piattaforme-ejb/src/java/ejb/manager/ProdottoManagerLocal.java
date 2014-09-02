@@ -33,6 +33,8 @@ public interface ProdottoManagerLocal {
 
 
     void modificaQuantitaProdotto(Prodotto p, int quantita);
+    
+     public void modificaQuantitaProdotto(Long idProdotto, int quantita);
 
     void rimuoviCategoria(Categoria c);
 
@@ -44,13 +46,15 @@ public interface ProdottoManagerLocal {
 
     List<Prodotto> cercaProdottiPerMarca(String marca);
 
-    void modificaQuantitaProdottoId(Long idProdotto, int quantita);
 
     public List<Prodotto> cercaProdottiPerMarcaCategoria(Long idMarca, Long idCategoria);
 
     public List<Prodotto> prodottiDaUnSet(Set<Long> codiceBarre);
 
     public void aggiungiProdotto(Prodotto p);
+
+
+   
 
     
 }
