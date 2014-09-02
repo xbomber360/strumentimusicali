@@ -73,7 +73,7 @@ public class OrdineManager implements OrdineManagerLocal {
             return;
         Query q = em.createNamedQuery("ordine.cercaOrdinePerId");
         q.setParameter(1, o.getId());
-        if (!q.getResultList().isEmpty()) {
+        if (q.getResultList().isEmpty()) {
             System.out.println("[OrdineManager] Impossibile eliminare l'ordine numero "+ o.getId() + " ordine non trovato" );
             return;
         }

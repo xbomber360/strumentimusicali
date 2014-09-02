@@ -24,7 +24,7 @@ import manager.StatoOrdini;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name="cercaOrdinePerId",query="SELECT o FROM Ordine o WHERE o.id=?1"),
+    @NamedQuery(name="ordine.cercaOrdinePerId",query="SELECT o FROM Ordine o WHERE o.id=?1"),
     
 })
 public class Ordine implements Serializable {

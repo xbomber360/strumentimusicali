@@ -154,7 +154,7 @@ public class Carrello implements CarrelloLocal,Serializable {
         o.setTipoSpedizione(sp);
         Date dataOrdine=new Date(new GregorianCalendar().getTimeInMillis());
         o.setDataOrdine(dataOrdine);
-        o.setStato(StatoOrdini.inLavorazione);
+        o.setStato(StatoOrdini.Lavorazione);
         LinkedList<OggettoOrdinato> lista = new LinkedList<OggettoOrdinato>();
         for(OggettoOrdinato daAggiungere : carrello.values() ){
             lista.add(daAggiungere);
