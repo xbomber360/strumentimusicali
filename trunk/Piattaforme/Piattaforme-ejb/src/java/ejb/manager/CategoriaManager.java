@@ -78,22 +78,40 @@ public class CategoriaManager implements CategoriaManagerLocal {
 
     @Override
     public void modificaCategoria(Categoria cat) {
-        categoriaFacade.edit(cat);
+        Categoria temp = categoriaFacade.find(cat.getId());
+       if(temp==null){
+            System.out.println("[CategoriaManager] Impossibile modificare la categoria  con il nome "+ cat.getNome()+" categoria non trovata");
+            return;
+        }
+       
+      categoriaFacade.edit(cat);
+     System.out.println("[CategoriaManager] La categoria con il nome "+ cat.getNome() +" è stata modificata con successo ");
     }
 
     @Override
     public void rimuoviCategoria(Categoria cat) {
+      Categoria temp = categoriaFacade.find(cat.getId());
+       if(temp==null){
+            System.out.println("[CategoriaManager] Impossibile rimuove la categoria  con il nome "+ cat.getNome()+" categoria non trovata");
+            return;
+        }
+       
       categoriaFacade.remove(cat);
+     System.out.println("[CategoriaManager] La categoria con il nome "+ cat.getNome() +" è stata rimossa con successo ");
+
     }
 
     @Override
     public List<Marca> getMarcheCategoria(Long idCategoria) {
-        if(idCategoria!=null){
         Query q = em.createQuery("SELECT m FROM Marca m WHERE EXISTS (SELECT p FROM Prodotto p, Categoria c WHERE p.categoria = c AND c.id=?1 AND m=p.marca)");
         q.setParameter(1, idCategoria);
-        return q.getResultList();
+        List<Marca> res =  q.getResultList();
+        if(res==null){
+          System.out.println("[CategoriaManager] Non sono presenti marche della categoria con id " + idCategoria);
+
         }
-        return null;
+        return res;
+       
     }
 
     @Override

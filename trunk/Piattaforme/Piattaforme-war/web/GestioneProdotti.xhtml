@@ -10,50 +10,107 @@
         <ui:include src="Header.xhtml"/>
     </h:head>
     <h:body>
-        In questa pagina il gestore del magazzino puoi modificare i prodotti (descrizione , nome , quantità, MARCA , CATEGORIA) oppure aggiungere
-        rimuove o modicare categorie e marche 
-         <div>
-            <h:form>
-                <p:dataTable id="table" var="prodotto" value="#{gestioneProdottoBean.prodotti}" emptyMessage="Non ci sono prodotti disponibili">
-                     <f:facet name="header">
-                            <p:outputLabel value="Lista prodotti"/>
-                        </f:facet>
-                   <p:column headerText="#ID"  width="35">
-                       <p:outputLabel value="#{prodotto.id}"/>
+        <h:form id="formMarche">
+            <p:messages autoUpdate="true" closable="true"/>
+            <p:panel header="Marche" style="margin-bottom:10px;">  
 
-                   </p:column>
-                    
-                     <p:column headerText="Foto" width="200">
-                         <p:outputLabel value="Da aggiungere codice"/>
-                     </p:column>
-                    
-                     <p:column headerText="Marca" width="150">
-                         <p:outputLabel value="#{prodotto.marca.nome}"/>
-                     </p:column>
-                    
-                     <p:column headerText="Modello" width="200">
-                         <p:outputLabel value="#{prodotto.nome}"/>
-                     </p:column>
-                    
-                    <p:column  headerText="Quantità" >
-                        <p:spinner  value="#{prodotto.quantita}" min="0" size="6"/>
-                        </p:column>
-                    
-                    <p:column headerText="Prezzo" >
-                         
-                        <p:spinner  value="#{prodotto.prezzo}"  min="0" size="8" valueChangeListener="#{gestioneProdottoBean.prova()}"/>
-                                             <p:commandButton value="Aggiorna" actionListener="#{gestioneProdottoBean.prova()}" />
 
-                        </p:column>
+                <p:dataTable id="tabellaMarche" var="marca" value="#{gestioneProdottoBean.marche}" emptyMessage="Non sono presenti marche">
+                    <p:column headerText="#Id" width="30">
+                        <p:outputLabel value="#{marca.id}"/>
+                    </p:column>
                     
+                    <p:column headerText="Nome" width="50">
+                        <p:outputLabel value="#{marca.nome}"/>
+                    </p:column>
                     
-                
-                    
+                     <p:column width="100">
+                         <p:commandButton value="Rimuovi" action="#{gestioneProdottoBean.rimuoviMarca(marca)}" update="tabellaMarche" />
+                </p:column >
                 </p:dataTable>
+                <p:commandButton value="Aggiungi" action="#{gestioneProdottoBean.inserisciMarca()}" update="tabellaMarche"/>
+                <p:inputText value="#{gestioneProdottoBean.marcaSelezionata}" required="false" requiredMessage="Inserire nome Marca"  />
+
+
+
+            </p:panel>
+
+        </h:form>
+        
+        <h:form id="formCategorie">
+
+        <p:messages autoUpdate="true" closable="true"/>
+
+            <p:panel header="Categorie" style="margin-bottom:10px;">
+               
                 
-            </h:form>
-            
-        </div>
+                <p:dataTable id="tabellaCategorie" var="categoria" value="#{gestioneProdottoBean.categorie}" emptyMessage="Non sono presenti categorie">
+                    <p:column headerText="#Id" >
+                        <p:outputLabel value="#{categoria.id}"/>
+                    </p:column>
+                    
+                    <p:column headerText="Nome" >
+                        <p:outputLabel value="#{categoria.nome}"/>
+                    </p:column>
+                    
+                     <p:column >
+                         <p:commandButton value="Rimuovi" action="#{gestioneProdottoBean.rimuoviCategoria(categoria)}" update="tabellaCategorie" />
+                </p:column>
+                </p:dataTable>
+                <p:commandButton value="Aggiungi" action="#{gestioneProdottoBean.inserisciCategoria()}" update="tabellaCategorie" />
+                
+                <p:inputText value="#{gestioneProdottoBean.categoriaSelezionata}" required="false" requiredMessage="Inserire nome Categoria"  />
+
+            </p:panel>
+        </h:form>
+        <h:form id="formProdotti">
+
+            <p:dataTable id="tabellaProdotti" var="prodotto" value="#{gestioneProdottoBean.prodotti}" emptyMessage="Non ci sono prodotti disponibili">
+                <f:facet name="header">
+                    <p:outputLabel value="Lista prodotti"/>
+                </f:facet>
+                <p:column headerText="#Id"  >
+                    <p:outputLabel value="#{prodotto.id}"/>
+
+                </p:column>
+
+                <p:column headerText="Foto" width="200">
+                    <p:outputLabel value="Da aggiungere codice"/>
+                </p:column>
+
+                <p:column headerText="Marca" width="150">
+                    <p:outputLabel value="#{prodotto.marca.nome}"/>
+                </p:column>
+
+                <p:column headerText="Modello" width="200">
+                    <p:outputLabel value="#{prodotto.nome}"/>
+                </p:column>
+
+                <p:column  headerText="Quantità" >
+                    <p:outputLabel value="#{prodotto.quantita}"/>
+                </p:column>
+
+                <p:column headerText="Prezzo" >
+
+                    <p:outputLabel value="#{prodotto.prezzo}"/>
+
+                </p:column>
+
+                <p:column >
+                    <p:commandButton value="Modifica" action="#{gestioneProdottoBean.settaTuttiParametriDaProdotto(prodotto)}"  />
+                </p:column>
+
+                <p:column >
+                    <p:commandButton value="Rimuovi" action="#{gestioneProdottoBean.rimuoviProdotto(prodotto)}" update="tabellaProdotti"/>
+                </p:column>
+
+
+
+
+            </p:dataTable>
+
+        </h:form>
+
     </h:body>
 </html>
 

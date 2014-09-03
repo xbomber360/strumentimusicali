@@ -71,6 +71,8 @@ public class MarcaManager implements MarcaManagerLocal {
             return;
         }
         marcaFacade.edit(m);
+        System.out.println("[MarcaManager] La marca  con il nome "+ m.getNome()+" è stata modificata con successo");
+
     }
 
     @Override
@@ -81,6 +83,8 @@ public class MarcaManager implements MarcaManagerLocal {
             return;
         }
         marcaFacade.remove(m);
+        System.out.println("[MarcaManager] La marca  con il nome "+ m.getNome()+" è stata rimossa con successo");
+
     }
 
     @Override
