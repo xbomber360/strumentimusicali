@@ -96,9 +96,10 @@ public class ProdottoManager implements ProdottoManagerLocal {
          return;
         }
         int quantitaModificata = p.getQuantita()+quantita;
-        p.setQuantita(quantitaModificata);
+        System.out.println("quantitaaaaa" + quantita);
+        p.setQuantita(quantita);
         pf.edit(p);
-        System.out.println("[ProdottoManager] Modificata quantità prodotto, nuova quantita= " +quantitaModificata);
+        System.out.println("[ProdottoManager] Modificata quantità prodotto, nuova quantita= " +p.getQuantita());
     }
 
 
@@ -190,8 +191,15 @@ public class ProdottoManager implements ProdottoManagerLocal {
         return q.getResultList();
     }
 
-    
+    @Override
+    public List<String> cercaPattern(String query) {
+         Query q = em.createQuery("SELECT p.nome FROM Prodotto p WHERE p.nome LIKE ?1");
+        q.setParameter(1, query+"%");
+        return q.getResultList();
+    }
 
+    
+    
     
     
     

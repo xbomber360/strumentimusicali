@@ -18,16 +18,16 @@
                 <p:inputText label="Modello" required="true" value="#{gestioneProdottoBean.nome}"/>
 
                 <h:outputText value="Marca:"/>
-                <p:autoComplete id="marca" required="true" value="#{gestioneProdottoBean.marca}" completeMethod="#{gestioneProdottoBean.marcaUpdate}"/>
+                <p:autoComplete id="marca" required="true" value="#{gestioneProdottoBean.marcaSelezionata}" completeMethod="#{gestioneProdottoBean.marcaUpdate}"/>
 
                 <h:outputText value="Categoria:"/>
-                <p:autoComplete id= "categoria" required="true" value="#{gestioneProdottoBean.categoria}"  completeMethod="#{gestioneProdottoBean.categoriaUpdate}"/>
+                <p:autoComplete id= "categoria" required="true" value="#{gestioneProdottoBean.categoriaSelezionata}"  completeMethod="#{gestioneProdottoBean.categoriaUpdate}"/>
                 
                 <h:outputText value="Url Foto:"/>
                 <p:inputText label="Foto" required="true" value="#{gestioneProdottoBean.urlFoto}" />
 
                 <h:outputText value="Quantità:"/>
-                <p:inputText label="Quantità" required="true" value="#{gestioneProdottoBean.quantità}" />
+                <p:inputText label="Quantità" required="true" value="#{gestioneProdottoBean.quantita}" />
 
                 <h:outputText value="Prezzo:"/>
                 <p:inputText label="Prezzo" required="true" value="#{gestioneProdottoBean.prezzo}"/>

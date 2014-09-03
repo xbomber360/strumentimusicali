@@ -35,14 +35,14 @@
                             </h:outputFormat> €
                         </p:column>
                     <p:column  headerText="Stato">
-                        <p:outputLabel id="stato" value="#{ordine.stato}"/>
+                        <p:outputLabel value="#{ordine.stato}"/>
                         </p:column>
                     
                     <p:column >
-                        <p:commandButton value="Spedisci" actionListener="#{ordineManagedBean.spedisciOrdine(ordine)}" />
+                        <p:commandButton value="Spedisci" actionListener="#{ordineManagedBean.spedisciOrdine(ordine)}" update="table"/>
                         </p:column>
                     <p:column >
-                        <p:commandButton value="Rimuovi" actionListener="#{ordineManagedBean.eliminaOrdine(ordine)}"/>
+                        <p:commandButton value="Rimuovi" actionListener="#{ordineManagedBean.eliminaOrdine(ordine)}" update="table"/>
                         </p:column>
                     
                     

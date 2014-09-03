@@ -19,10 +19,9 @@
                     <p:menuitem value="#{c.nome}" outcome="CatalogoProdotti.jsf?idCategoria=#{c.id}"/>
                 </c:forEach>
             </p:submenu>
-            <p:menuitem value="Info" url="#"/>
             <p:menuitem value="Pannello utente" action="#{tipoAccesso.pannelloUtente()}" rendered="#{redirect.accesso}" outcome="PannelloControlloUtente"/>
             <f:facet name="options">
-                <p:inputText style="margin-right:10px" placeholder="Ricerca"/>
+                <p:autoComplete id="prodottoCercato" placeholder="Ricerca" style="margin-right:10px"   completeMethod="#{gestioneProdottoBean.prodottoUpdate}"  />
                 <p:button  value="Carrello" icon="ui-icon-extlink" outcome="Carrello" />
                 <p:button  value="Login" icon="ui-icon-extlink" outcome="Login" rendered="#{!redirect.accesso}"/>
                 <p:commandButton value="Logout" action="#{redirect.logout()}" rendered="#{redirect.accesso}"/>

@@ -15,6 +15,7 @@ import exception.ProdottoNonTrovatoException;
 import java.util.List;
 import java.util.Set;
 import javax.ejb.Local;
+import javax.persistence.Query;
 
 /**
  *
@@ -52,6 +53,9 @@ public interface ProdottoManagerLocal {
     public List<Prodotto> prodottiDaUnSet(Set<Long> codiceBarre);
 
     public void aggiungiProdotto(Prodotto p);
+
+    List<String> cercaPattern(String query);
+
 
 
    
