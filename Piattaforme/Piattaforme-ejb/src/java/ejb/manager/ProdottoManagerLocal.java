@@ -24,7 +24,7 @@ import javax.persistence.Query;
 @Local
 public interface ProdottoManagerLocal {
 
-    boolean controllaQuantita(Long idProdotto, int quantita)throws ProdottoNonTrovatoException;
+    boolean controllaDisponibilita(Long idProdotto, int quantita);
 
     Prodotto cercaProdottoPerId(Long idProdotto);
 
@@ -55,6 +55,18 @@ public interface ProdottoManagerLocal {
     public void aggiungiProdotto(Prodotto p);
 
     List<String> cercaPattern(String query);
+    
+     public boolean isPresenteProdottoDellaMarca(Marca m);
+     
+     public boolean isPresenteProdottoDellaCategoria(Categoria c);
+
+    public void aggiungiQuantitaProdotto(Prodotto p, int quantita);
+
+    public void rimuoviQuantitaProdotto(Prodotto p, int quantita);
+
+    public void aggiungiQuantitaProdotto(Long idProdotto, int quantita);
+
+    public void rimuoviQuantitaProdotto(Long idProdotto, int quantita);
 
 
 

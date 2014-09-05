@@ -24,11 +24,14 @@ import javax.persistence.Query;
 @Stateless
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
 public class CategoriaManager implements CategoriaManagerLocal {
+    @EJB
+    private ProdottoManagerLocal prodottoManager;
 
     @PersistenceContext(unitName = "Piattaforme-ejbPU")
     private EntityManager em;
     @EJB
     private CategoriaFacadeLocal categoriaFacade;
+    
     
     @Override
     public void creaCategoria(Categoria cat) {
@@ -95,7 +98,10 @@ public class CategoriaManager implements CategoriaManagerLocal {
             System.out.println("[CategoriaManager] Impossibile rimuove la categoria  con il nome "+ cat.getNome()+" categoria non trovata");
             return;
         }
-       
+       if(prodottoManager.isPresenteProdottoDellaCategoria(cat)){
+           System.out.println("[CategoriaManager] Impossibile rimuove la categoria  con il nome "+ cat.getNome()+" esistono altri prodotti associati ad essa");
+           return;
+       }
       categoriaFacade.remove(cat);
      System.out.println("[CategoriaManager] La categoria con il nome "+ cat.getNome() +" è stata rimossa con successo ");
 

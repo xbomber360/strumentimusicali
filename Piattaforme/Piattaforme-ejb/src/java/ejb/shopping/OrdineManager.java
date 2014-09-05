@@ -9,6 +9,7 @@ package ejb.shopping;
 
 import entity.Ordine;
 import entity.TipoSpedizione;
+import entity.Utente;
 import facade.OrdineFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
@@ -100,6 +101,17 @@ public class OrdineManager implements OrdineManagerLocal {
         List<Ordine> res = of.findAll();
         if(res==null){
            System.out.println("[OrdineManager] Non sono presenti ordini" ); 
+        }
+        return res;
+    }
+    @Override
+    public List<Ordine> cercaTuttiGliOrdiniUtente(Utente u){
+        //DA VEDERE COME GESTISCE FRANCESCO LA PROMOZIONE IN CASO USARE LA USER INVECE DELL'ID , va cambiata anche la namedQuery nell'entity
+        Query q = em.createNamedQuery("ordine.cercaOrdiniUtente");
+        q.setParameter(1, u.getId());
+        List<Ordine> res = q.getResultList();
+        if(res==null){
+            System.out.println("[OrdineManager] Non sono presenti ordini dell'utente " + u.getId() );
         }
         return res;
     }

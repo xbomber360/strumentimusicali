@@ -35,6 +35,7 @@ public class GestioneProdottoBean {
     private String descrizione=null;
     private int prezzo=0;
     private int quantita=0;
+    private int quantitaDaAcquistare=0;
     
 
     /**
@@ -244,6 +245,14 @@ public class GestioneProdottoBean {
 
     public void setCategoriaSelezionata(String categoriaSelezionata) {
         this.categoriaSelezionata = categoriaSelezionata;
+    }
+
+    public int getQuantitaDaAcquistare() {
+        return quantitaDaAcquistare;
+    }
+
+    public void setQuantitaDaAcquistare(int quantitaDaAcquistare) {
+        this.quantitaDaAcquistare = quantitaDaAcquistare;
     }
     
    

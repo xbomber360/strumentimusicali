@@ -25,9 +25,9 @@ public interface CarrelloLocal {
 
     void rimuoviProdottoDalCarrello(Long idProdotto);
 
-    public void aggiungiQuantitaProdotto(Long idProdotto, int quantita);
+    public void aggiungiQuantitaProdottoAlCarrello(Long idProdotto, int quantita);
 
-    public void rimuoviQuantitaProdotto(Long idProdotto, int quantita);
+    public void rimuoviQuantitaProdottoDalCarrello(Long idProdotto, int quantita);
 
     void svuotaCarrello();
 

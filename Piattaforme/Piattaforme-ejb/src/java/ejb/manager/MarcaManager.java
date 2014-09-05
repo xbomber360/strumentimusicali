@@ -25,10 +25,13 @@ import javax.persistence.Query;
 @Stateless
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
 public class MarcaManager implements MarcaManagerLocal {
+    @EJB
+    private ProdottoManagerLocal prodottoManager;
 @PersistenceContext(unitName = "Piattaforme-ejbPU")
     private EntityManager em;
     @EJB
     private MarcaFacadeLocal marcaFacade;
+    
 
     @Override
     public void creaMarca (Marca m) {
@@ -81,6 +84,10 @@ public class MarcaManager implements MarcaManagerLocal {
         if(temp==null){
             System.out.println("[MarcaManager] Impossibile rimuovere la marca  con il nome "+ m.getNome()+" marca non trovata");
             return;
+        }
+        if(prodottoManager.isPresenteProdottoDellaMarca(m)){
+          System.out.println("[MarcaManager] Impossibile rimuovere la marca  con il nome "+ m.getNome()+" esistono altri prodotti associati ad essa");
+          return;
         }
         marcaFacade.remove(m);
         System.out.println("[MarcaManager] La marca  con il nome "+ m.getNome()+" è stata rimossa con successo");
