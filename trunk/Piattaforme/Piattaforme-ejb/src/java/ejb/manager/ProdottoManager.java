@@ -37,11 +37,12 @@ public class ProdottoManager implements ProdottoManagerLocal {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     @Override
-    public boolean controllaQuantita(Long idProdotto, int quantita) throws ProdottoNonTrovatoException {
+    public boolean controllaDisponibilita(Long idProdotto, int quantita) {
 
         Prodotto p = pf.find(idProdotto);
         if (p == null) {
-            throw new ProdottoNonTrovatoException();
+            System.out.println("[ProdottoManager] Impossibile controllare la quantita del prodotto con id " +idProdotto + " prodotto non trovato.");
+            return false;
         }
 
         return p.getQuantita() >= quantita;
@@ -72,31 +73,93 @@ public class ProdottoManager implements ProdottoManagerLocal {
         System.out.println("[ProdottoManager] Prodotto inserito con successo");
         
     }
+    
+    @Override
+    public void aggiungiQuantitaProdotto(Prodotto p, int quantita){ //Metodo usato dal carrello per aggiungere prodotti al magazzino quando si rimuove un prodotto dal carrello
+        //Il valore in input viene sommato alla quantita del prodotto
+         Prodotto temp = pf.find(p.getId());
+        if(temp==null){
+         System.out.println("[ProdottoManager] Impossibile aggiungere la quantita del prodotto con nome " +p.getNome() + " prodotto non trovato.");
+         return;
+        }
+        int quantitaModificata = temp.getQuantita() + quantita;
+        temp.setQuantita(quantitaModificata);
+        pf.edit(temp);
+        System.out.println("[ProdottoManager] Aggiunta quantità prodotto, nuova quantita= " +quantitaModificata);
+    }
+    @Override
+    public void rimuoviQuantitaProdotto(Prodotto p , int quantita){ //Metodo usato dal carrello per rimuovere prodotti al magazzino quando si aggiunge un prodotto dal carrello
+        //Il valore in input viene sommato alla quantita del prodotto
+        Prodotto temp = pf.find(p.getId());
+        if(temp==null){
+         System.out.println("[ProdottoManager] Impossibile rimuovere la quantita del prodotto con nome " +p.getNome() + " prodotto non trovato.");
+         return;
+        }
+        int quantitaModificata = temp.getQuantita() - quantita;
+        if(quantitaModificata<0){
+            System.out.println("[ProdottoManager] La quantita del prodotto con nome " +p.getNome() + " è in negativo");
+            quantitaModificata=0;
+        }
+        temp.setQuantita(quantitaModificata);
+        pf.edit(temp);
+        System.out.println("[ProdottoManager] Rimossa quantità prodotto, nuova quantita= " +quantitaModificata);
+    }
+    
+     @Override
+    public void aggiungiQuantitaProdotto(Long idProdotto, int quantita){ //Metodo usato dal carrello per aggiungere prodotti al magazzino quando si rimuove un prodotto dal carrello
+        //Il valore in input viene sommato alla quantita del prodotto
+         Prodotto temp = pf.find(idProdotto);
+        if(temp==null){
+         System.out.println("[ProdottoManager] Impossibile aggiungere la quantita del prodotto con nome " +temp.getNome() + " prodotto non trovato.");
+         return;
+        }
+        int quantitaModificata = temp.getQuantita() + quantita;
+        temp.setQuantita(quantitaModificata);
+        pf.edit(temp);
+        System.out.println("[ProdottoManager] Aggiunta quantità prodotto, nuova quantita= " +quantitaModificata);
+    }
+    @Override
+    public void rimuoviQuantitaProdotto(Long idProdotto , int quantita){ //Metodo usato dal carrello per rimuovere prodotti al magazzino quando si aggiunge un prodotto dal carrello
+        //Il valore in input viene sommato alla quantita del prodotto
+        Prodotto temp = pf.find(idProdotto);
+        if(temp==null){
+         System.out.println("[ProdottoManager] Impossibile rimuovere la quantita del prodotto con nome " +temp.getNome() + " prodotto non trovato.");
+         return;
+        }
+        int quantitaModificata = temp.getQuantita() - quantita;
+        if(quantitaModificata<0){
+            System.out.println("[ProdottoManager] La quantita del prodotto con nome " +temp.getNome() + " è in negativo");
+            quantitaModificata=0;
+        }
+        temp.setQuantita(quantitaModificata);
+        pf.edit(temp);
+        System.out.println("[ProdottoManager] Rimossa quantità prodotto, nuova quantita= " +quantitaModificata);
+    }
 
     @Override
-    public void modificaQuantitaProdotto(Prodotto p, int quantita) {
+    public void modificaQuantitaProdotto(Prodotto p, int quantita) { //Metodo usato dal gestore magazzino per modificare la quantita di prodotto
+        //Il valore in input è la nuova quantità
         Prodotto temp = pf.find(p.getId());
         if(temp==null){
          System.out.println("[ProdottoManager] Impossibile modificare la quantita del prodotto con nome " +p.getNome() + " prodotto non trovato.");
          return;
         }
-        int quantitaModificata = temp.getQuantita()+quantita;
-        temp.setQuantita(quantitaModificata);
+        temp.setQuantita(quantita);
         pf.edit(temp);
-        System.out.println("[ProdottoManager] Modificata quantità prodotto, nuova quantita= " +quantitaModificata);
+        System.out.println("[ProdottoManager] Modificata quantità prodotto, nuova quantita= " +quantita);
 
     }
     
     
     @Override
-    public void modificaQuantitaProdotto(Long idProdotto, int quantita) {
+    public void modificaQuantitaProdotto(Long idProdotto, int quantita) {  //Metodo usato dal gestore magazzino per modificare la quantita di prodotto
+        //Il valore in input è la nuova quantità
         Prodotto p = pf.find(idProdotto);
         if(p==null){
          System.out.println("[ProdottoManager] Impossibile modificare la quantita del prodotto con id " +idProdotto + " prodotto non trovato.");
          return;
         }
-        int quantitaModificata = p.getQuantita()+quantita;
-        System.out.println("quantitaaaaa" + quantita);
+        //int quantitaModificata = p.getQuantita()+quantita; DA DEANNOTARE SE si vuole che la quantita in input venga aggiunta gia a quella presente
         p.setQuantita(quantita);
         pf.edit(p);
         System.out.println("[ProdottoManager] Modificata quantità prodotto, nuova quantita= " +p.getQuantita());
@@ -181,14 +244,19 @@ public class ProdottoManager implements ProdottoManagerLocal {
     @Override
     public List<Prodotto> prodottiDaUnSet(java.util.Set<Long> codiceBarre) {
         if(codiceBarre==null){
+            System.out.println("[ProdottoManager] Impossibile cercare prodotti da un set , il set è null");
             return null;
         }
         if(codiceBarre.isEmpty()){
+                        System.out.println("[ProdottoManager] Impossibile cercare prodotti da un set , il set è vuoto");
+
             return null;
         }
         Query q = em.createNamedQuery("prodotto.prodottiDaUnSet");
         q.setParameter("lista", codiceBarre);
-        return q.getResultList();
+        List<Prodotto> res= q.getResultList() ;
+        System.out.println("[ProdottoManager] i prodotti da un set sono " + res);
+        return res;
     }
 
     @Override
@@ -198,8 +266,21 @@ public class ProdottoManager implements ProdottoManagerLocal {
         return q.getResultList();
     }
 
-    
-    
+    @Override
+    public boolean isPresenteProdottoDellaMarca(Marca m){
+        Query q = em.createNamedQuery("prodotto.cercaTuttiProdottiDellaMarca");
+        q.setParameter(1, m.getId());
+        List<Marca> res = q.getResultList();
+        return !res.isEmpty();
+        
+    }
+    @Override
+    public boolean isPresenteProdottoDellaCategoria(Categoria c){
+         Query q = em.createNamedQuery("prodotto.cercaTuttiProdottiDellaCategoria");
+        q.setParameter(1, c.getId());
+        List<Marca> res = q.getResultList();
+        return !res.isEmpty();
+    }
     
     
     

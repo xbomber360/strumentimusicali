@@ -13,12 +13,12 @@
         <h3><p:outputLabel value="Benvenuto "/><p:outputLabel value="#{gestioneCliente.nome}"/><p:outputLabel value=";"/></h3><br/>
         
         
-        <p:commandButton value="Modifica Credenziali"  rendered="#{redirect.accessoCliente}"/>
-        <p:commandButton value="I Miei Ordini" rendered="#{redirect.accessoCliente}"/>
-        <p:commandButton value="Aggiungi Prodotti" rendered="#{redirect.accessoGestoreMagazzino}"/>
-        <p:commandButton value="Gestisci Utenti" rendered="#{redirect.accessoAmministratore}"/>
-        <p:commandButton value="Modifica Categorie/Marche/Prodotti" rendered="#{redirect.accessoGestoreMagazzino}"/>
-        <p:commandButton value="Modifica Stato Ordini"  rendered="#{redirect.accessoGestoreMagazzino}"/>
+        <p:commandButton value="Modifica Credenziali"  rendered="#{redirect.accessoCliente}"  />
+        <p:commandButton value="I Miei Ordini" rendered="#{redirect.accessoCliente}" action="MieiOrdini"/>
+        <p:commandButton value="Aggiungi Prodotti" rendered="#{redirect.accessoGestoreMagazzino}" action="CreaProdotto"/>
+        <p:commandButton value="Gestisci Utenti" rendered="#{redirect.accessoAmministratore}" action="GestioneUtenti"/>
+        <p:commandButton value="Modifica Categorie/Marche/Prodotti" rendered="#{redirect.accessoGestoreMagazzino}" action="GestioneProdotti"/>
+        <p:commandButton value="Modifica Stato Ordini"  rendered="#{redirect.accessoGestoreMagazzino}" action="GestioneOrdini"/>
     </h:body>
 </html>
 

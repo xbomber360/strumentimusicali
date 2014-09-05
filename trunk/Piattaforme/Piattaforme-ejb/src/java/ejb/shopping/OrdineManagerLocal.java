@@ -9,6 +9,7 @@ package ejb.shopping;
 
 import entity.Ordine;
 import entity.TipoSpedizione;
+import entity.Utente;
 import java.util.List;
 import javax.ejb.Local;
 import manager.StatoOrdini;
@@ -31,6 +32,8 @@ public interface OrdineManagerLocal {
     public Float cercaPrezzoSpedizione(TipoSpedizione spese);
 
     List<Ordine> cercaTuttiGliOrdini();
+    
+    public List<Ordine> cercaTuttiGliOrdiniUtente(Utente u);
 
     
 }

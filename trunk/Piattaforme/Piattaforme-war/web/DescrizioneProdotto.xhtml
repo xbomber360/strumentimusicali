@@ -27,9 +27,8 @@
                 <p>Descrizione: <br></br>
                     #{gestioneProdottoBean.descrizione}
                 </p> 
-                <p>Prezzo:#{gestioneProdottoBean.prezzo}€ Quantità:#{gestioneProdottoBean.quantità}pz. </p> 
-                <p:commandButton value="acquista" action="#{carrelloManagerBean.aggiungiProdottoAlCarrello(gestioneProdottoBean.id, 1)}"/>
-                          
+                <p>Prezzo:#{gestioneProdottoBean.prezzo}€ Quantità:#{gestioneProdottoBean.quantita}pz. </p> 
+                <p:commandButton value="Aggiungi al carrello" action="#{carrelloManagerBean.aggiungiProdottoAlCarrello(gestioneProdottoBean.id, 1)}"/>
             </p:layoutUnit>
         </p:layout>
     </h:body>

@@ -6,42 +6,42 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Carrello</title>
-            <ui:include src="Header.xhtml"/>
-
+        <title>I miei Ordini</title>
+         <ui:include src="Header.xhtml"/>
     </h:head>
     <h:body>
-         
-        <div>
+        
+          <div>
             <h:form>
-                <p:dataTable id="table" var="p" value="#{carrelloManagerBean.prodotti}" emptyMessage="Non ci sono elementi nel carrello">
+                <p:dataTable id="table" var="ordine" value="#{ordineManagedBean.getOrdineUtente(login.utente)}" emptyMessage="Non sono presenti ordini per l'utente #{login.utente.username}">
                      <f:facet name="header">
-                            <p:outputLabel value="Carrello"/>
+                            <p:outputLabel value="Lista ordini"/>
                         </f:facet>
-                   <p:column headerText="Foto">
-                       <p:graphicImage value="#{p.foto}" width="100" height="80"/>
+                   <p:column headerText="#ID">
+                       <p:outputLabel value="#{ordine.id}"/>
+
                    </p:column>
                     
-                     <p:column headerText="Nome Prodotto">
-                            <p:outputLabel value="#{p.nome}"/>
+                     <p:column headerText="Data">
+                         <p:outputLabel value="#{ordine.dataOrdine}"/>
                      </p:column>
                     
-                     <p:column headerText="Prezzo">
-                         <h:outputFormat value="#{p.prezzo}">
+                   
+                     <p:column headerText="Totale">
+                         <h:outputFormat value="#{ordine.totale}">
                                 <f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
                             </h:outputFormat> €
                         </p:column>
-                    <p:column headerText="#{p.quantita}">
-                        <p:outputLabel value="#{carrelloManagerBean.getQuantitaProdotto(p)}"/>
+                    <p:column  headerText="Stato">
+                        <p:outputLabel value="#{ordine.stato}"/>
                         </p:column>
                     
-                    
+                  
                 </p:dataTable>
                 
             </h:form>
             
         </div>
-         
     </h:body>
 </html>
 

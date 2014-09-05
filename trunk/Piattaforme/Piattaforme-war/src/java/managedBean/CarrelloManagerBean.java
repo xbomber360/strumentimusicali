@@ -30,10 +30,13 @@ public class CarrelloManagerBean implements Serializable{
     @EJB
     private CarrelloLocal carrello;
 
-    /**
-     * Creates a new instance of CarrelloManagerBean
-     */
+   
+    public void setCarrello(GestioneCliente gc){
+        this.carrello=gc.getCarrello();
+    }
+    
     public CarrelloManagerBean() {
+        
         
     }
     
@@ -49,7 +52,7 @@ public class CarrelloManagerBean implements Serializable{
     }
     
     public void rimuoviQuantitaDalCarrello(Long idProdotto, Integer quantita) {
-        carrello.rimuoviQuantitaProdotto(idProdotto, quantita);
+        carrello.rimuoviQuantitaProdottoDalCarrello(idProdotto, quantita);
     }
     
     public List<Prodotto> getProdotti() {

@@ -8,6 +8,7 @@ package managedBean;
 
 import ejb.shopping.OrdineManagerLocal;
 import entity.Ordine;
+import entity.Utente;
 import java.util.List;
 import javax.ejb.EJB;
 import manager.StatoOrdini;
@@ -44,6 +45,10 @@ public class OrdineManagedBean {
     public void eliminaOrdine(Ordine ordineSelezionato){
         ordineManager.rimuoviOrdine(ordineSelezionato);
         
+    }
+    
+    public List<Ordine> getOrdineUtente(Utente u){
+        return ordineManager.cercaTuttiGliOrdiniUtente(u);
     }
     
 }
