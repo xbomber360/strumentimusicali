@@ -255,6 +255,10 @@ public class GestioneProdottoBean {
         this.quantitaDaAcquistare = quantitaDaAcquistare;
     }
     
+    public List<String> getListaFoto(){
+        return prodottoManager.cercaTutteFotoProdotti();
+    }
+    
    
     
     

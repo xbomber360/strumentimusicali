@@ -13,7 +13,7 @@
     </h:head>
     <h:body>
         <h:form>
-            <p:layout style="min-width:400px;min-height:500px;">
+            <p:layout style="min-width:450px;min-height:500px;">
                 <p:layoutUnit position="west" resizable="true" size="270" minSize="40" maxSize="300">
                     <p:menu id="menuMarche">
                         <p:submenu label="Marche">
@@ -23,41 +23,41 @@
                                     <f:param name="idMarca" value="#{m.id}"/>
                                 </p:menuitem>
                             </c:forEach>
-                            
+
                         </p:submenu>
                     </p:menu>
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center" resizable="true" maxSize="800" minSize="2000" >
-                  
+
                     <p:dataScroller id="listaProdotti" value="#{dataMenuBean.getProdottoMarcaCatagoria()}" var="prodotto">
-                            <f:facet name="header">
-                                Catalogo Prodotti
-                            </f:facet>
-                        
-                            <h:panelGrid columns="2"  style="width:100%;border-style: solid;border-color: black;border-width: thin;border-bottom-color: black">
-                                <p:graphicImage url="#{prodotto.foto}" width="200" styleClass="bordino"  />
-                                <p:outputPanel>
-                                    <h:panelGrid columns="2" cellpadding="5" >
-                                        <h:outputText value="Codice Prodotto:" />
-                                        <h:outputText value="#{prodotto.id}" style="font-weight: bold;text-align: center"/>
-                                        
-                                        <h:outputText value="Modello:" />
-                                        <h:outputText value="#{prodotto.nome}" style="font-weight: bold;text-align: center"/>
-                                        
-                                        <h:outputText value="Quantità:" />
-                                        <h:outputText value="#{prodotto.quantita}" style="font-weight: bold;text-align: center"/>
-                                        
-                                        <h:outputText value="Prezzo:" />
-                                        <h:outputText value="#{prodotto.prezzo}€" style="font-weight: bold;text-align: center"/>
-                                    </h:panelGrid>
-                                </p:outputPanel>
-                                <p:button outcome="DescrizioneProdotto?idProdotto=#{prodotto.id}" value="Descrizione" />
+                        <f:facet name="header">
+                            Catalogo Prodotti
+                        </f:facet>
 
-                            </h:panelGrid>
+                        <h:panelGrid columns="2"  style="width:100%;border-style: solid;border-color: gray;border-width: thin">
+                            <p:graphicImage url="#{prodotto.foto}" width="200" styleClass="bordino"  />
+                            <p:outputPanel>
+                                <h:panelGrid columns="2" cellpadding="5" >
+                                    <h:outputText value="Codice Prodotto:" />
+                                    <h:outputText value="#{prodotto.id}" style="font-weight: bold;text-align: center"/>
+
+                                    <h:outputText value="Modello:" />
+                                    <h:outputText value="#{prodotto.nome}" style="font-weight: bold;text-align: center"/>
+
+                                    <h:outputText value="Quantità:" />
+                                    <h:outputText value="#{prodotto.quantita}" style="font-weight: bold;text-align: center"/>
+
+                                    <h:outputText value="Prezzo:" />
+                                    <h:outputText value="#{prodotto.prezzo}€" style="font-weight: bold;text-align: center"/>
+                                </h:panelGrid>
+                            </p:outputPanel>
+                            <p:button outcome="DescrizioneProdotto?idProdotto=#{prodotto.id}" value="Descrizione" style="margin-right: 10px" />
+
+                        </h:panelGrid>
 
 
-                        </p:dataScroller> 
+                    </p:dataScroller> 
                 </p:layoutUnit>
             </p:layout>
         </h:form>

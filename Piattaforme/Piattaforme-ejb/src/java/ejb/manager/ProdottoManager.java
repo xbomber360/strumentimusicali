@@ -210,6 +210,8 @@ public class ProdottoManager implements ProdottoManagerLocal {
         }
         return res;
     }
+    
+    
 
     @Override
     public List<Prodotto> cercaProdottiPerMarca(String marca) {
@@ -280,6 +282,16 @@ public class ProdottoManager implements ProdottoManagerLocal {
         q.setParameter(1, c.getId());
         List<Marca> res = q.getResultList();
         return !res.isEmpty();
+    }
+
+    @Override
+    public List<String> cercaTutteFotoProdotti() {
+        Query q = em.createNamedQuery("prodotto.cercaTutteFotoProdotti");
+        List<String> res = q.getResultList();
+        if(res.isEmpty()){
+            System.out.println("[ProdottoManager] Non sono state trovate foto");
+        }
+        return res;
     }
     
     
