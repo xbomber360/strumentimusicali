@@ -68,6 +68,8 @@ public interface ProdottoManagerLocal {
 
     public void rimuoviQuantitaProdotto(Long idProdotto, int quantita);
 
+    List<String> cercaTutteFotoProdotti();
+
 
 
    

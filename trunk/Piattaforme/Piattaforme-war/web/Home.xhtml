@@ -6,12 +6,29 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <h:head>
+        <script src="http://maps.google.com/maps/api/js?sensor=true|false"
+       type="text/javascript"></script>
         <title>Home Page </title>
         <ui:include src="Header.xhtml"/>
 
     </h:head>
     <h:body>
-        ciao
+        <p:panel header="Benvenuto in Music Shop" style="font-weight: bold;font-size: 18px">
+            <h:outputText value="Nel nostro negozio trovi i migliori prodotti delle migliori marche. Offriamo diversi tipi di strumenti musicali : chitarre, bassi, amplificatori, ed effetti. " />
+        </p:panel>
+        <p:panel header="Prodotti in rilievo" style="font-weight: bold;font-size: 18px">
+            <p:galleria value="#{gestioneProdottoBean.prodotti}" var="prodotto" panelWidth="800" panelHeight="600" showCaption="true" >
+                <p:graphicImage value="#{prodotto.foto}" title="#{prodotto.nome} #{prodotto.prezzo}€" style="font-weight: bold;color: red"/>
+            </p:galleria>
+        </p:panel>
+        <p:panel header="Dove siamo" style="font-weight: bold;font-size: 18px">
+                        <h:outputText value="Puoi trovarci dal Lunedi al Sabato dalle 9:00 alle 13:00 e dalle 16:30 alle 8:30 . Domenica il negozio è chiuso " />
+
+                    <p:gmap center="39.358155,16.225542" zoom="15" type="terrain" style="width:600px;height:400px" />
+
+
+        </p:panel>
+        
     </h:body>
 </html>
 
