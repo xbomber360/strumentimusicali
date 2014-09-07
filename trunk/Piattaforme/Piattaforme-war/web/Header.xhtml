@@ -7,7 +7,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
-
+        <link href="css/StileSito.css" type="text/css" rel="stylesheet" />
     </h:head>
     <h:body>
         <img src="immagini/bannerProva.jpg" alt="Risorsa non trovata" />
@@ -21,11 +21,11 @@
             </p:submenu>
             <p:menuitem value="Pannello utente" action="#{tipoAccesso.pannelloUtente()}" rendered="#{redirect.accesso}" outcome="PannelloControlloUtente"/>
             <f:facet name="options">
-                <p:autoComplete id="prodottoCercato" placeholder="Ricerca" style="margin-right:10px"   completeMethod="#{gestioneProdottoBean.prodottoUpdate}"  />
-                <p:button  value="Carrello" icon="ui-icon-extlink" outcome="Carrello" />
-                <p:button  value="Login" icon="ui-icon-extlink" outcome="Login" rendered="#{!redirect.accesso}"/>
+                <p:autoComplete id="prodottoCercato" placeholder="Ricerca"    completeMethod="#{gestioneProdottoBean.prodottoUpdate}"  />
+                <p:button  value="Carrello"  outcome="Carrello" />
+                <p:button  value="Login"  outcome="Login" rendered="#{!redirect.accesso}"/>
                 <p:commandButton value="Logout" action="#{redirect.logout()}" rendered="#{redirect.accesso}"/>
-                <p:button  value="Registrazione" icon="ui-icon-extlink" outcome="Registrazione" />
+                <p:button  value="Registrazione"  outcome="Registrazione" />
 
             </f:facet>
 

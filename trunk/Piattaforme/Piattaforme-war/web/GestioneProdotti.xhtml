@@ -69,13 +69,13 @@
                 <f:facet name="header">
                     <p:outputLabel value="Lista prodotti"/>
                 </f:facet>
-                <p:column headerText="#Id"  >
+                <p:column headerText="#Id" width='80' >
                     <p:outputLabel value="#{prodotto.id}"/>
 
                 </p:column>
 
                 <p:column headerText="Foto" width="200">
-                    <p:outputLabel value="Da aggiungere codice"/>
+                     <p:graphicImage url="#{prodotto.foto}" width="100" style="border-style: solid;border-color: black;border-width: thin"  />
                 </p:column>
 
                 <p:column headerText="Marca" width="150">
@@ -92,7 +92,7 @@
 
                 <p:column headerText="Prezzo" >
 
-                    <p:outputLabel value="#{prodotto.prezzo}"/>
+                    <p:outputLabel value="#{prodotto.prezzo} €"/>
 
                 </p:column>
 
