@@ -17,14 +17,16 @@
             <h:outputText value="Nel nostro negozio trovi i migliori prodotti delle migliori marche. Offriamo diversi tipi di strumenti musicali : chitarre, bassi, amplificatori, ed effetti. " />
         </p:panel>
         <p:panel header="Prodotti in rilievo" style="font-weight: bold;font-size: 18px">
-            <p:galleria value="#{gestioneProdottoBean.prodotti}" var="prodotto" panelWidth="800" panelHeight="600" showCaption="true" >
-                <p:graphicImage value="#{prodotto.foto}" title="#{prodotto.nome} #{prodotto.prezzo}€" style="font-weight: bold;color: red"/>
+            <p:galleria value="#{gestioneProdottoBean.prodotti}" var="prodotto" panelWidth="800" panelHeight="500" showCaption="true" >
+                <p:graphicImage value="#{prodotto.foto}" title="#{prodotto.nome} #{prodotto.prezzo}€" style="font-weight: bold;color: red;margin-left: 20%;margin-right: 20%"/>
             </p:galleria>
         </p:panel>
         <p:panel header="Dove siamo" style="font-weight: bold;font-size: 18px">
                         <h:outputText value="Puoi trovarci dal Lunedi al Sabato dalle 9:00 alle 13:00 e dalle 16:30 alle 8:30 . Domenica il negozio è chiuso " />
+                        <br></br>
+                        <h:outputText value="Siamo a Rende 87036 (CS) Ponte Pietro Bucci" />
 
-                    <p:gmap center="39.358155,16.225542" zoom="15" type="terrain" style="width:600px;height:400px" />
+                    <p:gmap center="39.358155,16.225542" zoom="15" type="terrain" style="width:600px;height:500px;margin-left: 15%;margin-right: 15%" />
 
 
         </p:panel>
