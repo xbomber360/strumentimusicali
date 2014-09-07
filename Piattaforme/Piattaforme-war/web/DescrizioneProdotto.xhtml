@@ -13,11 +13,11 @@
         #{gestioneProdottoBean.cercaProdotto(param['idProdotto'])}
                          <p:panel header=" #{gestioneProdottoBean.marcaSelezionata} #{gestioneProdottoBean.nome}" style="margin-bottom:10px;">
 
-        <p:layout style="min-width:400px;min-height:800px;">
+        <p:layout style="min-width:400px;min-height:500px;">
           
             
-            <p:layoutUnit position="west" resizable="true" size="500" minSize="40" maxSize="600" header="Immagine">
-                <p:graphicImage width="400" value="#{gestioneProdottoBean.urlFoto}"/>
+            <p:layoutUnit position="west" resizable="false" size="500" minSize="40" maxSize="600" header="Immagine" >
+                <p:graphicImage width="400" value="#{gestioneProdottoBean.urlFoto}" />
             </p:layoutUnit>
             
             <p:layoutUnit position="center" resizable="true" size="270" minSize="40" maxSize="600" header="Descrizione">
@@ -25,11 +25,11 @@
                    #{gestioneProdottoBean.descrizione}
                 </p> 
                 <p>
-                    <h:outputText value="Prezzo:" style="font-weight: bold" />
-                    <h:outputText value="#{gestioneProdottoBean.prezzo}€"  />
+                    <h:outputText value="Prezzo: " style="font-weight: bold" />
+                    <h:outputText value="#{gestioneProdottoBean.prezzo} €"  />
                     <br></br>
-                    <h:outputText value="Quantità:" style="font-weight: bold" />
-                    <h:outputText value="#{gestioneProdottoBean.quantita}pz."  />
+                    <h:outputText value="Quantità: " style="font-weight: bold" />
+                    <h:outputText value="#{gestioneProdottoBean.quantita} pz."  />
 
                      </p> 
                 <p:commandButton value="Aggiungi al carrello" action="#{carrelloManagerBean.aggiungiProdottoAlCarrello(gestioneProdottoBean.id, 1)}"/>
