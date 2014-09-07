@@ -13,8 +13,8 @@
     </h:head>
     <h:body>
         <h:form>
-            <p:layout style="min-width:400px;min-height:800px;">
-                <p:layoutUnit position="west" resizable="true" size="270" minSize="40" maxSize="800">
+            <p:layout style="min-width:400px;min-height:500px;">
+                <p:layoutUnit position="west" resizable="true" size="270" minSize="40" maxSize="300">
                     <p:menu id="menuMarche">
                         <p:submenu label="Marche">
                             <c:forEach items="#{dataMenuBean.getMarche(param['idCategoria'])}" var="m">
@@ -52,7 +52,7 @@
                                         <h:outputText value="#{prodotto.prezzo}€" style="font-weight: bold;text-align: center"/>
                                     </h:panelGrid>
                                 </p:outputPanel>
-                                <p:button outcome="DescrizioneProdotto?idProdotto=#{prodotto.id}" value="Descrizione" style="margin-right:10px"/>
+                                <p:button outcome="DescrizioneProdotto?idProdotto=#{prodotto.id}" value="Descrizione" />
 
                             </h:panelGrid>
 

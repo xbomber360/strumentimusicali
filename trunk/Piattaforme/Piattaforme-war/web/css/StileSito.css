@@ -12,11 +12,14 @@ and open the template in the editor.
 */
 
 body{
-    background-color: white;
-    margin: 0;
+    background-color: whitesmoke;
+    margin-left: 10%;
+    margin-right: 10%;
+
     padding: 0;
     color: #000;
     alignment-adjust: central;
+    
 }
 
 .bordino{
