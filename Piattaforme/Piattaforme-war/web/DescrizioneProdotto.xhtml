@@ -11,26 +11,31 @@
     </h:head>
     <h:body>
         #{gestioneProdottoBean.cercaProdotto(param['idProdotto'])}
+                         <p:panel header=" #{gestioneProdottoBean.marcaSelezionata} #{gestioneProdottoBean.nome}" style="margin-bottom:10px;">
+
         <p:layout style="min-width:400px;min-height:800px;">
-            <p:layoutUnit position="north" resizable="true" size="50" minSize="40" maxSize="800">
-                NORD
-                #{gestioneProdottoBean.marcaSelezionata} #{gestioneProdottoBean.nome}
+          
+            
+            <p:layoutUnit position="west" resizable="true" size="500" minSize="40" maxSize="600" header="Immagine">
+                <p:graphicImage width="400" value="#{gestioneProdottoBean.urlFoto}"/>
             </p:layoutUnit>
             
-            <p:layoutUnit position="west" resizable="true" size="500" minSize="40" maxSize="800">
-                SINISTRA
-                <p:graphicImage value="#{gestioneProdottoBean.urlFoto}"/>
-            </p:layoutUnit>
-            
-            <p:layoutUnit position="center" resizable="true" size="270" minSize="40" maxSize="800">
-                CENTRO
-                <p>Descrizione: <br></br>
-                    #{gestioneProdottoBean.descrizione}
+            <p:layoutUnit position="center" resizable="true" size="270" minSize="40" maxSize="600" header="Descrizione">
+                <p>
+                   #{gestioneProdottoBean.descrizione}
                 </p> 
-                <p>Prezzo:#{gestioneProdottoBean.prezzo}€ Quantità:#{gestioneProdottoBean.quantita}pz. </p> 
+                <p>
+                    <h:outputText value="Prezzo:" style="font-weight: bold" />
+                    <h:outputText value="#{gestioneProdottoBean.prezzo}€"  />
+                    <br></br>
+                    <h:outputText value="Quantità:" style="font-weight: bold" />
+                    <h:outputText value="#{gestioneProdottoBean.quantita}pz."  />
+
+                     </p> 
                 <p:commandButton value="Aggiungi al carrello" action="#{carrelloManagerBean.aggiungiProdottoAlCarrello(gestioneProdottoBean.id, 1)}"/>
             </p:layoutUnit>
         </p:layout>
+                         </p:panel>
     </h:body>
 </html>
 

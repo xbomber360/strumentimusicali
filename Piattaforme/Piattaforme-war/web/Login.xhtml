@@ -6,30 +6,32 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Login</title>
-           <ui:include src="Header.xhtml"/>
-           <p:messages id="messages" autoUpdate="true"/>
+        <ui:include src="Header.xhtml"/>
+        <p:messages id="messages" autoUpdate="true"/>
     </h:head>
     <h:body>
-        
-        <h:form>
-            
-            <h:panelGrid columns="2" id="grid">
-                 <p:outputLabel for="user" value="Username:" />
-                 <p:inputText id="user" required="true" requiredMessage= "Inserire username" value="#{login.username}"/> 
-                 <p:outputLabel for="password" value="Password:" />
-                 <p:password id="password" required="true" requiredMessage= "Inserire password" value="#{login.password}" />
-            </h:panelGrid>
-            <p:commandButton update="grid" value="Accedi" action="#{login.accesso(gestioneCliente, gestioneSito)}" ></p:commandButton>
-             
-        </h:form> 
-        
-        <h3>
-             <p:outputLabel value="Non sei ancora un utente registrato?"/>
-        </h3>
-        <h:form >
+        <p:panel header="Inserisci le tue credenziali per effettuare l'accesso o registrati" style="margin-bottom:10px;">
 
-               <p:button style="color: #831608" value="Registrati" outcome="Registrazione"/>
-        </h:form>
+            <h:form>
+
+                <h:panelGrid columns="2" id="grid">
+                    <p:outputLabel for="user" value="Username:" />
+                    <p:inputText id="user" required="true" requiredMessage= "Inserire username" value="#{login.username}"/> 
+                    <p:outputLabel for="password" value="Password:" />
+                    <p:password id="password" required="true" requiredMessage= "Inserire password" value="#{login.password}" />
+                </h:panelGrid>
+                <p:commandButton update="grid" value="Accedi" action="#{login.accesso(gestioneCliente, gestioneSito)}" ></p:commandButton>
+
+            </h:form> 
+
+            <h3>
+                <p:outputLabel value="Non sei ancora un utente registrato?"/>
+            </h3>
+            <h:form >
+
+                <p:button style="color: #831608" value="Registrati" outcome="Registrazione"/>
+            </h:form>
+        </p:panel>
     </h:body>
 </html>
 

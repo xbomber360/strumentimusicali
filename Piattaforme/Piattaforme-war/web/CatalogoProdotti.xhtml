@@ -7,6 +7,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
+        <link href="css/StileSito.css" type="text/css" rel="stylesheet" />
         <title>Catalogo</title>
         <ui:include src="Header.xhtml"/>
     </h:head>
@@ -31,27 +32,27 @@
                   
                     <p:dataScroller id="listaProdotti" value="#{dataMenuBean.getProdottoMarcaCatagoria()}" var="prodotto">
                             <f:facet name="header">
-                                Di seguito sono riportati i prodotti della marca
+                                Catalogo Prodotti
                             </f:facet>
                         
-                            <h:panelGrid columns="2" style="width:100%">
-                                <p:graphicImage url="#{prodotto.foto}"/>
+                            <h:panelGrid columns="2"  style="width:100%;border-style: solid;border-color: black;border-width: thin;border-bottom-color: black">
+                                <p:graphicImage url="#{prodotto.foto}" width="200" styleClass="bordino"  />
                                 <p:outputPanel>
-                                    <h:panelGrid columns="2" cellpadding="5">
+                                    <h:panelGrid columns="2" cellpadding="5" >
                                         <h:outputText value="Codice Prodotto:" />
-                                        <h:outputText value="#{prodotto.id}" style="font-weight: bold"/>
+                                        <h:outputText value="#{prodotto.id}" style="font-weight: bold;text-align: center"/>
                                         
                                         <h:outputText value="Modello:" />
-                                        <h:outputText value="#{prodotto.nome}" style="font-weight: bold"/>
+                                        <h:outputText value="#{prodotto.nome}" style="font-weight: bold;text-align: center"/>
                                         
                                         <h:outputText value="Quantità:" />
-                                        <h:outputText value="#{prodotto.quantita}" style="font-weight: bold"/>
+                                        <h:outputText value="#{prodotto.quantita}" style="font-weight: bold;text-align: center"/>
                                         
                                         <h:outputText value="Prezzo:" />
-                                        <h:outputText value="#{prodotto.prezzo}€" style="font-weight: bold"/>
+                                        <h:outputText value="#{prodotto.prezzo}€" style="font-weight: bold;text-align: center"/>
                                     </h:panelGrid>
                                 </p:outputPanel>
-                                <p:button outcome="DescrizioneProdotto?idProdotto=#{prodotto.id}" value="Descrizione"/>
+                                <p:button outcome="DescrizioneProdotto?idProdotto=#{prodotto.id}" value="Descrizione" style="margin-right:10px"/>
 
                             </h:panelGrid>
 
