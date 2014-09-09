@@ -20,19 +20,25 @@
                     <p:graphicImage width="400" value="#{gestioneProdottoBean.urlFoto}" style="margin-left: 10%;margin-right: 10%" />
                 </p:layoutUnit>
 
-                <p:layoutUnit position="center" resizable="true" size="270" minSize="40" maxSize="600" header="Descrizione">
+                <p:layoutUnit  position="center" resizable="true" size="270" minSize="40" maxSize="600" header="Descrizione">
+                    <h:form >
+                        <div >
+                    
                     <p>
                         #{gestioneProdottoBean.descrizione}
                     </p> 
                     <p>
                         <h:outputText value="Prezzo: " style="font-weight: bold" />
-                        <h:outputText value="#{gestioneProdottoBean.prezzo} €"  />
+                        <h:outputText  value="#{gestioneProdottoBean.prezzo} €"  />
                         <br></br>
                         <h:outputText value="Quantità: " style="font-weight: bold" />
-                        <h:outputText value="#{gestioneProdottoBean.quantita} pz."  />
+                        <h:outputText id="quantita" value="#{gestioneProdottoBean.quantita} pz."  />
 
                     </p> 
-                    <p:commandButton value="Aggiungi al carrello" action="#{carrelloManagerBean.aggiungiProdottoAlCarrello(gestioneProdottoBean.id, 1)}"/>
+                    <p:spinner  value="#{gestioneProdottoBean.quantitaDaAcquistare}"  stepFactor="1" min="1" max="#{gestioneProdottoBean.quantita}"  />
+                    <p:commandButton value="Aggiungi al carrello" update="quantita" action="#{carrelloManagerBean.aggiungiProdottoAlCarrello(gestioneProdottoBean.id, gestioneProdottoBean.quantitaDaAcquistare)}"/>
+                        </div>
+                    </h:form>
                 </p:layoutUnit>
             </p:layout>
         </p:panel>

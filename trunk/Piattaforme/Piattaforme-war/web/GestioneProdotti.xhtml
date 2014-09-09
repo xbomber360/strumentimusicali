@@ -19,14 +19,14 @@
                     <p:column headerText="#Id" width="30">
                         <p:outputLabel value="#{marca.id}"/>
                     </p:column>
-                    
+
                     <p:column headerText="Nome" width="50">
                         <p:outputLabel value="#{marca.nome}"/>
                     </p:column>
-                    
-                     <p:column width="100">
-                         <p:commandButton value="Rimuovi" action="#{gestioneProdottoBean.rimuoviMarca(marca)}" update="tabellaMarche" />
-                </p:column >
+
+                    <p:column width="100">
+                        <p:commandButton value="Rimuovi" icon="ui-icon-trash" action="#{gestioneProdottoBean.rimuoviMarca(marca)}" update="tabellaMarche" />
+                    </p:column >
                 </p:dataTable>
                 <p:commandButton value="Aggiungi" action="#{gestioneProdottoBean.inserisciMarca()}" update="tabellaMarche"/>
                 <p:inputText value="#{gestioneProdottoBean.marcaSelezionata}" required="false" requiredMessage="Inserire nome Marca"  />
@@ -36,29 +36,29 @@
             </p:panel>
 
         </h:form>
-        
+
         <h:form id="formCategorie">
 
-        <p:messages autoUpdate="true" closable="true"/>
+            <p:messages autoUpdate="true" closable="true"/>
 
             <p:panel header="Categorie" style="margin-bottom:10px;">
-               
-                
+
+
                 <p:dataTable id="tabellaCategorie" var="categoria" value="#{gestioneProdottoBean.categorie}" emptyMessage="Non sono presenti categorie">
                     <p:column headerText="#Id" >
                         <p:outputLabel value="#{categoria.id}"/>
                     </p:column>
-                    
+
                     <p:column headerText="Nome" >
                         <p:outputLabel value="#{categoria.nome}"/>
                     </p:column>
-                    
-                     <p:column >
-                         <p:commandButton value="Rimuovi" action="#{gestioneProdottoBean.rimuoviCategoria(categoria)}" update="tabellaCategorie" />
-                </p:column>
+
+                    <p:column >
+                        <p:commandButton value="Rimuovi" icon="ui-icon-trash" action="#{gestioneProdottoBean.rimuoviCategoria(categoria)}" update="tabellaCategorie" />
+                    </p:column>
                 </p:dataTable>
                 <p:commandButton value="Aggiungi" action="#{gestioneProdottoBean.inserisciCategoria()}" update="tabellaCategorie" />
-                
+
                 <p:inputText value="#{gestioneProdottoBean.categoriaSelezionata}" required="false" requiredMessage="Inserire nome Categoria"  />
 
             </p:panel>
@@ -75,7 +75,7 @@
                 </p:column>
 
                 <p:column headerText="Foto" width="200">
-                     <p:graphicImage url="#{prodotto.foto}" width="100" style="border-style: solid;border-color: black;border-width: thin"  />
+                    <p:graphicImage url="#{prodotto.foto}" width="100" style="border-style: solid;border-color: black;border-width: thin"  />
                 </p:column>
 
                 <p:column headerText="Marca" width="150">
@@ -88,6 +88,7 @@
 
                 <p:column  headerText="Quantità" >
                     <p:outputLabel value="#{prodotto.quantita}"/>
+
                 </p:column>
 
                 <p:column headerText="Prezzo" >
@@ -97,11 +98,14 @@
                 </p:column>
 
                 <p:column >
-                    <p:commandButton value="Modifica" action="#{gestioneProdottoBean.settaTuttiParametriDaProdotto(prodotto)}"  />
+                        <p:spinner  value="#{gestioneProdottoBean.quantitaDaAcquistare}"  stepFactor="1" min="1"  immediate="true" />
+                        <p:commandButton value="Modifica" action="#{gestioneProdottoBean.modificaQuantitaProdotto(prodotto, gestioneProdottoBean.quantitaDaAcquistare)}"  />  
+
+
                 </p:column>
 
                 <p:column >
-                    <p:commandButton value="Rimuovi" action="#{gestioneProdottoBean.rimuoviProdotto(prodotto)}" update="tabellaProdotti"/>
+                    <p:commandButton value="Rimuovi" icon="ui-icon-trash" action="#{gestioneProdottoBean.rimuoviProdotto(prodotto)}" update="tabellaProdotti"/>
                 </p:column>
 
 

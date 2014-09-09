@@ -27,7 +27,7 @@ public class GestioneProdottoBean {
     @EJB
     private MarcaManagerLocal marcaManager;
     
-    private Long id=null;
+    private Long id=new Long(1);
     private String marcaSelezionata=null;
     private String categoriaSelezionata=null;
     private String nome=null;
@@ -83,6 +83,16 @@ public class GestioneProdottoBean {
         
     }
     
+    public Long cercaIdProdottoPerNome(String nome){
+        Prodotto p = prodottoManager.cercaProdottoPerNome(nome);
+        if(p==null){
+            System.out.println("Il prodotto cercato è null");
+            return new Long(403);
+        }
+        return p.getId();
+        
+    }
+    
     public void rimuoviProdotto(Prodotto p){
         prodottoManager.rimuoviProdotto(p);
         
@@ -127,6 +137,10 @@ public class GestioneProdottoBean {
       
         prodottoManager.aggiungiProdotto(p);
         return "";
+    }
+    
+    public void modificaQuantitaProdotto(Prodotto p , int nuovaQuantita){
+        prodottoManager.modificaQuantitaProdotto(p, quantita);
     }
     
     public String settaTuttiParametriDaProdotto(Prodotto p){
