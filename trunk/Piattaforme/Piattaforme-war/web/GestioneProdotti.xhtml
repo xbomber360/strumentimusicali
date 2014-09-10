@@ -11,7 +11,6 @@
     </h:head>
     <h:body>
         <h:form id="formMarche">
-            <p:messages autoUpdate="true" closable="true"/>
             <p:panel header="Marche" style="margin-bottom:10px;">  
 
 
@@ -39,7 +38,6 @@
 
         <h:form id="formCategorie">
 
-            <p:messages autoUpdate="true" closable="true"/>
 
             <p:panel header="Categorie" style="margin-bottom:10px;">
 
@@ -69,12 +67,12 @@
                 <f:facet name="header">
                     <p:outputLabel value="Lista prodotti"/>
                 </f:facet>
-                <p:column headerText="#Id" width='80' >
+                <p:column headerText="#Id" width='50' >
                     <p:outputLabel value="#{prodotto.id}"/>
 
                 </p:column>
 
-                <p:column headerText="Foto" width="200">
+                <p:column headerText="Foto" width="120">
                     <p:graphicImage url="#{prodotto.foto}" width="100" style="border-style: solid;border-color: black;border-width: thin"  />
                 </p:column>
 
@@ -86,21 +84,14 @@
                     <p:outputLabel value="#{prodotto.nome}"/>
                 </p:column>
 
-                <p:column  headerText="Quantità" >
+                <p:column  headerText="Quantità" width="80" >
                     <p:outputLabel value="#{prodotto.quantita}"/>
 
                 </p:column>
 
-                <p:column headerText="Prezzo" >
+                <p:column headerText="Prezzo" width="80" >
 
                     <p:outputLabel value="#{prodotto.prezzo} €"/>
-
-                </p:column>
-
-                <p:column >
-                        <p:spinner  value="#{gestioneProdottoBean.quantitaDaAcquistare}"  stepFactor="1" min="1"  immediate="true" />
-                        <p:commandButton value="Modifica" action="#{gestioneProdottoBean.modificaQuantitaProdotto(prodotto, gestioneProdottoBean.quantitaDaAcquistare)}"  />  
-
 
                 </p:column>
 
