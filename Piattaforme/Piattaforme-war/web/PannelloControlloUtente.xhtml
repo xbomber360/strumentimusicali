@@ -7,18 +7,33 @@
     <h:head>
         <title>Pannello Controllo Utente</title>
         <ui:include src="Header.xhtml"/>
-        
+
     </h:head>
     <h:body>
-        <h3><p:outputLabel value="Benvenuto "/><p:outputLabel value="#{gestioneCliente.nome}"/><p:outputLabel value=";"/></h3><br/>
-        
-        
-        <p:commandButton value="Modifica Credenziali"  rendered="#{redirect.accessoCliente}"  />
-        <p:commandButton value="I Miei Ordini" rendered="#{redirect.accessoCliente}" action="MieiOrdini"/>
-        <p:commandButton value="Aggiungi Prodotti" rendered="#{redirect.accessoGestoreMagazzino}" action="CreaProdotto"/>
-        <p:commandButton value="Gestisci Utenti" rendered="#{redirect.accessoAmministratore}" action="GestioneUtenti"/>
-        <p:commandButton value="Modifica Categorie/Marche/Prodotti" rendered="#{redirect.accessoGestoreMagazzino}" action="GestioneProdotti"/>
-        <p:commandButton value="Modifica Stato Ordini"  rendered="#{redirect.accessoGestoreMagazzino}" action="GestioneOrdini"/>
+
+        <p:panel header="Benvenuto #{login.username}" style="margin-bottom:10px;">
+
+
+
+            <p:commandButton value="Modifica Credenziali"  disabled="#{!redirect.accessoCliente}"  style="width: 500px; position: relative ; left: 25% ; right: 25%"/>
+            <br/>
+            <p:commandButton value="I Miei Ordini" disabled="#{!redirect.accessoCliente}" action="MieiOrdini" style="width: 500px; position: relative ; left: 25% ; right: 25%"/>
+            <br/>
+
+            <p:commandButton value="Aggiungi Prodotti" disabled="#{!redirect.accessoGestoreMagazzino}" action="CreaProdotto" style="width: 500px; position: relative ; left: 25% ; right: 25%"/>
+            <br/>
+
+            <p:commandButton value="Modifica Categorie/Marche/Prodotti" disabled="#{!redirect.accessoGestoreMagazzino}" action="GestioneProdotti" style="width: 500px; position: relative ; left: 25% ; right: 25%"/>
+            <br/>
+
+            <p:commandButton value="Modifica Stato Ordini"  disabled="#{!redirect.accessoGestoreMagazzino}" action="GestioneOrdini" style="width: 500px; position: relative ; left: 25% ; right: 25%"/>
+            <br/>
+            
+             <p:commandButton value="Gestisci Utenti" disabled="#{!redirect.accessoAmministratore}" action="GestioneUtenti" style="width: 500px; position: relative ; left: 25% ; right: 25%"/>
+            <br/>
+
+
+        </p:panel>
     </h:body>
 </html>
 
