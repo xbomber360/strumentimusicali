@@ -7,7 +7,9 @@
 package ejb.login;
 
 import ejb.manager.ClienteManagerLocal;
+import entity.Amministratore;
 import entity.Cliente;
+import entity.GestoreMagazzino;
 import entity.Utente;
 import exception.ClienteLoginException;
 import exception.ClienteNonPresenteException;
@@ -33,27 +35,59 @@ public class Login implements LoginLocal {
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public Utente accesso(String username, String password) throws UtenteBloccatoException, ClienteNonPresenteException, ClienteLoginException {
-        Cliente cliente = new Cliente();
-        cliente.setUsername(username);
+        Utente utente = manager.ottieniUtente (username);
         
+        if ( utente == null) {
+            System.out.println("[Login] Utente=null");
+            return null;
+        }
         // verifico se esiste l'account
         
-        if (!manager.ePresente(cliente)) {
+        if (!manager.ePresente(utente)) {
             throw new ClienteLoginException();
         }
         
-        cliente = manager.ottieniCliente(cliente);
-        
+        if ( utente instanceof Cliente) {
+            Cliente cliente = new Cliente();
+        cliente = manager.ottieniCliente(utente);
+            System.out.println("e un cliente");
+             
         // controllo password
-        
-     
-            
-            if (!password.equals(cliente.getPassword())) {
+ 
+            if (!password.equals(utente.getPassword())) {
                 throw new ClienteLoginException() ;
             }
         
         return verificaCliente(cliente);
+         }
+        else if ( utente instanceof Amministratore) {
+            System.out.println("e un amministratore");
+            Amministratore admin = new Amministratore();
+            admin = manager.ottieniAmministratore(utente);
+            if (!password.equals(utente.getPassword())) {
+                throw new ClienteLoginException() ;
+            }
+            return admin;
+            
+        }
+        else if ( utente instanceof GestoreMagazzino) {
+            System.out.println("e un magazziniere");
+            GestoreMagazzino gm = new GestoreMagazzino();
+            gm = manager.ottieniGestoreMagazzino(utente);
+            if (!password.equals(utente.getPassword())) {
+                throw new ClienteLoginException() ;
+            }
+            return gm;
+        }
+      return niente();
     }
+    
+    private Utente niente(){
+        System.out.println("nulla");
+        return null;
+    }
+    
+    
     
     private Cliente verificaCliente(Cliente c) throws ClienteLoginException, UtenteBloccatoException {
         System.out.println("verificaCliente");

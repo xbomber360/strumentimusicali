@@ -28,6 +28,7 @@ public class Login {
     
     @EJB
     private LoginLocal login;
+    private ClienteLocal c;
     private String username;
     private String password;
     private Utente utente;
@@ -94,6 +95,7 @@ public class Login {
             gc.setNome(utente.getNome());
             gc.setId(utente.getId());
             redirect.setAccessoCliente(true);
+            
             return "AccessoCliente";
             
         }catch (ClienteLoginException ex ) {

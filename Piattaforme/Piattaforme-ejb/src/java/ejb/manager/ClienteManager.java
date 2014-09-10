@@ -6,7 +6,9 @@
 
 package ejb.manager;
 
+import entity.Amministratore;
 import entity.Cliente;
+import entity.GestoreMagazzino;
 import entity.Utente;
 import exception.AccountException;
 import facade.UtenteFacadeLocal;
@@ -30,9 +32,9 @@ public class ClienteManager implements ClienteManagerLocal {
     private UtenteFacadeLocal utenteFacade;
     
     @Override
-    public boolean ePresente(Cliente c) {
+    public boolean ePresente(Utente u) {
         Query q = em.createNamedQuery("cercaUtentePerUsername");
-        q.setParameter(1, c.getUsername());
+        q.setParameter(1, u.getUsername());
         List<Utente> l = q.getResultList();
         if (!l.isEmpty()) {
             return true;
@@ -51,12 +53,39 @@ public class ClienteManager implements ClienteManagerLocal {
     }
     
     @Override
-    public Cliente ottieniCliente(Cliente c) {
+    public Cliente ottieniCliente(Utente u) {
         
         Query q = em.createNamedQuery("Utente.isRegistrato");
-        q.setParameter(1, c.getUsername());
+        q.setParameter(1, u.getUsername());
         System.out.println("Dal database prelevo un istanza di tipo"+  q.getSingleResult());
         return (Cliente) q.getSingleResult();
+    }
+    
+    @Override
+    public Utente ottieniUtente(String  s) {
+        
+        Query q = em.createNamedQuery("cercaUtentePerUsername");
+        q.setParameter(1, s);
+        System.out.println("Dal database prelevo un istanza di tipo"+  q.getSingleResult());
+        return (Utente) q.getSingleResult();
+    }
+    
+    @Override
+    public Amministratore ottieniAmministratore (Utente u) {
+        
+        Query q = em.createNamedQuery("Utente.isRegistrato");
+        q.setParameter(1, u.getUsername());
+        System.out.println("Dal database prelevo un istanza di tipo"+  q.getSingleResult());
+        return (Amministratore) q.getSingleResult();
+    }
+    
+    @Override
+    public GestoreMagazzino ottieniGestoreMagazzino (Utente u) {
+        
+        Query q = em.createNamedQuery("Utente.isRegistrato");
+        q.setParameter(1, u.getUsername());
+        System.out.println("Dal database prelevo un istanza di tipo"+  q.getSingleResult());
+        return (GestoreMagazzino) q.getSingleResult();
     }
     
     @Override
