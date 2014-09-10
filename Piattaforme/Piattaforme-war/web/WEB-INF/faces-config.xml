@@ -49,6 +49,22 @@
             <redirect/>
         </navigation-case>
     </navigation-rule> 
+       <navigation-rule>
+        <from-view-id>*</from-view-id>
+    <navigation-case>
+            <from-outcome>AccessoAmministratore</from-outcome>
+            <to-view-id>/Home.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule> 
+       <navigation-rule>
+        <from-view-id>*</from-view-id>
+    <navigation-case>
+            <from-outcome>AccessoMagazzino</from-outcome>
+            <to-view-id>/Home.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule> 
     <managed-bean>
         <managed-bean-name>dataMenuBean</managed-bean-name>
         <managed-bean-class>managedBean.DataMenuBean</managed-bean-class>
