@@ -29,7 +29,7 @@ public interface ClienteManagerLocal {
     GestoreMagazzino ottieniGestoreMagazzino (Utente u);
     Cliente cercaPerEmail (String email);
     Cliente cercaPerID (Long id);
-    void modificaPassword (String newPassword, Long Id) throws AccountException;
-    boolean esisteID (Long id);
+    void modificaPassword (String newPassword, String username) throws AccountException;
+    boolean esisteUsername (String username);
     
 }

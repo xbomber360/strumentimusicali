@@ -147,4 +147,17 @@
         <managed-bean-class>managedBean.OrdineManagedBean</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <navigation-rule>
+        <from-view-id>/ReimpostaPassword.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>PNM</from-outcome>
+            <to-view-id>/ErroreReimpostaPassword.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>PM</from-outcome>
+            <to-view-id>/ReimpostaPasswordSuccesso.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

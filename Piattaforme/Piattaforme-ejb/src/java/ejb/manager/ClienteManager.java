@@ -89,9 +89,9 @@ public class ClienteManager implements ClienteManagerLocal {
     }
     
     @Override
-    public boolean esisteID (Long id) {
-        Query q = em.createNamedQuery("EsisteAccount");
-        q.setParameter(1, id);
+    public boolean esisteUsername (String username) {
+        Query q = em.createNamedQuery("Utente.isRegistrato");
+        q.setParameter(1, username);
         if (!q.getResultList().isEmpty()) {
             return true;
         }
@@ -125,9 +125,10 @@ public class ClienteManager implements ClienteManagerLocal {
     }
     
      @Override
-    public void modificaPassword(String newPassword, Long idAccount) throws AccountException {
-        if (esisteID (idAccount)) {
-            Utente a = utenteFacade.find(idAccount);
+    public void modificaPassword(String newPassword, String username) throws AccountException {
+        if (esisteUsername (username)) {
+            Utente a = ottieniUtente(username);
+            System.out.println("Password nuova"+newPassword);
             try {
                 a.setPassword(newPassword);
             } catch (Exception ex) {
@@ -135,6 +136,7 @@ public class ClienteManager implements ClienteManagerLocal {
                 return;
             }
             utenteFacade.edit(a);
+            System.out.println("Password modificata");
         } else {
             throw new AccountException();
         }

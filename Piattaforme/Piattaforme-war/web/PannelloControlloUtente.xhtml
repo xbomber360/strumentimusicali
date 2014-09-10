@@ -10,6 +10,15 @@
 
     </h:head>
     <h:body>
+        
+        
+        <p:commandButton value="Modifica Password"  rendered="#{redirect.accessoCliente}" action="ReimpostaPassword"  />
+        <p:commandButton value="I Miei Ordini" rendered="#{redirect.accessoCliente}" action="MieiOrdini"/>
+        <p:commandButton value="Aggiungi Prodotti" rendered="#{redirect.accessoGestoreMagazzino}" action="CreaProdotto"/>
+        <p:commandButton value="Gestisci Utenti" rendered="#{redirect.accessoAmministratore}" action="GestioneUtenti"/>
+        <p:commandButton value="Modifica Categorie/Marche/Prodotti" rendered="#{redirect.accessoGestoreMagazzino}" action="GestioneProdotti"/>
+        <p:commandButton value="Modifica Stato Ordini"  rendered="#{redirect.accessoGestoreMagazzino}" action="GestioneOrdini"/>
+=======
 
         <p:panel header="Benvenuto #{login.username}" style="margin-bottom:10px;">
 
@@ -34,6 +43,7 @@
 
 
         </p:panel>
+>>>>>>> .r85
     </h:body>
 </html>
 

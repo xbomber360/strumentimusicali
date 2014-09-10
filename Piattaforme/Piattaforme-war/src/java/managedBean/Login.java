@@ -8,9 +8,11 @@ package managedBean;
 
 import ejb.cliente.ClienteLocal;
 import ejb.login.LoginLocal;
+import ejb.manager.ClienteManagerLocal;
 import entity.Amministratore;
 import entity.GestoreMagazzino;
 import entity.Utente;
+import exception.AccountException;
 import exception.ClienteLoginException;
 import exception.ClienteNonPresenteException;
 import exception.UtenteBloccatoException;
@@ -28,9 +30,12 @@ public class Login {
     
     @EJB
     private LoginLocal login;
+    @EJB
+    private ClienteManagerLocal manager;
     private ClienteLocal c;
     private String username;
     private String password;
+    private String nuovaPassword;
     private Utente utente;
     private Redirect redirect ;
    
@@ -62,6 +67,16 @@ public class Login {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public String getNuovaPassword() {
+        return nuovaPassword;
+    }
+
+    public void setNuovaPassword(String nuovaPassword) {
+        this.nuovaPassword = nuovaPassword;
+    }
+    
+    
     
     public String accesso (GestioneCliente gc, GestioneSito gs)  {
                     
@@ -112,5 +127,17 @@ public class Login {
         }
         
         
+    }
+    
+    public String reimposta() {
+        System.out.println(username);
+        try {
+            manager.modificaPassword(nuovaPassword, username);
+            return "PM";
+        } catch (AccountException ex) {
+            
+            return "PNM";
+        }
+
     }
 }
