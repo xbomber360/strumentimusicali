@@ -2,13 +2,55 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Gestore Utenti</title>
+        <title>Gestore Clienti</title>
         <ui:include src="Header.xhtml"/>
     </h:head>
     <h:body>
-        Pagina utilizzata dall'amministratore per promuovere o degradare utenti in gestori di magazzino o bannarli 
+        <div>
+            <h:form>
+                <p:dataTable id="table" var="clienti" value="#{clienteManagedBean.cliente}" emptyMessage="Non ci sono clienti registrati">
+                     <f:facet name="header">
+                            <p:outputLabel value="Lista clienti"/>
+                        </f:facet>
+                   <p:column headerText="#ID">
+                       <p:outputLabel value="#{clienti.id}"/>
+
+                   </p:column>
+                    
+                     <p:column headerText="Cognome">
+                         <p:outputLabel value="#{clienti.cognome}"/>
+                     </p:column>
+                    
+                     <p:column headerText="Nome">
+                         <p:outputLabel value="#{clienti.nome}"/>
+                     </p:column>
+                     <p:column headerText="Username">
+                         <p:outputLabel value="#{clienti.username}"/>
+                        </p:column>
+                    <p:column  headerText="Stato">
+                        <p:outputLabel value="#{clienti.stato}"/>
+                        </p:column>
+                    <p:column >
+                        <p:commandButton value="Attiva Utente" actionListener="#{clienteManagedBean.attivaCliente(clienti)}" update="table"/>
+                        </p:column>
+                        <p:column >
+                        <p:commandButton value="Blocca Utente" actionListener="#{clienteManagedBean.bloccaCliente(clienti)}" update="table"/>
+                        </p:column>
+                    <p:column >
+                        <p:commandButton value="Rimuovi Utente" icon="ui-icon-trash" actionListener="#{clienteManagedBean.eliminaCliente(clienti)}" update="table"/>
+                        </p:column>
+                    
+                    
+                </p:dataTable>
+                
+            </h:form>
+            
+        </div>
     </h:body>
 </html>
+
 
