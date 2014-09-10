@@ -19,7 +19,6 @@ import exception.ProdottoNonTrovatoException;
 import exception.ProdottoQuantitaException;
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,14 +30,18 @@ import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import manager.StatoOrdini;
 
 /**
  *
  * @author siciliano
  */
-@Stateful
+@Stateful 
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+//@TransactionManagement(TransactionManagementType.CONTAINER)
+
 public class Carrello implements CarrelloLocal,Serializable {
 
     @EJB
@@ -48,20 +51,18 @@ public class Carrello implements CarrelloLocal,Serializable {
     @EJB
     private ClienteManagerLocal cm;
     
-    private final Map<Long, OggettoOrdinato> carrello;
+    private Map<Long, OggettoOrdinato> carrello;
     
     private Float subTotale; 
  
-    @PreDestroy
-    protected void preDestroy() {
-        svuotaCarrello();
-        subTotale= new Float(0.00);
-    }
+   // protected void preDestroy() {
+     //   svuotaCarrello();
+       // subTotale= new Float(0.00);
+    //}
 
-    //@PostConstruct
-   // protected void init() {
-     //   this.carrello = new HashMap<Long,OggettoOrdinato>();
-       // this.subTotale = new Float(0.00);
+    //protected void init() {
+      //  this.carrello = new HashMap<Long,OggettoOrdinato>();
+        //this.subTotale = new Float(0.00);
     //}
     public Carrello(){
         this.carrello = new HashMap<Long,OggettoOrdinato>();  // Mappa perchè segno l'id del prodotto per facilitarmi alcune operazioni 
@@ -78,12 +79,19 @@ public class Carrello implements CarrelloLocal,Serializable {
             o.setProdotto_ordinato(p);
             o.setQuantita(quantita);
             subTotale+= p.getPrezzo()*quantita;
+            if(carrello.containsKey(idProdotto)){
+                int quantitaModificata = carrello.get(idProdotto).getQuantita() + quantita;
+                carrello.get(idProdotto).setQuantita(quantitaModificata);
+                System.out.println("[Carrello] Prodotto già presente nel carrello , modificata la quantità , la nuova quantità è : + carrello.get(idProdotto).getQuantita()");
+            }
+            else{
             carrello.put(idProdotto, o);
-            System.out.println("[Carrello]Aggiunto prodotto"+ idProdotto +" quantita: " + quantita+ " subtotale " + subTotale);
-            
+            System.out.println("[Carrello]Aggiunto prodotto "+ idProdotto +" quantita: " + quantita+ " subtotale " + subTotale);
+                System.out.println("Gli elementi del carrello sono " + carrello.keySet());
+            }
         }//if
         else
-            System.out.println("[Carrello] Impossibile aggiungere il prodotto nel carrello con id " + idProdotto);;
+            System.out.println("[Carrello] Impossibile aggiungere il prodotto nel carrello con id " + idProdotto);
         
     }
 
@@ -101,7 +109,7 @@ public class Carrello implements CarrelloLocal,Serializable {
 
         
     }
-
+    
     @Override
     public void aggiungiQuantitaProdottoAlCarrello(Long idProdotto , int quantita) { 
        OggettoOrdinato temp =carrello.get(idProdotto); 

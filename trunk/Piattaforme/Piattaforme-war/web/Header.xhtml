@@ -21,8 +21,7 @@
             </p:submenu>
             <p:menuitem value="Pannello utente" action="#{tipoAccesso.pannelloUtente()}" rendered="#{redirect.accesso}" outcome="PannelloControlloUtente"/>
             <f:facet name="options">
-                <p:autoComplete id="prodottoCercato" placeholder="Ricerca"   completeMethod="#{gestioneProdottoBean.prodottoUpdate}" value="#{gestioneProdottoBean.nome}" />
-                    <p:button     icon="ui-icon-search" outcome="DescrizioneProdotto?idProdotto=#{gestioneProdottoBean.cercaIdProdottoPerNome(gestioneProdottoBean.nome)}" />
+               
                 
                 
 
