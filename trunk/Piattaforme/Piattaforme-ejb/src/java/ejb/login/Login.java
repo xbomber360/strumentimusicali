@@ -35,7 +35,13 @@ public class Login implements LoginLocal {
     @Override
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public Utente accesso(String username, String password) throws UtenteBloccatoException, ClienteNonPresenteException, ClienteLoginException {
-        Utente utente = manager.ottieniUtente (username);
+
+        Utente utente = new Utente();
+        try {
+        utente = manager.ottieniUtente (username);
+        } catch (Exception ce) {
+            System.out.println("Cliente non presente");
+        } 
         
         if ( utente == null) {
             System.out.println("[Login] Utente=null");

@@ -30,5 +30,9 @@ public interface ClienteLocal {
     boolean isLogged();
     CarrelloLocal getCarrelloEJB();
     List<entity.Ordine> getOrdiniCliente();
+    List<entity.Cliente> cercaTuttiClienti();
+    void attivaCliente(entity.Cliente c);
+    void bloccaCliente(entity.Cliente c);
+    void rimuoviCliente (entity.Cliente c);
     
 }
