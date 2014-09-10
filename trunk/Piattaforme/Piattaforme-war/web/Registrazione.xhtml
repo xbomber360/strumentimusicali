@@ -12,7 +12,7 @@
     <h:body>
         <h:form>
     <p:panel id="panel" header="Form Registrazione" style="margin-bottom:10px;">
-        <p:messages id="messages" autoUpdate="true"/>
+        <p:messages id="messages" autoUpdate="true" closable="true"/>
         <h:panelGrid id = "grid" columns="2" cellpadding="5">
             
             <p:outputLabel for="nome" value="Nome:" />
@@ -47,7 +47,7 @@
             <p:outputLabel for="password" value="Password:" />
             <p:password id="password" match="confermapassword" requiredMessage="Inserire password" promptLabel="Efficacia Password" 
             weakLabel="Fragile" goodLabel="Buona" strongLabel="Forte"
-            validatorMessage="Le password inserite non corrispondono" required ="true" value="#{registrazione.password}" />
+            validatorMessage="Le password inserite non corrispondono" required ="true" value="#{registrazione.password}" feedback="true"/>
             
             <p:outputLabel for="confermapassword" value="Conferma password:" />
             <p:password id="confermapassword" required="true" requiredMessage="Reinserire password" value="#{registrazione.password}"/>
