@@ -11,11 +11,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author siciliano
  */
+
+@NamedQueries({
+    @NamedQuery(name="tipoSpedizione.cercaPrezzoSpedizionePerId",query="SELECT p.prezzo FROM TipoSpedizione p WHERE p.id=?1"),
+    @NamedQuery(name="tipoSpedizione.cercaPrezzoSpedizionePerNome",query="SELECT p.prezzo FROM TipoSpedizione p WHERE p.nome=?1"),
+    @NamedQuery(name="tipoSpedizione.cercaTipoSpedizione",query="SELECT tp FROM TipoSpedizione tp WHERE tp.id=?1"),
+    
+
+})
 @Entity
 public class TipoSpedizione implements Serializable {
     private static final long serialVersionUID = 1L;

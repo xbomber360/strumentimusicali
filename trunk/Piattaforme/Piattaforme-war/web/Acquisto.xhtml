@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Conferma acquisto</title>
+        <ui:include src="Header.xhtml"/>
+    </h:head>
+    <h:body>
+        <p:panel header="Riepilogo" style="margin-bottom:10px;">  
+            <p:dataTable id="table" var="p" value="#{carrelloManagerBean.prodotti}" emptyMessage="Non ci sono elementi nel carrello">
+
+                <p:column headerText="Foto">
+                    <p:graphicImage value="#{p.foto}" width="100" height="80"/>
+                </p:column>
+
+                <p:column headerText="Nome Prodotto">
+                    <p:outputLabel value="#{p.nome}"/>
+                </p:column>
+
+                <p:column headerText="Quantità">
+                    <p:outputLabel value="#{carrelloManagerBean.getQuantitaProdotto(p)}"/>
+                </p:column>
+
+                <p:column headerText="Prezzo">
+                    <h:outputFormat value="#{p.prezzo}   ">
+                        <f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                    </h:outputFormat> €
+                </p:column>
+
+                <p:column headerText="SubTotale">
+                    <h:outputFormat value="#{p.prezzo * carrelloManagerBean.getQuantitaProdotto(p)}">
+                        <f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+                    </h:outputFormat> €
+                </p:column>
+
+
+
+            </p:dataTable>
+
+            <p:outputLabel value="SUBTOTALE: " style="font-weight: bold; "/>
+            <p:outputLabel value="#{carrelloManagerBean.subTotale} €"/>
+            <br/>
+
+            <p:outputLabel value="SPEDIZIONE: " style="font-weight: bold"/>
+            <p:outputLabel value="8 €"/>
+            <br/>
+            <p:outputLabel value="TOTALE: " style="font-weight: bold"/>
+            <p:outputLabel value="#{carrelloManagerBean.getTotale()} €"/>
+            <br/>
+        </p:panel>
+        <p:panel header="Riepilogo utente" style="margin-bottom:10px;">
+
+            <p:outputLabel value="COGNOME: " style="font-weight: bold"/>
+            <p:outputLabel value="#{login.utente.cognome}"/>
+            <br/>
+            <p:outputLabel value="NOME: " style="font-weight: bold"/>
+            <p:outputLabel value="#{login.utente.nome}"/>
+            <br/>
+            <p:outputLabel value="INDIRIZZO SPEDIZIONE: " style="font-weight: bold"/>
+            <p:outputLabel value="#{login.utente.comune}" />
+            <br/>
+            <p:outputLabel value="METODO PAGAMENTO: " style="font-weight: bold"/>
+            <p:outputLabel value="#{login.utente.metodopagamento}"/>
+            <br/>
+
+
+            <p:button value="Indietro" outcome="Carrello.xhtml"  />
+            <p:commandButton value="Conferma ordine"  disabled="#{!redirect.accesso}" actionListener="#{carrelloManagerBean.processaOrdine(login.utente.id)}"/>
+
+        </p:panel>
+    </h:body>
+</html>
+

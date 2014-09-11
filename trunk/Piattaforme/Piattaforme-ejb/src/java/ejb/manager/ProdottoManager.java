@@ -8,7 +8,6 @@ package ejb.manager;
 import entity.Categoria;
 import entity.Marca;
 import entity.Prodotto;
-import exception.ProdottoNonTrovatoException;
 import facade.ProdottoFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
@@ -110,7 +109,7 @@ public class ProdottoManager implements ProdottoManagerLocal {
         //Il valore in input viene sommato alla quantita del prodotto
          Prodotto temp = pf.find(idProdotto);
         if(temp==null){
-         System.out.println("[ProdottoManager] Impossibile aggiungere la quantita del prodotto con nome " +temp.getNome() + " prodotto non trovato.");
+         System.out.println("[ProdottoManager] Impossibile aggiungere la quantita  prodotto non trovato.");
          return;
         }
         int quantitaModificata = temp.getQuantita() + quantita;
@@ -123,7 +122,7 @@ public class ProdottoManager implements ProdottoManagerLocal {
         //Il valore in input viene sommato alla quantita del prodotto
         Prodotto temp = pf.find(idProdotto);
         if(temp==null){
-         System.out.println("[ProdottoManager] Impossibile rimuovere la quantita del prodotto con nome " +temp.getNome() + " prodotto non trovato.");
+         System.out.println("[ProdottoManager] Impossibile rimuovere la quantita prodotto non trovato.");
          return;
         }
         int quantitaModificata = temp.getQuantita() - quantita;
@@ -257,7 +256,7 @@ public class ProdottoManager implements ProdottoManagerLocal {
         Query q = em.createNamedQuery("prodotto.prodottiDaUnSet");
         q.setParameter("lista", codiceBarre);
         List<Prodotto> res= q.getResultList() ;
-        System.out.println("[ProdottoManager] i prodotti da un set sono " + res);
+        //System.out.println("[ProdottoManager] i prodotti da un set sono " + res);
         return res;
     }
 

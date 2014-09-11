@@ -29,11 +29,13 @@ public interface OrdineManagerLocal {
 
     void modificaStatoOrdine(Ordine o, StatoOrdini s);
     
-    public Float cercaPrezzoSpedizione(TipoSpedizione spese);
+    public Float cercaPrezzoSpedizione(Long id);
 
     List<Ordine> cercaTuttiGliOrdini();
     
     public List<Ordine> cercaTuttiGliOrdiniUtente(Utente u);
+    
+    public TipoSpedizione cercaTipoSpedizione(Long id);
 
     
 }

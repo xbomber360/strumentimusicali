@@ -33,7 +33,9 @@ public interface CarrelloLocal {
 
     void creaOrdine(Long idCliente, TipoSpedizione sp)throws ClienteNonPresenteException;
 
-    Float getTotale(TipoSpedizione spese);
+    Float getTotale(TipoSpedizione sp);
+    
+    public Float getTotale(Long idSpedizione);
 
     public List<Prodotto> getProdotti();
 
@@ -42,5 +44,7 @@ public interface CarrelloLocal {
     public Integer getQuantitaProdotto(Prodotto prodotto);
 
     public Integer getQuantitaProdotto(Long idProdotto);
+
+    boolean isEmpty();
     
 }

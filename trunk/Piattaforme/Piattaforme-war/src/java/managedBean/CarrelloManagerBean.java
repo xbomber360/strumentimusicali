@@ -13,10 +13,11 @@ import entity.TipoSpedizione;
 import exception.ClienteNonPresenteException;
 import exception.ProdottoNonTrovatoException;
 import exception.ProdottoQuantitaException;
+import facade.TipoSpedizioneFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.Dependent;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 /**
@@ -24,12 +25,16 @@ import javax.inject.Named;
  * @author siciliano
  */
 @Named(value = "carrelloManagerBean")
-@Dependent
+@SessionScoped
 public class CarrelloManagerBean implements Serializable{
     
     @EJB
+    private TipoSpedizioneFacadeLocal tipoSpedizioneFacade;
+    
+    @EJB
     private CarrelloLocal carrello;
-
+    
+    
    
     public void setCarrello(GestioneCliente gc){
         this.carrello=gc.getCarrello();
@@ -59,6 +64,11 @@ public class CarrelloManagerBean implements Serializable{
         System.out.println("I prodotti nel carrello sono " + carrello.getProdotti());
         return carrello.getProdotti();
     }
+    public boolean carrelloIsEmpty(){
+         boolean vuoto = carrello.isEmpty();
+         return vuoto;
+     }
+    
     
     public Integer getQuantitaProdotto(Prodotto prodotto) {
         return carrello.getQuantitaProdotto(prodotto);
@@ -68,14 +78,17 @@ public class CarrelloManagerBean implements Serializable{
         return carrello.getSubTotale();
     }
     
-    public Float getTotale(TipoSpedizione spese) {
-        return carrello.getTotale(spese);
+    public Float getTotale() {
+        TipoSpedizione sp = tipoSpedizioneFacade.find(new Long(1));
+        return carrello.getTotale(sp);
     }
     
-     public void processaOrdine(Long idCliente, TipoSpedizione spese) throws ClienteNonPresenteException {
-         carrello.creaOrdine(idCliente, spese);
+     public void processaOrdine(Long idCliente) throws ClienteNonPresenteException {
+        TipoSpedizione sp = tipoSpedizioneFacade.find(new Long(1));
+         carrello.creaOrdine(idCliente, sp);
      }
-    
+     
+     
     
     
     
