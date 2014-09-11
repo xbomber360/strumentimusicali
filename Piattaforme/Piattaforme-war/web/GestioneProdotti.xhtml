@@ -86,8 +86,10 @@
                     <p:outputLabel value="#{prodotto.nome}"/>
                 </p:column>
 
-                <p:column  headerText="Quantità" width="80" >
+                <p:column  headerText="Quantità" width="120" >
                     <p:outputLabel value="#{prodotto.quantita}"/>
+                    <p:commandButton value="+" style="width: 40px" action="#{gestioneProdottoBean.aggiungiQuantitaProdotto(prodotto)}" update="tabellaProdotti"/>
+                    <p:commandButton value="-" style="width: 40px" action="#{gestioneProdottoBean.rimuoviQuantitaProdotto(prodotto)}" update="tabellaProdotti"/>
 
                 </p:column>
 
@@ -105,6 +107,8 @@
 
 
             </p:dataTable>
+            
+            <p:button value="Aggiungi Prodotto" outcome="/CreaProdotto.xhtml"/>
 
         </h:form>
 

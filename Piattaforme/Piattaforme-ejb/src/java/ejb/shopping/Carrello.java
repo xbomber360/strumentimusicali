@@ -8,15 +8,17 @@ package ejb.shopping;
 
 import ejb.manager.ClienteManagerLocal;
 import ejb.manager.ProdottoManagerLocal;
-import entity.Cliente;
 import entity.Fattura;
 import entity.OggettoOrdinato;
 import entity.Ordine;
 import entity.Prodotto;
 import entity.TipoSpedizione;
+import entity.Utente;
 import exception.ClienteNonPresenteException;
 import exception.ProdottoNonTrovatoException;
 import exception.ProdottoQuantitaException;
+import facade.OggettoOrdinatoFacadeLocal;
+import facade.UtenteFacadeLocal;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.HashMap;
@@ -30,8 +32,8 @@ import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import manager.StatoOrdini;
 
 /**
@@ -43,32 +45,42 @@ import manager.StatoOrdini;
 //@TransactionManagement(TransactionManagementType.CONTAINER)
 
 public class Carrello implements CarrelloLocal,Serializable {
-
+    @EJB
+    private OggettoOrdinatoFacadeLocal oggettoOrdinatoFacade;
+    @EJB
+    private UtenteFacadeLocal utenteFacade;
     @EJB
     private OrdineManagerLocal om;
     @EJB
     private ProdottoManagerLocal pm;
-    @EJB
-    private ClienteManagerLocal cm;
+   
+    
+    
+    
+    
     
     private Map<Long, OggettoOrdinato> carrello;
+    @PersistenceContext(unitName = "Piattaforme-ejbPU")
+    private EntityManager em;
     
     private Float subTotale; 
  
-   // protected void preDestroy() {
-     //   svuotaCarrello();
-       // subTotale= new Float(0.00);
-    //}
-
-    //protected void init() {
-      //  this.carrello = new HashMap<Long,OggettoOrdinato>();
-        //this.subTotale = new Float(0.00);
-    //}
-    public Carrello(){
-        this.carrello = new HashMap<Long,OggettoOrdinato>();  // Mappa perchè segno l'id del prodotto per facilitarmi alcune operazioni 
-        this.subTotale = new Float(0.00);                   // id dell'oggetto ordinato non lo ho fino a quando l'oggetto non è persistente nel DB 
-        
+    @PreDestroy
+    protected void preDestroy() {
+       svuotaCarrello();
+        subTotale= new Float(0.00);
     }
+    @PostConstruct
+    protected void init() {
+        this.carrello = new HashMap<Long,OggettoOrdinato>();
+        this.subTotale = new Float(0.00);
+    }
+    
+    //public Carrello(){
+      //  this.carrello = new HashMap<Long,OggettoOrdinato>();  // Mappa perchè segno l'id del prodotto per facilitarmi alcune operazioni 
+        //this.subTotale = new Float(0.00);                   // id dell'oggetto ordinato non lo ho fino a quando l'oggetto non è persistente nel DB 
+        
+    //}
     
     @Override
     public void aggiungiProdottoAlCarrello(Long idProdotto , int quantita)throws ProdottoNonTrovatoException,ProdottoQuantitaException {
@@ -170,8 +182,6 @@ public class Carrello implements CarrelloLocal,Serializable {
     
      @Override
     public List<Prodotto> getProdotti() {
-         System.out.println("[Carrello]il keyset del carrello + " + carrello.keySet());
-         System.out.println("il valoro " + carrello.get(353));
         return pm.prodottiDaUnSet(carrello.keySet());
     }
 
@@ -182,21 +192,23 @@ public class Carrello implements CarrelloLocal,Serializable {
             throw new IllegalStateException("Carrello vuoto o non è stato aggiunto un nuovo prodotto");
         }
         Ordine o = new Ordine();
-        Cliente c = cm.cercaPerID(idCliente);
+        Utente u = utenteFacade.find(idCliente);
         
-        if(c == null)
-            throw new ClienteNonPresenteException("Il cliente non e' stato trovato durante la creazione dell'ordine ");
-        
-        o.setCliente(c);
+        if(u == null)
+            throw new ClienteNonPresenteException("L'utente non e' stato trovato durante la creazione dell'ordine ");
+        o.setCliente(u);
         o.setTipoSpedizione(sp);
         Date dataOrdine=new Date(java.util.GregorianCalendar.getInstance().getTimeInMillis());
         o.setDataOrdine(dataOrdine);
         o.setStato(StatoOrdini.Lavorazione);
         LinkedList<OggettoOrdinato> lista = new LinkedList<OggettoOrdinato>();
+
         for(OggettoOrdinato daAggiungere : carrello.values() ){
+            oggettoOrdinatoFacade.create(daAggiungere);
             lista.add(daAggiungere);
         }
         o.setListaOggettiOrdinati(lista);
+
         float totale =getTotale(sp);
         o.setTotale(totale);
         om.creaOrdine(o);
@@ -205,6 +217,8 @@ public class Carrello implements CarrelloLocal,Serializable {
         f.setDettaglio("Gli oggetti acquistati sono :" + lista.toString() + "Il prezzo è " + totale);
         this.carrello.clear();
         subTotale= new Float(0.00);
+        
+        
         
         
         
@@ -225,14 +239,31 @@ public class Carrello implements CarrelloLocal,Serializable {
     }
 
     @Override
-    public Float getTotale(TipoSpedizione spese) {
-        return subTotale+om.cercaPrezzoSpedizione(spese);
+    public Float getTotale(Long idSpedizione) {
+        return subTotale+om.cercaPrezzoSpedizione(idSpedizione);
+   }
+    
+     @Override
+    public Float getTotale(TipoSpedizione sp) {
+        return subTotale+sp.getPrezzo();
    }
     
      @Override
     public Float getSubTotale() {
         return subTotale;
     }
+
+    public void persist(Object object) {
+        em.persist(object);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        System.out.println("Il carrello è vuoto ? " + carrello.isEmpty());
+        return carrello.isEmpty();
+    }
+    
+    
     
     
 } 

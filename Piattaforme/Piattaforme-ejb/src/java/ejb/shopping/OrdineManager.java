@@ -7,10 +7,13 @@
 package ejb.shopping;
 
 
+import ejb.manager.ProdottoManagerLocal;
+import entity.OggettoOrdinato;
 import entity.Ordine;
 import entity.TipoSpedizione;
 import entity.Utente;
 import facade.OrdineFacadeLocal;
+import facade.TipoSpedizioneFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -28,11 +31,20 @@ import manager.StatoOrdini;
 @Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class OrdineManager implements OrdineManagerLocal {
+    @EJB
+    private ProdottoManagerLocal prodottoManager;
+   
     
     @PersistenceContext(unitName = "Piattaforme-ejbPU")
     private EntityManager em;
     @EJB
     private OrdineFacadeLocal of;
+     @EJB
+    private TipoSpedizioneFacadeLocal tipoSpedizioneFacade;
+     
+     
+     
+    
    
     //L'ORDINE VIENE CREATO E SETTATO CON I VALORI DAL CARRELLO,  E POI VIENE PASSATO A QUESTO METODO PER LA CREAZIONE VERA E PROPRIA 
     @Override
@@ -78,6 +90,12 @@ public class OrdineManager implements OrdineManagerLocal {
             System.out.println("[OrdineManager] Impossibile eliminare l'ordine numero "+ o.getId() + " ordine non trovato" );
             return;
         }
+        List<OggettoOrdinato> lista = o.getListaOggettiOrdinati();
+        for(OggettoOrdinato temp : lista){
+            System.out.println("L'id è" + temp.getProdotto_ordinato().getId());
+            prodottoManager.aggiungiQuantitaProdotto(temp.getProdotto_ordinato().getId(), temp.getQuantita());
+            
+        }
         of.remove(o); 
         System.out.println("[OrdineManager] L'ordine numero "+ o.getId() + " è stato rimosso con successo" );
         
@@ -117,8 +135,23 @@ public class OrdineManager implements OrdineManagerLocal {
     }
     
     @Override
-    public Float cercaPrezzoSpedizione(TipoSpedizione spese) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Float cercaPrezzoSpedizione(Long id) {
+       TipoSpedizione sp = tipoSpedizioneFacade.find(id);
+       if(sp == null){
+           System.out.println("[OrdineManager] Il tipo di spedizione non è stato trovato con l'id " + id);
+       }
+       return sp.getPrezzo();
+
+    }
+    
+    @Override
+    public TipoSpedizione cercaTipoSpedizione(Long id){
+         TipoSpedizione sp = tipoSpedizioneFacade.find(id);
+       if(sp == null){
+           System.out.println("[OrdineManager] Il tipo di spedizione non è stato trovato con l'id " + id);
+       }
+       return sp;
+        
     }
 
     

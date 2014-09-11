@@ -27,6 +27,7 @@ import javax.persistence.OneToOne;
     @NamedQuery(name="prodotto.cercaTuttiProdottiPerNomeDellaMarca",query = "SELECT p FROM Prodotto p WHERE p.nome=?1 AND p.marca=?2"),
     @NamedQuery(name="prodotto.cercaTuttiProdottiDellaMarca",query = "SELECT p FROM Prodotto p WHERE p.marca.id=?1"),
     @NamedQuery(name="prodotto.cercaTuttiProdottiDellaCategoria",query = "SELECT p FROM Prodotto p WHERE p.categoria.id=?1"),
+    @NamedQuery(name = "prodotto.prodottiDaUnSet", query = "SELECT p FROM Prodotto p WHERE p.id IN :lista"),
     @NamedQuery(name = "prodotto.cercaTutteFotoProdotti", query = "SELECT p.foto FROM Prodotto p")
 
 

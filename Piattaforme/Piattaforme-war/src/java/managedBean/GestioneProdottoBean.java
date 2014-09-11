@@ -143,6 +143,15 @@ public class GestioneProdottoBean {
         prodottoManager.modificaQuantitaProdotto(p, quantita);
     }
     
+    public void aggiungiQuantitaProdotto(Prodotto p){
+        prodottoManager.aggiungiQuantitaProdotto(p, 1);
+    }
+    
+    public void rimuoviQuantitaProdotto(Prodotto p ){
+        prodottoManager.rimuoviQuantitaProdotto(p, 1);
+        
+    }
+    
     public String settaTuttiParametriDaProdotto(Prodotto p){
         this.id=p.getId();
         this.nome=p.getNome();
