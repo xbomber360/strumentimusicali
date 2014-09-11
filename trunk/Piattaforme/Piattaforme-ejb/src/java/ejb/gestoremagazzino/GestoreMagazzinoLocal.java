@@ -6,6 +6,7 @@
 
 package ejb.gestoremagazzino;
 
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -19,4 +20,6 @@ public interface GestoreMagazzinoLocal {
     void setID ( Long id);
     Long getID();
     String getNome();
+    List<entity.GestoreMagazzino> cercaTuttiGestori();
+    void rimuoviGestori (entity.GestoreMagazzino gm);
 }

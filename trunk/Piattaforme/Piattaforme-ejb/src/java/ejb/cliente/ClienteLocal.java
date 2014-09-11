@@ -34,5 +34,6 @@ public interface ClienteLocal {
     void attivaCliente(entity.Cliente c);
     void bloccaCliente(entity.Cliente c);
     void rimuoviCliente (entity.Cliente c);
-    
+    void promuoviCliente (entity.Cliente c);
+    void aggiornaGestore (entity.Cliente c);
 }

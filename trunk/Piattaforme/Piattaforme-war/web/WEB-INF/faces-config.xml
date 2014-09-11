@@ -172,4 +172,14 @@
         <managed-bean-class>managedBean.ClienteManagedBean</managed-bean-class>
     
         <managed-bean-scope>none</managed-bean-scope></managed-bean>
+    <managed-bean>
+        <managed-bean-name>amministratoreManagedBean</managed-bean-name>
+        <managed-bean-class>managedBean.AmministratoreManagedBean</managed-bean-class>
+        <managed-bean-scope>none</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>gestoreManagedBean</managed-bean-name>
+        <managed-bean-class>managedBean.GestoreManagedBean</managed-bean-class>
+        <managed-bean-scope>none</managed-bean-scope>
+    </managed-bean>
 </faces-config>

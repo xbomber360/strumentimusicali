@@ -153,12 +153,13 @@ public class Redirect implements Serializable {
      * @param pageJSF Pagina jsf su cui attivare il redirect, se null, il
      * redirect avviene sull'index.
      */
-    public void redirectGestoreSito(GestioneSito gestioneSito, String pageJSF) {
+    public void redirectAmministratore(GestioneSito gestioneSito, String pageJSF) {
 
-        if (gestioneSito.getIDGestoreMagazzino() == null && gestioneSito.getIDAmministratore() == null) {
+        if (gestioneSito.getIDAmministratore() == null) {
 
             this.redirect(pageJSF);
         }
+        System.out.println("ID AMMINISTRATORE"+ gestioneSito.getIDAmministratore());
     }// redirectGestoreSito
 
     

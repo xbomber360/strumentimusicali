@@ -44,4 +44,11 @@ public class ClienteManagedBean {
     public void bloccaCliente (Cliente c) {
         clienteManager.bloccaCliente(c);
     }
+    
+    public void promuoviCliente (Cliente c) {
+        clienteManager.promuoviCliente (c);
+        clienteManager.aggiornaGestore(c);
+    }
+    
+    
 }

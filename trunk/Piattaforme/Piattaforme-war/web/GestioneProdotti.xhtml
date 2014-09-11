@@ -9,7 +9,9 @@
         <title>Gestore Prodotti</title>
         <ui:include src="Header.xhtml"/>
     </h:head>
+    
     <h:body>
+        #{redirect.redirectGestoreMagazzino(gestioneSito , "Login.jsf")}
         <h:form id="formMarche">
             <p:panel header="Marche" style="margin-bottom:10px;">  
 

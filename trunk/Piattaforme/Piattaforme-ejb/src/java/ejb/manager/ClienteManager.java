@@ -46,6 +46,11 @@ public class ClienteManager implements ClienteManagerLocal {
     public void creaCliente(Cliente c) {
         utenteFacade.create(c);
     }
+    
+    @Override
+    public void creaGestoreMagazzino(GestoreMagazzino gm) {
+        utenteFacade.create(gm);
+    }
 
     @Override
     public void rimuoviCliente(Cliente c) {
@@ -65,6 +70,15 @@ public class ClienteManager implements ClienteManagerLocal {
     public Utente ottieniUtente(String  s) {
         
         Query q = em.createNamedQuery("cercaUtentePerUsername");
+        q.setParameter(1, s);
+        System.out.println("Dal database prelevo un istanza di tipo"+  q.getSingleResult());
+        return (Utente) q.getSingleResult();
+    }
+    
+    @Override
+    public Utente ottieniUtenteEmail(String  s) {
+        
+        Query q = em.createNamedQuery("cercaUtentePerEmail");
         q.setParameter(1, s);
         System.out.println("Dal database prelevo un istanza di tipo"+  q.getSingleResult());
         return (Utente) q.getSingleResult();
