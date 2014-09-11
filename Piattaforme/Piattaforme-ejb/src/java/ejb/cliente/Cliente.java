@@ -6,13 +6,18 @@
 
 package ejb.cliente;
 
+import ejb.manager.ClienteManagerLocal;
 import ejb.shopping.CarrelloLocal;
 import entity.Comune;
+import entity.GestoreMagazzino;
 import entity.Ordine;
 import entity.Provincia;
+import entity.Utente;
 import facade.ClienteFacadeLocal;
 import facade.ComuneFacadeLocal;
+import facade.GestoreMagazzinoFacadeLocal;
 import facade.ProvinciaFacadeLocal;
+import facade.UtenteFacadeLocal;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
@@ -29,6 +34,8 @@ import manager.StatoClienti;
 
 @Stateful
 public class Cliente implements ClienteLocal {
+    @EJB
+    private UtenteFacadeLocal utenteFacade;
 
     @EJB
     private CarrelloLocal carrelloEJB;
@@ -36,6 +43,8 @@ public class Cliente implements ClienteLocal {
     private ComuneFacadeLocal comuneFacade;
     @EJB
     private ProvinciaFacadeLocal provinciaFacade;
+    
+    
     
     @PersistenceContext(unitName = "Piattaforme-ejbPU")
     private EntityManager em;
@@ -46,6 +55,10 @@ public class Cliente implements ClienteLocal {
     private Long idComune;
     @EJB
     private ClienteFacadeLocal cl;
+    @EJB
+    private ClienteManagerLocal gl;
+    @EJB
+    private GestoreMagazzinoFacadeLocal gfl;
 
     @Override
     public void setNome(String nome) {
@@ -189,8 +202,52 @@ public class Cliente implements ClienteLocal {
         System.out.println("[ClienteManager] Il cliente numero "+ c.getId() + " è stato rimosso con successo" );
         
     }
-
-
-   
+    
+    @Override
+    public void promuoviCliente (entity.Cliente c) {
+        
+        if ( c == null )
+            return;
+        
+        if (c.getStato().equals(StatoClienti.Bloccato) ) {
+            System.out.println("Non è possibile promuovere un utente bloccato");
+            return;
+        }
+        Query q = em.createNamedQuery("EsisteCliente");
+        q.setParameter(1, c.getId());
+        if (q.getResultList().isEmpty()) {
+            System.out.println("[ClienteManager] Impossibile trovare cliente da promuovere "+ c.getId() + " ciente non trovato" );
+            return;
+        }
+        GestoreMagazzino gm = new GestoreMagazzino();
+        String s = c.getUsername();
+        gm.setCognome(c.getCognome());
+        gm.setComune(c.getComune());
+        gm.setEmail(c.getEmail());
+        gm.setNome(c.getNome());
+        gm.setUsername("aaaaaa");
+        gm.setPassword(c.getPassword());
+        gm.setMetodopagamento(c.getMetodopagamento());
+        gm.setNascita(c.getNascita());
+        gm.setListaOrdini(c.getListaOrdini());
+        rimuoviCliente(c);
+        System.out.println("[ClienteManager] cliente rimosso");
+        
+        gfl.create(gm);
+           
+        System.out.println("[ClienteManager] cliente promosso a gestore magazzino");
+        
+        
+    }
+    
+    @Override
+    public void aggiornaGestore (entity.Cliente c) {
+        String s = c.getUsername();
+        Utente u = gl.ottieniUtenteEmail (c.getEmail());
+        u.setUsername(s);
+        gfl.edit((GestoreMagazzino)u);
+        
+    }
+  
     }
 

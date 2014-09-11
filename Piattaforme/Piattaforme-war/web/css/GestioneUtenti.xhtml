@@ -12,8 +12,6 @@
     <h:body>
          
         <div>
-            #{redirect.redirectAmministratore(gestioneSito , "Login.jsf")}
-            
             <h:form>
                 <p:dataTable id="table" var="clienti" value="#{clienteManagedBean.cliente}" emptyMessage="Non ci sono clienti registrati">
                      <f:facet name="header">

@@ -7,6 +7,8 @@
 package ejb.amministratore;
 
 import facade.AmministratoreFacade;
+import facade.AmministratoreFacadeLocal;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 
@@ -19,7 +21,9 @@ public class Amministratore implements AmministratoreLocal {
    
     private Long id;
     private String nome;    
-
+    @EJB
+    private AmministratoreFacadeLocal amministratore;
+    
     @Override
     public void setNome(String nome) {
         this.nome = nome;
@@ -43,6 +47,15 @@ public class Amministratore implements AmministratoreLocal {
     @Override
     public void setAmministratore (Long id) {
         this.id = id;
+    }
+    
+     @Override
+    public List <entity.Amministratore> cercaTuttiAmministratori() {
+        List<entity.Amministratore> res = amministratore.findAll();
+        if(res==null){
+           System.out.println("[AmministratoreManager] Non sono presenti amministratori" ); 
+        }
+        return res;
     }
         
 }

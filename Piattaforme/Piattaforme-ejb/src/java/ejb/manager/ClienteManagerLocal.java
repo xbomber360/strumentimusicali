@@ -22,8 +22,10 @@ public interface ClienteManagerLocal {
     
     boolean ePresente (Utente u);
     void creaCliente (Cliente c);
+    void creaGestoreMagazzino (GestoreMagazzino gm);
     void rimuoviCliente (Cliente c);
     Utente ottieniUtente (String username);
+    Utente ottieniUtenteEmail (String email);
     Cliente ottieniCliente (Utente u);
     Amministratore ottieniAmministratore (Utente u);
     GestoreMagazzino ottieniGestoreMagazzino (Utente u);

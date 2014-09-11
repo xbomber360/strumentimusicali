@@ -11,6 +11,7 @@
     </h:head>
     <h:body>
         <div>
+            #{redirect.redirectGestoreMagazzino(gestioneSito , "Login.jsf")}
             <h:form>
                 <p:dataTable id="table" var="ordine" value="#{ordineManagedBean.ordini}" emptyMessage="Non ci sono ordini disponibili">
                      <f:facet name="header">

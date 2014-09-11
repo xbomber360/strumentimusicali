@@ -6,6 +6,7 @@
 
 package ejb.amministratore;
 
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -20,5 +21,7 @@ public interface AmministratoreLocal {
     Long getID();
     String getNome();
     void setAmministratore (Long id);
+    List<entity.Amministratore> cercaTuttiAmministratori();
+    
     
 }

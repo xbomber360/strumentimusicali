@@ -10,6 +10,7 @@
         <ui:include src="Header.xhtml"/>
     </h:head>
     <h:body>
+        #{redirect.redirectGestoreMagazzino(gestioneSito , "Login.jsf")}
         <p:panel id="panel" header="Completa i campi per aggiungere un nuovo prodotto in magazzino" style="margin-bottom:10px;">
         <h:form> 
             <h:panelGrid id="grid" columns="2" cellpadding="5">
