@@ -10,7 +10,7 @@
         <ui:include src="Header.xhtml"/>
     </h:head>
     <h:body>
-        #{redirect.redirectGestoreMagazzino(gestioneSito , "Login.jsf")}
+        
         #{gestioneProdottoBean.cercaProdotto(param['idProdotto'])}
         <p:panel header=" #{gestioneProdottoBean.marcaSelezionata} #{gestioneProdottoBean.nome}" style="margin-bottom:10px;">
 
