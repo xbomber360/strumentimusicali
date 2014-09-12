@@ -16,21 +16,21 @@
 
 
 
-            <p:commandButton value="Modifica Password"   action="ReimpostaPassword" style="width: 500px; position: relative ; left: 25% ; right: 25%"/>
+            <p:button value="Modifica Password"   outcome="/ReimpostaPassword.xhtml" style="width: 500px; position: relative ; left: 25% ; right: 25%"/>
             <br/>
-            <p:commandButton value="I Miei Ordini" disabled="#{!redirect.accessoCliente}" action="MieiOrdini" style="width: 500px; position: relative ; left: 25% ; right: 25%"/>
-            <br/>
-
-            <p:commandButton value="Aggiungi Prodotti" disabled="#{!redirect.accessoGestoreMagazzino}" action="CreaProdotto" style="width: 500px; position: relative ; left: 25% ; right: 25%"/>
+            <p:button value="I Miei Ordini" disabled="#{!redirect.accessoCliente}" outcome="/MieiOrdini.xhtml" style="width: 500px; position: relative ; left: 25% ; right: 25%"/>
             <br/>
 
-            <p:commandButton value="Modifica Categorie/Marche/Prodotti" disabled="#{!redirect.accessoGestoreMagazzino}" action="GestioneProdotti" style="width: 500px; position: relative ; left: 25% ; right: 25%"/>
+            <p:button value="Aggiungi Prodotti" disabled="#{!redirect.accessoGestoreMagazzino}" outcome="/CreaProdotto.xhtml" style="width: 500px; position: relative ; left: 25% ; right: 25%"/>
             <br/>
 
-            <p:commandButton value="Modifica Stato Ordini"  disabled="#{!redirect.accessoGestoreMagazzino}" action="GestioneOrdini" style="width: 500px; position: relative ; left: 25% ; right: 25%"/>
+            <p:button value="Modifica Categorie/Marche/Prodotti" disabled="#{!redirect.accessoGestoreMagazzino}" outcome="/GestioneProdotti.xhtml" style="width: 500px; position: relative ; left: 25% ; right: 25%"/>
+            <br/>
+
+            <p:button value="Modifica Stato Ordini"  disabled="#{!redirect.accessoGestoreMagazzino}" outcome="/GestioneOrdini.xhtml" style="width: 500px; position: relative ; left: 25% ; right: 25%"/>
             <br/>
             
-             <p:commandButton value="Gestisci Utenti" disabled="#{!redirect.accessoAmministratore}" action="GestioneUtenti" style="width: 500px; position: relative ; left: 25% ; right: 25%"/>
+             <p:button value="Gestisci Utenti" disabled="#{!redirect.accessoAmministratore}" outcome="/GestioneUtenti.xhtml" style="width: 500px; position: relative ; left: 25% ; right: 25%"/>
             <br/>
 
 
