@@ -45,6 +45,6 @@ public interface CarrelloLocal {
 
     public Integer getQuantitaProdotto(Long idProdotto);
 
-    boolean isEmpty();
+    boolean isEmpty();       
     
 }
