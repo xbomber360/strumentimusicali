@@ -33,7 +33,7 @@ public class CarrelloManagerBean implements Serializable{
     
     @EJB
     private CarrelloLocal carrello;
-    
+        
     
    
     public void setCarrello(GestioneCliente gc){
@@ -48,6 +48,7 @@ public class CarrelloManagerBean implements Serializable{
     public void aggiungiProdottoAlCarrello(Long idProdotto , int quantita) throws ProdottoNonTrovatoException, ProdottoQuantitaException{
         System.out.println("Ho aggiunto idprodotto: " + idProdotto + " quantità :" + quantita );
         carrello.aggiungiProdottoAlCarrello(idProdotto, quantita);
+        
         
     }
     
@@ -64,9 +65,9 @@ public class CarrelloManagerBean implements Serializable{
         System.out.println("I prodotti nel carrello sono " + carrello.getProdotti());
         return carrello.getProdotti();
     }
-    public boolean carrelloIsEmpty(){
-         boolean vuoto = carrello.isEmpty();
-         return vuoto;
+    public boolean isEmpty(){
+         
+         return  carrello.isEmpty();
      }
     
     
@@ -83,9 +84,10 @@ public class CarrelloManagerBean implements Serializable{
         return carrello.getTotale(sp);
     }
     
-     public void processaOrdine(Long idCliente) throws ClienteNonPresenteException {
+     public String processaOrdine(Long idCliente) throws ClienteNonPresenteException {
         TipoSpedizione sp = tipoSpedizioneFacade.find(new Long(1));
-         carrello.creaOrdine(idCliente, sp);
+         return carrello.creaOrdine(idCliente, sp);
+        
      }
      
      

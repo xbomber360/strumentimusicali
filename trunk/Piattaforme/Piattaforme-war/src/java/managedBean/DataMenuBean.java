@@ -79,7 +79,7 @@ public class DataMenuBean {
     
     public List<Prodotto> getProdottoMarcaCatagoria() {
         FacesContext fc = FacesContext.getCurrentInstance();
-        Long idCategoria = Long.parseLong(fc.getExternalContext().getRequestParameterMap().get("idCategoria"));
+        Long idCategoria = new Long(fc.getExternalContext().getRequestParameterMap().get("idCategoria"));
         String idMarcaS = fc.getExternalContext().getRequestParameterMap().get("idMarca");
         if(idMarcaS == null){
             //TODO scegli una marca a caso e mostrala

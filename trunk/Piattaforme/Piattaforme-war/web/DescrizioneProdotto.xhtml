@@ -28,14 +28,14 @@
                     <p>
                         #{gestioneProdottoBean.descrizione}
                     </p> 
-                    <p>
+                    
                         <h:outputText value="Prezzo: " style="font-weight: bold" />
                         <h:outputText  value="#{gestioneProdottoBean.prezzo} €"  />
                         <br></br>
-                        <h:outputText value="Quantità: " style="font-weight: bold" />
-                        <h:outputText id="quantita" value="#{gestioneProdottoBean.quantita} pz."  />
+                        <p:outputLabel   value="Quantità: " style="font-weight: bold" />
+                        <p:outputLabel  id="quantita" value="#{gestioneProdottoBean.quantita} pz."  />
 
-                    </p> 
+                 
                     <p:spinner  value="#{gestioneProdottoBean.quantitaDaAcquistare}"  stepFactor="1" min="1" max="#{gestioneProdottoBean.quantita}"  />
                     <p:commandButton value="Aggiungi al carrello" update="quantita" action="#{carrelloManagerBean.aggiungiProdottoAlCarrello(gestioneProdottoBean.id, gestioneProdottoBean.quantitaDaAcquistare)}"/>
                         </div>
