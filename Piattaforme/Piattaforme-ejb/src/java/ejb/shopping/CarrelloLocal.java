@@ -31,7 +31,7 @@ public interface CarrelloLocal {
 
     void svuotaCarrello();
 
-    void creaOrdine(Long idCliente, TipoSpedizione sp)throws ClienteNonPresenteException;
+    String creaOrdine(Long idCliente, TipoSpedizione sp)throws ClienteNonPresenteException;
 
     Float getTotale(TipoSpedizione sp);
     

@@ -242,6 +242,11 @@ public class Cliente implements ClienteLocal {
     
     @Override
     public void aggiornaGestore (entity.Cliente c) {
+        
+        if (c.getStato().equals(StatoClienti.Bloccato) ) {
+            System.out.println("Non è possibile promuovere un utente bloccato");
+            return;
+        }
         String s = c.getUsername();
         Utente u = gl.ottieniUtenteEmail (c.getEmail());
         u.setUsername(s);

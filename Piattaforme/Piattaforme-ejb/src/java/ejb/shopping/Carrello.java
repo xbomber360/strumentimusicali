@@ -6,7 +6,6 @@
 
 package ejb.shopping;
 
-import ejb.manager.ClienteManagerLocal;
 import ejb.manager.ProdottoManagerLocal;
 import entity.Fattura;
 import entity.OggettoOrdinato;
@@ -187,7 +186,7 @@ public class Carrello implements CarrelloLocal,Serializable {
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     @Override
-    public void creaOrdine(Long idCliente, TipoSpedizione sp) throws ClienteNonPresenteException{
+    public String creaOrdine(Long idCliente, TipoSpedizione sp) throws ClienteNonPresenteException{
         if (carrello.isEmpty()) {
             throw new IllegalStateException("Carrello vuoto o non è stato aggiunto un nuovo prodotto");
         }
@@ -217,8 +216,9 @@ public class Carrello implements CarrelloLocal,Serializable {
         f.setDettaglio("Gli oggetti acquistati sono :" + lista.toString() + "Il prezzo è " + totale);
         this.carrello.clear();
         subTotale= new Float(0.00);
-        
-        
+         System.out.println("Ordine Confermato");
+        return "OrdineConfermato";
+       
         
         
         

@@ -3,7 +3,7 @@
               xmlns="http://xmlns.jcp.org/xml/ns/javaee"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-    <navigation-rule>
+    <navigation-rule> 
         <from-view-id>/Home.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>navigazione</from-outcome>
@@ -97,7 +97,22 @@
             <from-outcome>SuccessoRegistrazione</from-outcome>
             <to-view-id>/EsitoRegistrazione.xhtml</to-view-id>
         </navigation-case>
-    </navigation-rule>
+         <navigation-case>
+            <from-outcome>RegistrazioneNonAvvenuta</from-outcome>
+            <to-view-id>/ErroreRegistrazione.xhtml</to-view-id>
+        </navigation-case>
+            </navigation-rule>
+            
+            <navigation-rule>
+        <from-view-id>/Acquisto.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>OrdineConfermato</from-outcome>
+            <to-view-id>/OrdineConfermato.xhtml</to-view-id>
+        </navigation-case>
+            </navigation-rule>
+
+        
+        
     <navigation-rule>
         <from-view-id>/Login.xhtml</from-view-id>
         <navigation-case>

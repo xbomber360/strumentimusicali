@@ -35,7 +35,7 @@ public class GestioneProdottoBean {
     private String descrizione=null;
     private int prezzo=0;
     private int quantita=0;
-    private int quantitaDaAcquistare=0;
+    private int quantitaDaAcquistare=1;
     
 
     /**
@@ -87,7 +87,7 @@ public class GestioneProdottoBean {
         Prodotto p = prodottoManager.cercaProdottoPerNome(nome);
         if(p==null){
             System.out.println("Il prodotto cercato è null");
-            return new Long(403);
+            
         }
         return p.getId();
         
