@@ -15,7 +15,6 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 
 
 /**
