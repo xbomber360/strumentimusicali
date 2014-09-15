@@ -119,6 +119,14 @@
             <from-outcome>UtenteBloccato</from-outcome>
             <to-view-id>/ErroreAccesso.xhtml</to-view-id>
         </navigation-case>
+         <navigation-case>
+            <from-outcome>ErroreClientLogin</from-outcome>
+            <to-view-id>/PasswordErrata.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>ClienteNonPresente</from-outcome>
+            <to-view-id>/ClienteNonPresente.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
     <managed-bean>
