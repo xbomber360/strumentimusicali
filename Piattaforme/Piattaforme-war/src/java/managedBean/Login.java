@@ -115,7 +115,7 @@ public class Login {
             
         }catch (ClienteLoginException ex ) {
             System.out.println("clienteloginexception");
-            return "Errore client login";
+            return "ErroreClientLogin";
         } catch (UtenteBloccatoException ex) {
                         System.out.println("utentebloccatoexc");
 
@@ -123,7 +123,7 @@ public class Login {
         } catch (ClienteNonPresenteException ex) {
                                     System.out.println("nonpreenteexce");
 
-            return "cliente non presente";
+            return "ClienteNonPresente";
         }
         
         

@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="11.5.1">
+  <help_text>// Uncomment the following line to change the fontsize and font:
+fontsize=12
+// fontfamily=SansSerif //possible: SansSerif,Serif,Monospaced
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Welcome to UMLet!
+//
+// Double-click on elements to add them to the diagram, or to copy them
+// Edit elements by modifying the text in this panel
+// Hold Cmd to select multiple elements
+// Use Cmd+mouse to select via lasso
+//
+// Use +/- or Cmd+mouse wheel to zoom
+// Drag a whole relation at its central square icon
+//
+// Press Cmd+C to copy the whole diagram to the system clipboard (then just paste it to, eg, Word)
+// Edit the files in the "palettes" directory to create your own element palettes
+//
+// Select "Custom Elements &gt; New..." to create new element types
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// This text will be stored with each diagram;  use it for notes.</help_text>
+  <zoom_level>8</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>800</x>
+      <y>504</y>
+      <w>248</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>ClienteManager
+--
+-EntityManager em
+-UtenteFacadeLocal utenteFacade
+--
++ePresente(Utente u): boolean
++creaCliente(Cliente c): void
++creaGestoreMagazzino(GestoreMagazzino gm): void
++rimuoviCliente(Cliente c): void
++ottieniCliente(Utente u): Cliente
++ottieniUtente(String  s): Utente
++ottieniUtenteEmail(String  s): Utente
++ottieniAmministratore (Utente u): Amministratore
++ottieniGestoreMagazzino (Utente u): GestoreMagazzino
++esisteUsername (String username): boolean
++cercaPerEmail(String email): Cliente
++cercaPerID (Long id): Cliente
++modificaPassword(String newPassword, String username): void
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>704</x>
+      <y>0</y>
+      <w>392</w>
+      <h>368</h>
+    </coordinates>
+    <panel_attributes>ProdottoManager
+--
+-EntityManager em
+-ProdottoFacadeLocal pf
+-CategoriaManagerLocal cm
+-MarcaManagerLocal mm
+
+--
++controllaDisponibilita(Long idProdotto, int quantita):boolean
++aggiungiCategoria(Categoria c): void
++aggiungiMarca(Marca m):void
++aggiungiProdotto(Prodotto p):void
++aggiungiQuantitaProdotto(Prodotto p, int quantita):void
++rimuoviQuantitaProdotto(Prodotto p , int quantita):void
++aggiungiQuantitaProdotto(Long idProdotto, int quantita):void
++rimuoviQuantitaProdotto(Long idProdotto , int quantita):void
++modificaQuantitaProdotto(Prodotto p, int quantita):void
++modificaQuantitaProdotto(Long idProdotto, int quantita):void
++rimuoviCategoria(Categoria c):void
++rimuoviProdotto(Prodotto p):void
++cercaProdottoPerId(Long idProdotto):Prodotto
++cercaProdottoPerNome(String parameter):Prodotto
++cercaTuttiProdotti:List&lt;Prodotto&gt;
++cercaProdottiPerMarca(String marca):List&lt;Prodotto&gt;
++cercaProdottiPerMarcaCategoria( Long idMarca,Long idCategoria ):List&lt;Prodotto&gt;
++prodottiDaUnSet(java.util.Set&lt;Long&gt; codiceBarre):List&lt;Prodotto&gt;
++cercaPattern(String query):List&lt;String&gt;
++isPresenteProdottoDellaMarca(Marca m):boolean
++isPresenteProdottoDellaCategoria(Categoria c):boolean
++cercaTutteFotoProdotti:String
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>848</x>
+      <y>400</y>
+      <w>168</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Enum StatoOrdine 
+--
+Nuovo, inLavorazione, Pronto,
+inPartenza, Spedito, Cancellato
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>360</x>
+      <y>640</y>
+      <w>272</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Login
+--
+-ClienteManagerLocal manager
+--
++accesso(String username,String password):Utente
+-niente:void
+-verificaCliente (Cliente c):Cliente
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>352</x>
+      <y>504</y>
+      <w>312</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Registrazione
+--
+-ClienteManagerLocal clienteManager
+--
++registraUtente(String nome, String cognome, String codiceFiscale,
+Date dataNascita, Comune comune, String via, String username,
+String password):void
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>0</x>
+      <y>88</y>
+      <w>280</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>OrdineManager
+--
+-ProdottoManagerLocal prodottoManager
+-EntityManager em
+-OrdineFacadeLocal om
+-TipoSpedizioneFacadeLocal tipoSpedizioneFacade
+--
++creaOrdine(Ordine o):void
++rimuoviOrdine(Ordine o):void
++modificaStatoOrdine(Ordine o , Stato s):void
++aggiungiSpedizione(Ordine o , Spedizione s):void
++cercaTuttiGliOrdini:List&lt;Ordine&gt;
++cercaTuttiGliOrdiniUtente(Utente u):List&lt;Ordine&gt;
++cercaPrezzoSpedizione(Long id): Float
++cercaTipoSpedizione(Long id):TipoSpedizione
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>352</x>
+      <y>32</y>
+      <w>312</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>Carrello (Stateful)
+--
+-OggettoOrdinatoFacadeLocal oggettoOrdinatoFacade
+-UtenteFacadeLocal utenteFacade
+-ProdottoManagerLocal pm
+-Map&lt;Long, OggettoOrdinato&gt; carrello
+-Float subtototale 
+-EntityManager em
+--
++aggiungiProdottoAlCarrello(Long idProdotto , int quantita):void
++rimuoviProdottoDalCarrello(Long idProdotto):void
++aggiungiQuantitaProdottoAlCarrello(Long idProdotto, int quantita ):void
++rimuoviQuantitaProdottoDalCarrello(Long idProdotto, int quantita):void
++svuotaCarrello():void
++creaOrdine(Long idCliente,TipoSpedizione spedizione):void
++getTotale(TipoSpedizione spedizione)
++getProdotti():List&lt;Prodotto&gt; 
++getQuantitaProdotto(Long idProdotto):Integer
++getQuantitaProdotto(Prodotto prodotto):Integer
++getSubTotale:Float
++isEmpty:Boolean
+#preDestroy():void
+#init:void
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>656</x>
+      <y>408</y>
+      <w>160</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Enum StatoCliente 
+--
+Attivo, Bloccato 
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>32</x>
+      <y>288</y>
+      <w>248</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>ComuneManager
+--
+ComuneFacadeLocal cf
+ProvinciaFacadeLocal pf
+EntityManager em
+--
++trovaDaProvincia(Provincia provincia):List&lt;Comune&gt; 
++trovaDaIdProvincia(Long idProvincia):List&lt;Comune&gt; 
++trovaDaId(Long id):Comune 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>48</x>
+      <y>408</y>
+      <w>192</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>GestoreMagazzino
+--
+-Long id
+-String name
+-GestoreMagazzinoFacadeLocal gestore
+-EntityManager em
+--
++setNome (String nome):void
++setID (Long id):void
++getNome:String
++getID:Long
++cercaTuttiGestori:List&lt;GestoreMagazzino&gt;
++rimuoviGestori:void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1128</x>
+      <y>384</y>
+      <w>192</w>
+      <h>392</h>
+    </coordinates>
+    <panel_attributes>Cliente
+--
+-ComuneFacadeLocal comuneFacade
+-ProvinciaFacadeLocal provinciaFacade
+-EntityManager em
+-Long id
+-String nome
+-Long idProvincia
+-Long idComune
+-ClienteFacadeLocal
+-ClienteManagerLocal
+-GestoreMagazzinoFacadeLocal
+--
++setNome (String nome):void
++setID (Long id):void
++getNome:String
++getID:Long
++setComune (Comune c):void
++getComune:Comune
++setProvincia (Provincia p):void
++getProvincia:Provincia
++setIDProvincia (Long idProvincia):void
++setIDComune (Long idComune):void
++getCarrelloEJB:CarrelloLocal
++isLogged:boolean
++getOrdiniCliente:List&lt;Ordine&gt;
++cercaTuttiClienti:List&lt;Cliente&gt;
++attivaCliente(Cliente c):void
++bloccaCliente(Cliente c):void
++promuoviCliente(Cliente c):void
++rimuoviCliente(Cliente c):void
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>40</x>
+      <y>576</y>
+      <w>208</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>Amministratore
+--
+-Long id
+-String name
+-AmministratoreFacadeLocal amministratore
+--
++setNome (String nome):void
++setID (Long id):void
++getNome:String
++getID:Long
++setAmministratore (Long id):void
++cercaTuttiAmministratori:List&lt;Amministratori&gt;
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>424</x>
+      <y>368</y>
+      <w>168</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>OggettoOrdinato
+--
+Long id
+int quantità
+--
++setId(Long id)
++setQuantità(int quantità)
++getQuantità:int
++getId:Long
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1144</x>
+      <y>200</y>
+      <w>312</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>MarcaManager
+--
+-EntityManager em
+-ProdottoManagerLocal prodottoManager
+-MarcaFacadeLocal marcaFacade
+--
++creaMarca(Marca m): void
++cercaPerNome(String nome) : Marca
++cercaTutto(): List&lt;Marca&gt;
++modificaMarca (Marca m): void
++rimuoviMarca(Marca m): void
++cercaPattern(String query): List&lt;String&gt;
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1144</x>
+      <y>0</y>
+      <w>312</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>CategoriaManager
+--
+-EntityManager em
+-ProdottoManagerLocal prodottoManager
+-CategoriaFacadeLocal categoriaFacade
+
+--
++creaCategoria(Categoria cat):void
++cercaPerNome(String nome):Categoria
++cercaTutto():List&lt;Categoria&gt;
++modificaCategoria(Categoria cat):void
++rimuoviCategoria(Categoria cat):void
++getMarcheCategoria(Long idCategoria):List&lt;Marca&gt;
++cercaPerId(Long id):Categoria
++cercaPattern(String query): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1072</x>
+      <y>264</y>
+      <w>88</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-&gt;</panel_attributes>
+    <additional_attributes>24;24;72;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1072</x>
+      <y>72</y>
+      <w>88</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-&gt;</panel_attributes>
+    <additional_attributes>24;24;72;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>640</x>
+      <y>88</y>
+      <w>80</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>24;24;64;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>256</x>
+      <y>120</y>
+      <w>112</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>24;24;96;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>640</x>
+      <y>512</y>
+      <w>176</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>24;24;160;64</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>608</x>
+      <y>648</y>
+      <w>208</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>24;24;192;48</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1024</x>
+      <y>448</y>
+      <w>120</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>24;104;104;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>488</x>
+      <y>280</y>
+      <w>40</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+
+</panel_attributes>
+    <additional_attributes>24;24;24;88</additional_attributes>
+  </element>
+</diagram>
