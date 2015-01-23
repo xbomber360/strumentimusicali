@@ -94,6 +94,7 @@ public class Carrello implements CarrelloLocal,Serializable {
                 int quantitaModificata = carrello.get(idProdotto).getQuantita() + quantita;
                 carrello.get(idProdotto).setQuantita(quantitaModificata);
                 System.out.println("[Carrello] Prodotto già presente nel carrello , modificata la quantità , la nuova quantità è : + carrello.get(idProdotto).getQuantita()");
+                
             }
             else{
             carrello.put(idProdotto, o);
